@@ -54,16 +54,13 @@ public class CriteriaResultImpl implements CriteriaResult
 		if (val == null)
 			return defaultResult;
 		
-		Boolean res = null;
+		Boolean res;
 		if (val instanceof String)
 			res = Boolean.valueOf(val.toString());
 		else
 		{
 			String v = val.toString();
-			if (v.equals("1"))
-				res = true;
-			else
-				res = false;
+			res = v.equals("1");
 		}
 		
 		return res;

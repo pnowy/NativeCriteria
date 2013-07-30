@@ -42,7 +42,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- BASE NATIVE LIBRARY -->
-		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
         <hibernate.core.version>4.2.3.Final</hibernate.core.version>
 		<!-- LOGGING -->
 		<slf4j.version>1.7.2</slf4j.version>
@@ -57,54 +56,17 @@
     </properties>
 
     <dependencies>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${org.springframework.version}</version>
-			<!--<scope>compile,test</scope>-->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${org.springframework.version}</version>
-			<!--<scope>compile,test</scope>-->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${org.springframework.version}</version>
-			<!--<scope>compile,test</scope>-->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${org.springframework.version}</version>
-			<!--<scope>compile,test</scope>-->
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${org.springframework.version}</version>
-			<!--<scope>compile,test</scope>-->
-		</dependency>
-		<dependency>
+        <!--BASE NATIVE LIBRARY -->
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.core.version}</version>
-            <!--<scope>compile,test</scope>-->
         </dependency>
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.0.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.core.version}</version>
-		</dependency>
-
-
+<!--        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>-->
 		<!-- UTILS -->
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -1,27 +1,19 @@
 package com.nc;
 
-import java.io.InputStreamReader;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.nc.utils.ScriptRunner;
-
-public class TestDatasource extends DriverManagerDataSource implements ApplicationListener<ContextRefreshedEvent> {
+public class TestDatasource /*extends DriverManagerDataSource implements ApplicationListener<ContextRefreshedEvent>*/ {
 	private static final Logger log = LoggerFactory.getLogger(TestDatasource.class);
 
 	/**
 	 * Initialize database schema.
 	 */
 	public void init() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(this);
-
-		ScriptRunner sr = new ScriptRunner(jdbcTemplate);
-		sr.runScript(new InputStreamReader(getClass().getResourceAsStream("/sql/1.sql")));
+//		JdbcTemplate jdbcTemplate = new JdbcTemplate(this);
+//
+//		ScriptRunner sr = new ScriptRunner(jdbcTemplate);
+//		sr.runScript(new InputStreamReader(getClass().getResourceAsStream("/sql/1.sql")));
 	}
 
 	/**
@@ -39,8 +31,8 @@ public class TestDatasource extends DriverManagerDataSource implements Applicati
 	 * 
 	 * @param event context refreshed event
 	 */
-	@Override
+	/*@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		log.info("database setup finished");
-	}
+	}*/
 }

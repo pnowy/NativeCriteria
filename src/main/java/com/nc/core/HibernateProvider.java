@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import javax.persistence.EntityManager;
 
 /**
+ * Default hibernate provider.
+ *
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 29.07.13 23:58
  */
