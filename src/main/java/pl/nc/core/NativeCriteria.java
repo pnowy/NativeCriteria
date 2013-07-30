@@ -28,7 +28,8 @@ public class NativeCriteria implements NativeExp
 	/**
 	 * Hibernate session.
 	 */
-	private Session session;
+//	private Session session;
+	private NativeProvider nativeProvider;
 
 	/**
 	 * Tables with aliases to FROM clause.
@@ -120,26 +121,26 @@ public class NativeCriteria implements NativeExp
 	/**
 	 * Construcotr.
 	 *
-	 * @param session   the session
+	 * @param nativeProvider native select provider
 	 * @param mainTable the main table
 	 * @param mainAlias the main alias
 	 */
-	public NativeCriteria(Session session, String mainTable, String mainAlias)
+	public NativeCriteria(NativeProvider nativeProvider, String mainTable, String mainAlias)
 	{
-		if (session == null)
+		if (nativeProvider == null)
 		{
-			throw new IllegalStateException("Obiekt sesji ma warto�� null!");
+			throw new IllegalStateException("NativeProvider is null!");
 		}
 		if (StringUtils.isBlank(mainTable))
 		{
-			throw new IllegalStateException("Brak nazwy dla tabeli g��wnej");
+			throw new IllegalStateException("mainTable is null");
 		}
 		if (StringUtils.isBlank(mainAlias))
 		{
-			throw new IllegalStateException("Brak aliasu dla tabeli g��wnej");
+			throw new IllegalStateException("mainAlias is null");
 		}
 
-		this.session = session;
+		this.nativeProvider = nativeProvider;
 		this.distinct = false;
 
 		// main table
@@ -152,13 +153,12 @@ public class NativeCriteria implements NativeExp
 	}
 
 	/**
-	 * Sets the session.
-	 *
-	 * @param session the session to set
+	 * Set native provider.
+	 * @param nativeProvider
 	 */
-	public void setSession(Session session)
+	public void setNativeProvider(NativeProvider nativeProvider)
 	{
-		this.session = session;
+		this.nativeProvider = nativeProvider;
 	}
 
 	/**
@@ -347,7 +347,7 @@ public class NativeCriteria implements NativeExp
 	@SuppressWarnings("unchecked")
 	public List<Object[]> list()
 	{
-		SQLQuery query = buildCriteriaQuery();
+		QueryProvider query = buildCriteriaQuery();
 		return query.list();
 	}
 
@@ -358,7 +358,7 @@ public class NativeCriteria implements NativeExp
 	 */
 	public Object uniqueResult()
 	{
-		SQLQuery query = buildCriteriaQuery();
+		QueryProvider query = buildCriteriaQuery();
 		return query.uniqueResult();
 	}
 
@@ -390,12 +390,12 @@ public class NativeCriteria implements NativeExp
 	 *
 	 * @return the sQL query
 	 */
-	private SQLQuery buildCriteriaQuery()
+	private QueryProvider buildCriteriaQuery()
 	{
-		SQLQuery sqlQuery = session.createSQLQuery(buildSQL());
-		setValues(sqlQuery);
+		QueryProvider queryProvider = nativeProvider.getQueryProvider(buildSQL());
+		setValues(queryProvider);
 
-		return sqlQuery;
+		return queryProvider;
 	}
 
 	/**
@@ -620,7 +620,7 @@ public class NativeCriteria implements NativeExp
 	}
 
 	@Override
-	public void setValues(SQLQuery sqlQuery)
+	public void setValues(QueryProvider sqlQuery)
 	{
 		// subqueries
 		if (projection != null)

@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 
 /**
@@ -25,15 +26,21 @@ public class NativeSqlExp implements NativeExp
 		this.sql = sql;
 	}
 	
-	@Override
-	public void setValues(SQLQuery query)
-	{
-		// don't need to set parameteres
-	}
+//	@Override
+//	public void setValues(SQLQuery query)
+//	{
+//		// don't need to set parameteres
+//	}
 	
 	@Override
 	public String toSQL()
 	{
 		return sql;
+	}
+
+	@Override
+	public void setValues(QueryProvider query)
+	{
+		// don't need to set parameters
 	}
 }

@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -183,7 +184,7 @@ public class NativeJoin
         }
 	}
 
-    public void setValues(SQLQuery query) {
+    public void setValues(QueryProvider query) {
         if(complexJoinExp != null){
             complexJoinExp.setValues(query);
         }

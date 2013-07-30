@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.nc.core.QueryProvider;
 import pl.nc.utils.VarGenerator;
 
 /**
@@ -38,10 +39,16 @@ public class NativeLteExp implements NativeExp
 		varName = VarGenerator.gen(columnName);
 		return columnName + " <= :" + varName;
 	}
-	
-	public void setValues(SQLQuery query)
+
+	@Override
+	public void setValues(QueryProvider query)
 	{
 		query.setParameter(varName, value);
-		if (log.isDebugEnabled()) log.debug("varName={}, value={}",varName,value);
 	}
+
+//	public void setValues(SQLQuery query)
+//	{
+//		query.setParameter(varName, value);
+//		if (log.isDebugEnabled()) log.debug("varName={}, value={}",varName,value);
+//	}
 }

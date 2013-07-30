@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 import pl.nc.utils.VarGenerator;
 
@@ -57,12 +58,21 @@ public class NativeNotInExp implements NativeExp
 		varName = VarGenerator.gen(columnName);
 		return columnName + " NOT IN (:" + varName + ")";
 	}
-	
-	public void setValues(SQLQuery query)
+
+	@Override
+	public void setValues(QueryProvider query)
 	{
 		if (values != null)
 			query.setParameterList(varName, values);
 		else if (arrValues != null)
 			query.setParameterList(varName, arrValues);
 	}
+
+//	public void setValues(SQLQuery query)
+//	{
+//		if (values != null)
+//			query.setParameterList(varName, values);
+//		else if (arrValues != null)
+//			query.setParameterList(varName, arrValues);
+//	}
 }

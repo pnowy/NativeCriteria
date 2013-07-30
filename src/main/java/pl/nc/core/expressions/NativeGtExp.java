@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 import pl.nc.utils.VarGenerator;
 
@@ -36,8 +37,9 @@ public class NativeGtExp implements NativeExp
 		varName = VarGenerator.gen(columnName);
 		return columnName + " > :" + varName;
 	}
-	
-	public void setValues(SQLQuery query)
+
+	@Override
+	public void setValues(QueryProvider query)
 	{
 		query.setParameter(varName, value);
 	}

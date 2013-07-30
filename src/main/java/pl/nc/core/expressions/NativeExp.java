@@ -1,6 +1,6 @@
 package pl.nc.core.expressions;
 
-import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 
 /**
  * Interface for native SQL Expressions.
@@ -20,5 +20,5 @@ public interface NativeExp
 	 *
 	 * @param query the new values
 	 */
-	public void setValues(SQLQuery query);
+	public void setValues(QueryProvider query);
 }

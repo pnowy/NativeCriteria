@@ -1,13 +1,14 @@
 package pl.nc.core.expressions;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.nc.core.QueryProvider;
 import pl.nc.utils.VarGenerator;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * The Class NativeInExp.
@@ -60,18 +61,31 @@ public class NativeInExp implements NativeExp
 		varName = VarGenerator.gen(columnName);
 		return columnName + " IN (:" + varName + ")";
 	}
-	
-	public void setValues(SQLQuery query)
+
+	@Override
+	public void setValues(QueryProvider query)
 	{
 		if (values != null)
 		{
 			query.setParameterList(varName, values);
-			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,values);
 		}
 		else if (arrValues != null)
 		{
 			query.setParameterList(varName, arrValues);
-			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,Arrays.toString(arrValues));
 		}
 	}
+
+//	public void setValues(SQLQuery query)
+//	{
+//		if (values != null)
+//		{
+//			query.setParameterList(varName, values);
+//			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,values);
+//		}
+//		else if (arrValues != null)
+//		{
+//			query.setParameterList(varName, arrValues);
+//			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,Arrays.toString(arrValues));
+//		}
+//	}
 }

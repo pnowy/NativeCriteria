@@ -44,14 +44,9 @@ public class CriteriaResultImpl implements CriteriaResult
 	public boolean next()
 	{
 		recordIdx++;
-		if (recordIdx < results.size())
-			return true;
-		return false;
+		return recordIdx < results.size();
 	}
 	
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getBoolean(int, java.lang.Boolean)
-	 */
 	@Override
 	public Boolean getBoolean(int idx, Boolean defaultResult)
 	{
@@ -74,9 +69,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return res;
 	}
 	
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getDate(int, java.util.Date)
-	 */
 	@Override
 	public Date getDate(int idx, Date defaultResult)
 	{
@@ -87,9 +79,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return (Date) val;
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getInteger(int, java.lang.Integer)
-	 */
 	@Override
 	public Integer getInteger(int idx, Integer defaultResult)
 	{
@@ -100,9 +89,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return Integer.parseInt(val.toString());
 	}
 	
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getDouble(int, java.lang.Double)
-	 */
 	@Override
 	public Double getDouble(int idx, Double defaultResult)
 	{
@@ -113,9 +99,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return Double.valueOf(val.toString());
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getDouble(java.lang.String, java.lang.Double)
-	 */
 	@Override
 	public Double getDouble(String columnName, Double defaultResult)
 	{
@@ -126,9 +109,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return Double.valueOf(val.toString());
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getLong(int, java.lang.Long)
-	 */
 	@Override
 	public Long getLong(int idx, Long defaultResult)
 	{
@@ -139,9 +119,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return Long.parseLong(val.toString());
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getShort(int, java.lang.Short)
-	 */
 	@Override
 	public Short getShort(int idx, Short defaultResult)
 	{
@@ -152,9 +129,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return Short.parseShort(val.toString());
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getString(int, java.lang.String)
-	 */
 	@Override
 	public String getString(int idx, String defaultResult)
 	{
@@ -165,9 +139,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return val.toString();
 	}
 	
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getValue(int, java.lang.Object)
-	 */
 	@Override
 	public Object getValue(int idx, Object defaultResult)
 	{
@@ -195,18 +166,12 @@ public class CriteriaResultImpl implements CriteriaResult
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getRowsNumber()
-	 */
 	@Override
 	public Integer getRowsNumber()
 	{
 		return results.size();
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getBoolean(java.lang.String, java.lang.Boolean)
-	 */
 	@Override
 	public Boolean getBoolean(String columnName, Boolean defaultResult)
 	{
@@ -217,9 +182,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getBoolean(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getDate(java.lang.String, java.util.Date)
-	 */
 	@Override
 	public Date getDate(String columnName, Date defaultResult)
 	{
@@ -229,9 +191,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getDate(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getInteger(java.lang.String, java.lang.Integer)
-	 */
 	@Override
 	public Integer getInteger(String columnName, Integer defaultResult)
 	{
@@ -241,9 +200,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getInteger(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getLong(java.lang.String, java.lang.Long)
-	 */
 	@Override
 	public Long getLong(String columnName, Long defaultResult)
 	{
@@ -253,9 +209,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getLong(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getShort(java.lang.String, java.lang.Short)
-	 */
 	@Override
 	public Short getShort(String columnName, Short defaultResult)
 	{
@@ -265,9 +218,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getShort(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getString(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public String getString(String columnName, String defaultResult)
 	{
@@ -277,9 +227,6 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getString(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
-	/* (non-Javadoc)
-	 * @see pl.cn.CriteriaResult#getValue(java.lang.String, java.lang.Object)
-	 */
 	@Override
 	public Object getValue(String columnName, Object defaultResult)
 	{

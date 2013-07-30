@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 
 /**
@@ -31,10 +32,10 @@ public class NativeIsNotNullExp implements NativeExp
 	{
 		return columnName + " IS NOT NULL";
 	}
-	
+
 	@Override
-	public void setValues(SQLQuery query)
+	public void setValues(QueryProvider query)
 	{
-		// -------
+		// ----
 	}
 }

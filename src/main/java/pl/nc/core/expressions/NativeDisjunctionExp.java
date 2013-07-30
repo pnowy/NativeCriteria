@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 import pl.nc.core.expressions.NativeJunctionExp;
 
@@ -58,13 +59,6 @@ public class NativeDisjunctionExp implements NativeJunctionExp
 		return null;
 	}
 
-	@Override
-	public void setValues(SQLQuery query)
-	{
-		for (NativeExp exp : exps)
-			exp.setValues(query);
-	}
-
 	/**
 	 * Return sql query
 	 *
@@ -94,5 +88,12 @@ public class NativeDisjunctionExp implements NativeJunctionExp
 		}
 		sqlBuilder.append(")");
 		return sqlBuilder.toString();
+	}
+
+	@Override
+	public void setValues(QueryProvider query)
+	{
+		for (NativeExp exp : exps)
+			exp.setValues(query);
 	}
 }

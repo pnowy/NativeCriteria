@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 import pl.nc.utils.VarGenerator;
 
@@ -43,10 +44,17 @@ public class NativeNotBetweenExp implements NativeExp
 		highValueVar = VarGenerator.gen(columnName);
 		return columnName + " NOT BETWEEN :" + lowValueVar + " AND :" + highValueVar;
 	}
-	
-	public void setValues(SQLQuery query)
+
+	@Override
+	public void setValues(QueryProvider query)
 	{
 		query.setParameter(lowValueVar, lowValue);
 		query.setParameter(highValueVar, highValue);
 	}
+
+//	public void setValues(SQLQuery query)
+//	{
+//		query.setParameter(lowValueVar, lowValue);
+//		query.setParameter(highValueVar, highValue);
+//	}
 }

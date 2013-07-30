@@ -2,6 +2,7 @@ package pl.nc.core.expressions;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SQLQuery;
+import pl.nc.core.QueryProvider;
 import pl.nc.core.expressions.NativeExp;
 import pl.nc.utils.VarGenerator;
 
@@ -36,10 +37,16 @@ public class NativeNotLikeExp implements NativeExp
 		varName = VarGenerator.gen(columnName);
 		return columnName + " NOT LIKE ?";
 	}
-	
+
 	@Override
-	public void setValues(SQLQuery query)
+	public void setValues(QueryProvider query)
 	{
 		query.setString(varName, value);
 	}
+
+//	@Override
+//	public void setValues(SQLQuery query)
+//	{
+//		query.setString(varName, value);
+//	}
 }
