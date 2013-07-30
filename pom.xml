@@ -41,14 +41,71 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <guava.version>14.0.1</guava.version>
+		<!-- BASE NATIVE LIBRARY -->
+		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
+        <hibernate.core.version>4.2.3.Final</hibernate.core.version>
+		<!-- LOGGING -->
+		<slf4j.version>1.7.2</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<!-- UTILS -->
+		<guava.version>14.0.1</guava.version>
         <apache.commons.lang.version>3.1</apache.commons.lang.version>
         <apache.commons.collections.version>3.2.1</apache.commons.collections.version>
-        <hibernate.core.version>4.2.3.Final</hibernate.core.version>
-        <testng.version>6.8.5</testng.version>
+		<!-- TESTING -->
+		<testng.version>6.8.5</testng.version>
+		<hsqldb.version>2.2.9</hsqldb.version>
     </properties>
 
     <dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework.version}</version>
+			<!--<scope>compile,test</scope>-->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${org.springframework.version}</version>
+			<!--<scope>compile,test</scope>-->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework.version}</version>
+			<!--<scope>compile,test</scope>-->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+			<!--<scope>compile,test</scope>-->
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework.version}</version>
+			<!--<scope>compile,test</scope>-->
+		</dependency>
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.core.version}</version>
+            <!--<scope>compile,test</scope>-->
+        </dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.core.version}</version>
+		</dependency>
+
+
+		<!-- UTILS -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -64,38 +121,43 @@
             <artifactId>commons-collections</artifactId>
             <version>${apache.commons.collections.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>1.7.2</version>
-            <scope>provided</scope>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jdbc-core</artifactId>
-            <version>1.0.0.RELEASE</version>
-        </dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.core.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>junit</groupId>-->
-            <!--<artifactId>junit</artifactId>-->
-            <!--<version>3.8.2</version>-->
-            <!--<scope>test</scope>-->
-        <!--</dependency>-->
+		<!-- TESTNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+		<!-- HSQLDB FOR dbUnit TESTS -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>test</scope>
+		</dependency>
 
     </dependencies>
 
