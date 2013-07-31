@@ -40,13 +40,13 @@
         <url>https://github.com/pnowy/NativeCriteria</url>
     </scm>
 
-    <distributionManagement>
+<!--    <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub ${project.artifactId} Repository</name>
             <url>https://raw.github.com/pnowy/${project.artifactId}/mvn-repo</url>
         </repository>
-    </distributionManagement>
+    </distributionManagement>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -157,13 +157,19 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <version>0.8</version>
                 <configuration>
-                    <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-                    <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
-                    <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+                    <!-- git commit message -->
+                    <message>Maven artifacts for ${project.version}</message>
+                    <!-- disable webpage processing -->
+                    <noJekyll>true</noJekyll>
+                    <!-- matches distribution management repository url above -->
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <!-- remote branch name -->
+                    <branch>refs/heads/mvn-repo</branch>
                     <includes><include>**/*</include></includes>
-                    <repositoryName>NativeCriteria</repositoryName>      <!-- github repo name -->
-                    <repositoryOwner>pnowy</repositoryOwner>    <!-- github username  -->
+                    <!-- github repo name -->
+                    <repositoryName>NativeCriteria</repositoryName>
+                    <!-- github username -->
+                    <repositoryOwner>pnowy</repositoryOwner>
                 </configuration>
                 <executions>
                     <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
