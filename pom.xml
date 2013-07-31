@@ -5,12 +5,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>NativeCriteria</groupId>
+    <groupId>com.nc</groupId>
     <artifactId>NativeCriteria</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Native Criteria</name>
-    <description>Native Criteria Library</description>
+
+    <name>NativeCriteria - Core</name>
+    <description>Native Criteria Core Library</description>
 
     <licenses>
         <license>
@@ -39,6 +40,14 @@
         <url>https://github.com/pnowy/NativeCriteria</url>
     </scm>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub ${project.artifactId} Repository</name>
+            <url>https://raw.github.com/pnowy/${project.artifactId}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- BASE NATIVE LIBRARY -->
@@ -53,6 +62,8 @@
 		<!-- TESTING -->
 		<testng.version>6.8.5</testng.version>
 		<hsqldb.version>2.2.9</hsqldb.version>
+        <!-- GITHUB SERVER -->
+        <github.global.server>github</github.global.server>
     </properties>
 
     <dependencies>
@@ -62,11 +73,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.core.version}</version>
         </dependency>
-<!--        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>-->
 		<!-- UTILS -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -126,14 +132,6 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
@@ -147,7 +145,38 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.4.1</version>
 			</plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.8</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+                    <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+                    <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+                    <includes><include>**/*</include></includes>
+                    <repositoryName>NativeCriteria</repositoryName>      <!-- github repo name -->
+                    <repositoryOwner>pnowy</repositoryOwner>    <!-- github username  -->
+                </configuration>
+                <executions>
+                    <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
     </build>
     
 </project>
