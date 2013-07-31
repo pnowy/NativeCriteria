@@ -19,10 +19,10 @@
     <name>NativeCriteria - Root</name>
     <description>Native Criteria Root</description>
 
-   <!-- <modules>
+    <modules>
         <module>nativeCriteria-core</module>
         <module>nativeCriteria-si</module>
-    </modules>-->
+    </modules>
 
     <licenses>
         <license>
@@ -51,28 +51,18 @@
         <url>https://github.com/pnowy/NativeCriteria</url>
     </scm>
 
-    <!-- FIRST APPROACH
     <distributionManagement>
         <repository>
-            <id>github</id>
-            <name>GitHub ${project.artifactId} Repository</name>
-            <url>https://raw.github.com/pnowy/${project.artifactId}/mvn-repo</url>
-        </repository>
-    </distributionManagement>
-    -->
-
-    <!-- SECOND APPROACH
-    <distributionManagement>
-        <repository>
-            <id>repo</id>
-            <url>https://github.com/pnowy/NativeCriteria/raw/master/releases</url>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Staging Repo</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
         <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/pnowy/NativeCriteria/raw/master/snapshots</url>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Nexus Snapshot Repo</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-    -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -171,46 +161,13 @@
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.7</version>
-                <configuration>
-                    <!--SECOND APPROACH - ARTIFACTS IN TRUNK -->
-                    <!--<altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>-->
+                <!--<configuration>
+                    &lt;!&ndash;SECOND APPROACH - ARTIFACTS IN TRUNK &ndash;&gt;
+                    &lt;!&ndash;<altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>&ndash;&gt;
                     <altDeploymentRepository>release-repo::default::file://${project.basedir}/releases</altDeploymentRepository>
-
-                    <!-- FIRST APPROACH - ARTIFACTS IN BRANCH -->
-                    <!--<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>-->
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.8</version>
-                <configuration>
-                    <!-- git commit message -->
-                    <message>Maven artifacts for ${project.version}</message>
-                    <!-- disable webpage processing -->
-                    <noJekyll>true</noJekyll>
-                    <!-- matches distribution management repository url above -->
-                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-                    <!-- remote branch name -->
-                    <branch>refs/heads/mvn-repo</branch>
-                    <includes>
-                        <include>**/*</include>
-                    </includes>
-                    <!-- github repo name -->
-                    <repositoryName>NativeCriteria</repositoryName>
-                    <!-- github username -->
-                    <repositoryOwner>pnowy</repositoryOwner>
-                </configuration>
-                <executions>
-                    <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
-                    <execution>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                        <!-- UNCOMMENT TO FIRST APPROACH -->
-                        <!-- <phase>deploy</phase>-->
-                    </execution>
-                </executions>
+                    &lt;!&ndash; FIRST APPROACH - ARTIFACTS IN BRANCH &ndash;&gt;
+                    &lt;!&ndash;<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>&ndash;&gt;
+                </configuration>-->
             </plugin>
         </plugins>
 

@@ -5,90 +5,45 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.nc</groupId>
-    <artifactId>NativeCriteria</artifactId>
+    <parent>
+        <groupId>com.nc</groupId>
+        <artifactId>nativeCriteria-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>nativeCriteria-core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>NativeCriteria - Core</name>
     <description>Native Criteria Core Library</description>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>pnowy</id>
-            <name>Przemek Nowak</name>
-            <email>przemek.nowak.pl@gmail.com</email>
-        </developer>
-        <developer>
-            <id>kjasek</id>
-            <name>Kamil Jasek</name>
-            <email>kamil.jasek@gmail.com</email>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git://github.com/pnowy/NativeCriteria</connection>
-        <developerConnection>scm:git:git://github.com/pnowy/NativeCriteria</developerConnection>
-        <url>https://github.com/pnowy/NativeCriteria</url>
-    </scm>
-
-    <!-- FIRST APPROACH
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub ${project.artifactId} Repository</name>
-            <url>https://raw.github.com/pnowy/${project.artifactId}/mvn-repo</url>
-        </repository>
-    </distributionManagement>
-    -->
-
-    <!-- SECOND APPROACH
-    <distributionManagement>
-        <repository>
-            <id>repo</id>
-            <url>https://github.com/pnowy/NativeCriteria/raw/master/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/pnowy/NativeCriteria/raw/master/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-    -->
-
-    <properties>
+    <!--<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- BASE NATIVE LIBRARY -->
+		&lt;!&ndash; BASE NATIVE LIBRARY &ndash;&gt;
         <hibernate.core.version>4.2.3.Final</hibernate.core.version>
-		<!-- LOGGING -->
+		&lt;!&ndash; LOGGING &ndash;&gt;
 		<slf4j.version>1.7.2</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
-		<!-- UTILS -->
+		&lt;!&ndash; UTILS &ndash;&gt;
 		<guava.version>14.0.1</guava.version>
         <apache.commons.lang.version>3.1</apache.commons.lang.version>
         <apache.commons.collections.version>3.2.1</apache.commons.collections.version>
-		<!-- TESTING -->
+		&lt;!&ndash; TESTING &ndash;&gt;
 		<testng.version>6.8.5</testng.version>
 		<hsqldb.version>2.2.9</hsqldb.version>
-        <!-- GITHUB SERVER -->
+        &lt;!&ndash; GITHUB SERVER &ndash;&gt;
         <github.global.server>github</github.global.server>
     </properties>
 
     <dependencies>
-        <!--BASE NATIVE LIBRARY -->
+        &lt;!&ndash;BASE NATIVE LIBRARY &ndash;&gt;
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.core.version}</version>
         </dependency>
-		<!-- UTILS -->
+		&lt;!&ndash; UTILS &ndash;&gt;
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -105,7 +60,7 @@
             <version>${apache.commons.collections.version}</version>
         </dependency>
 
-		<!-- Logging -->
+		&lt;!&ndash; Logging &ndash;&gt;
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -127,14 +82,14 @@
 			<version>${log4j.version}</version>
 		</dependency>
 
-		<!-- TESTNG -->
+		&lt;!&ndash; TESTNG &ndash;&gt;
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-		<!-- HSQLDB FOR dbUnit TESTS -->
+		&lt;!&ndash; HSQLDB FOR dbUnit TESTS &ndash;&gt;
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
@@ -164,12 +119,12 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <!--SECOND APPROACH - ARTIFACTS IN TRUNK -->
-                    <!--<altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>-->
+                    &lt;!&ndash;SECOND APPROACH - ARTIFACTS IN TRUNK &ndash;&gt;
+                    &lt;!&ndash;<altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>&ndash;&gt;
                     <altDeploymentRepository>release-repo::default::file://${project.basedir}/releases</altDeploymentRepository>
 
-                    <!-- FIRST APPROACH - ARTIFACTS IN BRANCH -->
-                    <!--<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>-->
+                    &lt;!&ndash; FIRST APPROACH - ARTIFACTS IN BRANCH &ndash;&gt;
+                    &lt;!&ndash;<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>&ndash;&gt;
                 </configuration>
             </plugin>
             <plugin>
@@ -177,34 +132,34 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <version>0.8</version>
                 <configuration>
-                    <!-- git commit message -->
+                    &lt;!&ndash; git commit message &ndash;&gt;
                     <message>Maven artifacts for ${project.version}</message>
-                    <!-- disable webpage processing -->
+                    &lt;!&ndash; disable webpage processing &ndash;&gt;
                     <noJekyll>true</noJekyll>
-                    <!-- matches distribution management repository url above -->
+                    &lt;!&ndash; matches distribution management repository url above &ndash;&gt;
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-                    <!-- remote branch name -->
+                    &lt;!&ndash; remote branch name &ndash;&gt;
                     <branch>refs/heads/mvn-repo</branch>
                     <includes><include>**/*</include></includes>
-                    <!-- github repo name -->
+                    &lt;!&ndash; github repo name &ndash;&gt;
                     <repositoryName>NativeCriteria</repositoryName>
-                    <!-- github username -->
+                    &lt;!&ndash; github username &ndash;&gt;
                     <repositoryOwner>pnowy</repositoryOwner>
                 </configuration>
                 <executions>
-                    <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+                    &lt;!&ndash; run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase &ndash;&gt;
                     <execution>
                         <goals>
                             <goal>site</goal>
                         </goals>
-                        <!-- UNCOMMENT TO FIRST APPROACH -->
-                       <!-- <phase>deploy</phase>-->
+                        &lt;!&ndash; UNCOMMENT TO FIRST APPROACH &ndash;&gt;
+                       &lt;!&ndash; <phase>deploy</phase>&ndash;&gt;
                     </execution>
                 </executions>
             </plugin>
         </plugins>
 
-    </build>
+    </build>-->
 
     <!--
     <profiles>
