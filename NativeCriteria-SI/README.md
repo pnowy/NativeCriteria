@@ -1,1 +1,1 @@
-NativeCriteria-SI
+NativeCriteria-Spring Integration

@@ -5,7 +5,6 @@ import com.nc.core.HibernateProvider;
 import com.nc.core.NativeCriteria;
 import com.nc.utils.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.context.internal.ThreadLocalSessionContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
