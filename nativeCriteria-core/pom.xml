@@ -19,86 +19,59 @@
     <description>Native Criteria Core Library</description>
 
     <!--<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		&lt;!&ndash; BASE NATIVE LIBRARY &ndash;&gt;
         <hibernate.core.version>4.2.3.Final</hibernate.core.version>
-		&lt;!&ndash; LOGGING &ndash;&gt;
-		<slf4j.version>1.7.2</slf4j.version>
-		<log4j.version>1.2.17</log4j.version>
-		&lt;!&ndash; UTILS &ndash;&gt;
-		<guava.version>14.0.1</guava.version>
-        <apache.commons.lang.version>3.1</apache.commons.lang.version>
-        <apache.commons.collections.version>3.2.1</apache.commons.collections.version>
-		&lt;!&ndash; TESTING &ndash;&gt;
-		<testng.version>6.8.5</testng.version>
-		<hsqldb.version>2.2.9</hsqldb.version>
-        &lt;!&ndash; GITHUB SERVER &ndash;&gt;
-        <github.global.server>github</github.global.server>
     </properties>
+    -->
 
     <dependencies>
-        &lt;!&ndash;BASE NATIVE LIBRARY &ndash;&gt;
+        <!--BASE NATIVE LIBRARY -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.core.version}</version>
         </dependency>
-		&lt;!&ndash; UTILS &ndash;&gt;
+		<!-- UTILS -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${apache.commons.lang.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>${apache.commons.collections.version}</version>
         </dependency>
-
-		&lt;!&ndash; Logging &ndash;&gt;
+		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
 		</dependency>
-
-		&lt;!&ndash; TESTNG &ndash;&gt;
+		<!-- TESTNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
-		&lt;!&ndash; HSQLDB FOR dbUnit TESTS &ndash;&gt;
+		<!-- HSQLDB FOR dbUnit TESTS -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>${hsqldb.version}</version>
-			<scope>test</scope>
 		</dependency>
 
     </dependencies>
-
+    <!--
     <build>
         <plugins>
             <plugin>

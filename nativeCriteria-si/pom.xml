@@ -4,15 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>NativeCriteria-SI</groupId>
-    <artifactId>NativeCriteria-SI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>com.nc</groupId>
+        <artifactId>nativeCriteria-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
+    <artifactId>nativeCriteria-si</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.springframework.version>3.1.1.RELEASE</org.springframework.version>
-        <hibernate.version>3.5.4-Final</hibernate.version>
+        <!--<hibernate.version>3.5.4-Final</hibernate.version>-->
         <!-- TESTING -->
         <testng.version>6.8.5</testng.version>
         <hsqldb.version>2.2.9</hsqldb.version>
@@ -54,11 +58,11 @@
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.0.Final</version>
         </dependency>-->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!-- TESTNG -->
         <dependency>
