@@ -1,1 +1,2 @@
-NativeCriteria-Core
+NativeCriteria - Core
+---------------------

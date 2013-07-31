@@ -8,7 +8,7 @@
     <groupId>com.nc</groupId>
     <artifactId>NativeCriteria</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>NativeCriteria - Core</name>
     <description>Native Criteria Core Library</description>

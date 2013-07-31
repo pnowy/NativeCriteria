@@ -1,1 +1,2 @@
-NativeCriteria-Spring Integration
+NativeCriteria - Spring Integration
+-----------------------------------
