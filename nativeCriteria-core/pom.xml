@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.nc</groupId>
+        <groupId>com.github.pnowy.nc</groupId>
         <artifactId>nativeCriteria-root</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
