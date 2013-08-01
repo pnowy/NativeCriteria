@@ -288,7 +288,7 @@ public class NativeExps
             }
 
             @Override
-            public void setValues(QueryProvider query) {
+            public void setValues(NativeQuery query) {
                 subquery.setValues(query);
             }
         };

@@ -1,7 +1,7 @@
 package com.nc.core.expressions;
 
+import com.nc.core.NativeQuery;
 import org.apache.commons.lang3.StringUtils;
-import com.nc.core.QueryProvider;
 import com.nc.utils.VarGenerator;
 
 /**
@@ -42,7 +42,7 @@ public class NativeEqExp implements NativeExp
 	}
 
 	@Override
-	public void setValues(QueryProvider query)
+	public void setValues(NativeQuery query)
 	{
 		query.setParameter(varName, value);
 	}

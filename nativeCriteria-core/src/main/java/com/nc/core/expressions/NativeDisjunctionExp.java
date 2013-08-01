@@ -3,7 +3,7 @@ package com.nc.core.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nc.core.QueryProvider;
+import com.nc.core.NativeQuery;
 
 /**
  * Native OR expression.
@@ -88,7 +88,7 @@ public class NativeDisjunctionExp implements NativeJunctionExp
 	}
 
 	@Override
-	public void setValues(QueryProvider query)
+	public void setValues(NativeQuery query)
 	{
 		for (NativeExp exp : exps)
 			exp.setValues(query);

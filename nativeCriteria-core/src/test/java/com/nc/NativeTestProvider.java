@@ -1,17 +1,17 @@
 package com.nc;
 
-import com.nc.core.NativeProvider;
-import com.nc.core.QueryProvider;
+import com.nc.core.NativeQuery;
+import com.nc.core.NativeQueryProvider;
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 30.07.13 17:39
  */
-public class NativeTestProvider implements NativeProvider
+public class NativeTestProvider implements NativeQueryProvider
 {
 	@Override
-	public QueryProvider getQueryProvider(String sql)
+	public NativeQuery getNativeQuery(String sql)
 	{
-		return new QueryTestProvider();
+		return new NativeQueryTest();
 	}
 }

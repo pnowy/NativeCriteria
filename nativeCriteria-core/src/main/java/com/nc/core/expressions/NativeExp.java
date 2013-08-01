@@ -1,6 +1,6 @@
 package com.nc.core.expressions;
 
-import com.nc.core.QueryProvider;
+import com.nc.core.NativeQuery;
 
 /**
  * Interface for native SQL Expressions.
@@ -20,5 +20,5 @@ public interface NativeExp
 	 *
 	 * @param query the new values
 	 */
-	public void setValues(QueryProvider query);
+	public void setValues(NativeQuery query);
 }

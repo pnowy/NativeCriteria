@@ -1,7 +1,7 @@
 package com.nc.core.expressions;
 
+import com.nc.core.NativeQuery;
 import org.apache.commons.lang3.StringUtils;
-import com.nc.core.QueryProvider;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -182,7 +182,7 @@ public class NativeJoin
         }
 	}
 
-    public void setValues(QueryProvider query) {
+    public void setValues(NativeQuery query) {
         if(complexJoinExp != null){
             complexJoinExp.setValues(query);
         }

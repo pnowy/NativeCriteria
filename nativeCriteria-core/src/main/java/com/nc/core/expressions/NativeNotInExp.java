@@ -2,8 +2,8 @@ package com.nc.core.expressions;
 
 import java.util.List;
 
+import com.nc.core.NativeQuery;
 import org.apache.commons.lang3.StringUtils;
-import com.nc.core.QueryProvider;
 import com.nc.utils.VarGenerator;
 
 /**
@@ -58,7 +58,7 @@ public class NativeNotInExp implements NativeExp
 	}
 
 	@Override
-	public void setValues(QueryProvider query)
+	public void setValues(NativeQuery query)
 	{
 		if (values != null)
 			query.setParameterList(varName, values);

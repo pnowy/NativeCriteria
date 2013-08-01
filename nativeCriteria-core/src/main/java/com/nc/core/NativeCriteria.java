@@ -17,7 +17,6 @@ import java.util.Map.Entry;
 
 /**
  * Class to build native sql queries.
- *
  */
 public class NativeCriteria implements NativeExp
 {
@@ -26,8 +25,7 @@ public class NativeCriteria implements NativeExp
 	/**
 	 * Hibernate session.
 	 */
-//	private Session session;
-	private NativeProvider nativeProvider;
+	private NativeQueryProvider nativeProvider;
 
 	/**
 	 * Tables with aliases to FROM clause.
@@ -120,10 +118,10 @@ public class NativeCriteria implements NativeExp
 	 * Construcotr.
 	 *
 	 * @param nativeProvider native select provider
-	 * @param mainTable the main table
-	 * @param mainAlias the main alias
+	 * @param mainTable      the main table
+	 * @param mainAlias      the main alias
 	 */
-	public NativeCriteria(NativeProvider nativeProvider, String mainTable, String mainAlias)
+	public NativeCriteria(NativeQueryProvider nativeProvider, String mainTable, String mainAlias)
 	{
 		if (nativeProvider == null)
 		{
@@ -152,9 +150,10 @@ public class NativeCriteria implements NativeExp
 
 	/**
 	 * Set native provider.
+	 *
 	 * @param nativeProvider
 	 */
-	public void setNativeProvider(NativeProvider nativeProvider)
+	public void setNativeProvider(NativeQueryProvider nativeProvider)
 	{
 		this.nativeProvider = nativeProvider;
 	}
@@ -292,7 +291,7 @@ public class NativeCriteria implements NativeExp
 	}
 
 	/**
-	 *Set distinct to query.
+	 * Set distinct to query.
 	 *
 	 * @param distinct the distinct
 	 * @return the native criteria
@@ -345,9 +344,40 @@ public class NativeCriteria implements NativeExp
 	@SuppressWarnings("unchecked")
 	public List<Object[]> list()
 	{
-		QueryProvider query = buildCriteriaQuery();
+		NativeQuery query = buildCriteriaQuery();
 		return query.list();
 	}
+
+//	@SuppressWarnings("unchecked")
+//	public List<Object[]> list()
+//	{
+//		SQLQuery query = buildCriteriaQuery();
+//		if (logPerformance)
+//		{
+//			long startTime = System.currentTimeMillis();
+//			List<Object[]> res = query.list();
+//			checkEndExecutionTime(startTime);
+//
+//			return res;
+//		}
+//		else
+//			return query.list();
+//	}
+
+//	public Object uniqueResult()
+//	{
+//		SQLQuery query = buildCriteriaQuery();
+//		if (logPerformance)
+//		{
+//			long startTime = System.currentTimeMillis();
+//			Object res = query.uniqueResult();
+//			checkEndExecutionTime(startTime);
+//
+//			return res;
+//		}
+//		else
+//			return query.uniqueResult();
+//	}
 
 	/**
 	 * Unique result.
@@ -356,7 +386,7 @@ public class NativeCriteria implements NativeExp
 	 */
 	public Object uniqueResult()
 	{
-		QueryProvider query = buildCriteriaQuery();
+		NativeQuery query = buildCriteriaQuery();
 		return query.uniqueResult();
 	}
 
@@ -388,12 +418,12 @@ public class NativeCriteria implements NativeExp
 	 *
 	 * @return the sQL query
 	 */
-	private QueryProvider buildCriteriaQuery()
+	private NativeQuery buildCriteriaQuery()
 	{
-		QueryProvider queryProvider = nativeProvider.getQueryProvider(buildSQL());
-		setValues(queryProvider);
+		NativeQuery nativeQuery = nativeProvider.getNativeQuery(buildSQL());
+		setValues(nativeQuery);
 
-		return queryProvider;
+		return nativeQuery;
 	}
 
 	/**
@@ -541,7 +571,9 @@ public class NativeCriteria implements NativeExp
 	{
 		final String SPACE = " ";
 		for (NativeJoin join : joins)
+		{
 			sqlBuilder.append(join.toSQL()).append(SPACE);
+		}
 	}
 
 	/**
@@ -604,9 +636,11 @@ public class NativeCriteria implements NativeExp
 			if (joins.size() > 0)
 			{
 				for (NativeJoin join : joins)
+				{
 					sqlBuilder.append(", ")
 							.append(join.getTableAlias())
 							.append(".*");
+				}
 			}
 		}
 	}
@@ -618,7 +652,7 @@ public class NativeCriteria implements NativeExp
 	}
 
 	@Override
-	public void setValues(QueryProvider sqlQuery)
+	public void setValues(NativeQuery sqlQuery)
 	{
 		// subqueries
 		if (projection != null)

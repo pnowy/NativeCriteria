@@ -1,8 +1,8 @@
 package com.nc.select;
 
 import com.nc.core.CriteriaResult;
-import com.nc.core.HibernateProvider;
 import com.nc.core.NativeCriteria;
+import com.nc.core.hibernate.HibernateQueryProvider;
 import com.nc.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.context.internal.ThreadLocalSessionContext;
@@ -25,9 +25,9 @@ public class SelectTest // extends GenericTest
 		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		s.beginTransaction();
-
-		NativeCriteria nc = new NativeCriteria(new HibernateProvider(s), "TEST_TABLE", "s");
-		// NativeCriteria nc = new NativeCriteria(new JpaProvider(em), "TEST_TABLE", "s");
+//		s.createSQLQuery("").list();
+		NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(s), "TEST_TABLE", "s");
+		// NativeCriteria nc = new NativeCriteria(new JpaQueryProvider(em), "TEST_TABLE", "s");
 		// nc.setProjection(NativeExps.projection().addProjection("id"));
 		// nc.setLimit(12);
 		nc.setOffset(2);
@@ -41,4 +41,7 @@ public class SelectTest // extends GenericTest
 
 		ThreadLocalSessionContext.unbind(HibernateUtil.getSessionFactory());
 	}
+
+
+
 }
