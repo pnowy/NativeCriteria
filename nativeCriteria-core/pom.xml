@@ -18,11 +18,6 @@
     <name>NativeCriteria - Core</name>
     <description>Native Criteria Core Library</description>
 
-    <!--<properties>
-        <hibernate.core.version>4.2.3.Final</hibernate.core.version>
-    </properties>
-    -->
-
     <dependencies>
         <!--BASE NATIVE LIBRARY -->
         <dependency>
