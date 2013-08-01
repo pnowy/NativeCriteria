@@ -2,15 +2,11 @@ package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJoin;
+import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.pnowy.nc.core.expressions.NativeExp;
-import com.github.pnowy.nc.core.expressions.NativeJoin;
-import com.github.pnowy.nc.core.expressions.NativeOrderExp;
-import com.github.pnowy.nc.core.expressions.NativeProjection;
-
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,6 +25,8 @@ public class NativeCriteria implements NativeExp
 	 * Hibernate session.
 	 */
 	private NativeQueryProvider nativeProvider;
+
+	private NativeQuery nativeQuery;
 
 	/**
 	 * Tables with aliases to FROM clause.
@@ -336,7 +334,17 @@ public class NativeCriteria implements NativeExp
 	 */
 	public CriteriaResult criteriaResult()
 	{
-		return new CriteriaResultImpl(list(), projection);
+		return new CriteriaResultImpl(list(), projection, nativeQuery.getQueryInfo());
+	}
+
+	public QueryInfo getQueryInfo()
+	{
+		if (nativeQuery == null)
+		{
+			throw new IllegalStateException("You cannot get query info before execute query!");
+		}
+
+		return nativeQuery.getQueryInfo();
 	}
 
 	/**
@@ -347,8 +355,19 @@ public class NativeCriteria implements NativeExp
 	@SuppressWarnings("unchecked")
 	public List<Object[]> list()
 	{
-		NativeQuery query = buildCriteriaQuery();
-		return query.list();
+		nativeQuery = buildCriteriaQuery();
+		return nativeQuery.list();
+	}
+
+	/**
+	 * Unique result.
+	 *
+	 * @return the object
+	 */
+	public Object uniqueResult()
+	{
+		nativeQuery = buildCriteriaQuery();
+		return nativeQuery.uniqueResult();
 	}
 
 //	@SuppressWarnings("unchecked")
@@ -381,17 +400,6 @@ public class NativeCriteria implements NativeExp
 //		else
 //			return query.uniqueResult();
 //	}
-
-	/**
-	 * Unique result.
-	 *
-	 * @return the object
-	 */
-	public Object uniqueResult()
-	{
-		NativeQuery query = buildCriteriaQuery();
-		return query.uniqueResult();
-	}
 
 	//TODO implement measure performance
 //	private void checkEndExecutionTime(long startTime)

@@ -165,4 +165,6 @@ public interface CriteriaResult
 	 * @return the rows number
 	 */
 	public Integer getRowsNumber();
+
+	public QueryInfo getQueryInfo();
 }

@@ -11,17 +11,19 @@ import org.testng.annotations.Test;
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 01.08.13 21:07
  */
-public class NativeProjectionTest {
+public class NativeProjectionTest
+{
 	private static final Logger log = LoggerFactory.getLogger(NativeProjectionTest.class);
+
 	@Test
 	public void testSimpleProjection() throws Exception
 	{
-		log.info("test one");
 		NativeCriteria nc = new NativeCriteria(new NativeTestProvider(), "mainTable", "mt");
-		nc.setProjection(NativeExps.projection().addProjection("mt.one", "mt.two"));
+		nc.setProjection(NativeExps.projection().addProjection("twojaStara", "tw"));
 		nc.list();
 
-		log.info("test two");
+
+		log.info("QueryInfo: {}", nc.getQueryInfo().getSql());
 
 	}
 }

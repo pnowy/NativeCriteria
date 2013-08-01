@@ -13,11 +13,11 @@ import java.util.List;
 public class HibernateNativeQuery implements NativeQuery
 {
 	private SQLQuery query;
-	private String buildSql;
+	private QueryInfo queryInfo;
 
 	public HibernateNativeQuery(String sql, SQLQuery sqlQuery)
 	{
-		this.buildSql = sql;
+		this.queryInfo = new QueryInfo(sql);
 		this.query = sqlQuery;
 	}
 
@@ -79,6 +79,6 @@ public class HibernateNativeQuery implements NativeQuery
 	@Override
 	public QueryInfo getQueryInfo()
 	{
-		return null;
+		return queryInfo;
 	}
 }

@@ -15,11 +15,11 @@ import java.util.List;
 public class JpaNativeQuery implements NativeQuery
 {
 	private Query query;
-	private String buildSql;
+	private QueryInfo queryInfo;
 
 	public JpaNativeQuery(String sql, Query sqlQuery)
 	{
-		this.buildSql = sql;
+		this.queryInfo = new QueryInfo(sql);
 		this.query = sqlQuery;
 	}
 
@@ -81,6 +81,6 @@ public class JpaNativeQuery implements NativeQuery
 	@Override
 	public QueryInfo getQueryInfo()
 	{
-		return null;
+		return queryInfo;
 	}
 }

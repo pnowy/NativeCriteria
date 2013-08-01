@@ -1,6 +1,7 @@
 package com.github.pnowy.nc;
 
 import com.beust.jcommander.internal.Lists;
+import com.github.pnowy.nc.core.QueryInfo;
 import com.google.common.collect.Maps;
 import com.github.pnowy.nc.core.NativeQuery;
 import org.apache.commons.lang3.ObjectUtils;
@@ -15,12 +16,17 @@ import java.util.Map;
  */
 public class NativeQueryTest implements NativeQuery
 {
-	private Map<String, String> query = Maps.newHashMap();
+	private QueryInfo queryInfo;
+
+	public NativeQueryTest(String sql)
+	{
+		this.queryInfo = new QueryInfo(sql);
+	}
 
 	@Override
 	public List list()
 	{
-		return Lists.newArrayList(query.entrySet());
+		return Lists.newArrayList();
 	}
 
 	@Override
@@ -32,48 +38,48 @@ public class NativeQueryTest implements NativeQuery
 	@Override
 	public NativeQuery setMaxResults(int maxResults)
 	{
-		query.put("maxResult", ObjectUtils.toString(maxResults));
+//		query.put("maxResult", ObjectUtils.toString(maxResults));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setFirstResult(int firstResult)
 	{
-		query.put("firstResult", ObjectUtils.toString(firstResult));
+//		query.put("firstResult", ObjectUtils.toString(firstResult));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameter(String name, Object val)
 	{
-		query.put(name, ObjectUtils.toString(val));
+//		query.put(name, ObjectUtils.toString(val));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setString(String name, String value)
 	{
-		query.put(name, value);
+//		query.put(name, value);
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameterList(String name, Collection values)
 	{
-		query.put(name, ObjectUtils.toString(values));
+//		query.put(name, ObjectUtils.toString(values));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameterList(String name, Object[] values)
 	{
-		query.put(name, ObjectUtils.toString(values));
+//		query.put(name, ObjectUtils.toString(values));
 		return this;
 	}
 
 	@Override
-	public String getQuerySql()
+	public QueryInfo getQueryInfo()
 	{
-		return null;
+		return queryInfo;
 	}
 }

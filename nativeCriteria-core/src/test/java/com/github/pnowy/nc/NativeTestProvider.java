@@ -12,6 +12,6 @@ public class NativeTestProvider implements NativeQueryProvider
 	@Override
 	public NativeQuery getNativeQuery(String sql)
 	{
-		return new NativeQueryTest();
+		return new NativeQueryTest(sql);
 	}
 }

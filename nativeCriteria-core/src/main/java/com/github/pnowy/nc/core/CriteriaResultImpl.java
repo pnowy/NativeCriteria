@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CriteriaResultImpl implements CriteriaResult
 {
-	
+	private QueryInfo queryInfo;
 	/** Query results. */
 	private List<Object[]> results;
 	
@@ -27,12 +27,15 @@ public class CriteriaResultImpl implements CriteriaResult
 	 * @param results the results
 	 * @param projection the projection
 	 */
-	public CriteriaResultImpl(List<Object[]> results, NativeProjection projection)
+	public CriteriaResultImpl(List<Object[]> results, NativeProjection projection, QueryInfo queryInfo)
 	{
 		if (results == null)
 			throw new IllegalStateException("Results is null!");
+		if (queryInfo == null)
+			throw new IllegalStateException("QueryInfo is null!");
 		
 		this.results = results;
+		this.queryInfo = queryInfo;
 		this.projection = projection;
 	}
 	
@@ -168,6 +171,12 @@ public class CriteriaResultImpl implements CriteriaResult
 	public Integer getRowsNumber()
 	{
 		return results.size();
+	}
+
+	@Override
+	public QueryInfo getQueryInfo()
+	{
+		return queryInfo;
 	}
 
 	@Override
