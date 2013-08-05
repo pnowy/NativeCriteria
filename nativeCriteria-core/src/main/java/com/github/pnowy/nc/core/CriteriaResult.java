@@ -23,7 +23,15 @@ public interface CriteriaResult
 	 * @return the string
 	 */
 	public String getString(int idx, String defaultResult);
-	
+
+	/**
+	 * Gets the string. Default value is null.
+	 *
+	 * @param idx idx
+	 * @return value,
+	 */
+	public String getString(int idx);
+
 	/**
 	 * Gets the string.
 	 *
@@ -32,6 +40,14 @@ public interface CriteriaResult
 	 * @return the string
 	 */
 	public String getString(String columnName, String defaultResult);
+
+	/**
+	 * Gets the string. Default value is null.
+	 *
+	 * @param columnName the column name
+	 * @return value,
+	 */
+	public String getString(String columnName);
 	
 	/**
 	 * Gets the integer.
@@ -41,7 +57,15 @@ public interface CriteriaResult
 	 * @return the integer
 	 */
 	public Integer getInteger(int idx, Integer defaultResult);
-	
+
+	/**
+	 * Gets the integer. Default value is null.
+	 *
+	 * @param idx idx
+	 * @return integer, default is null
+	 */
+	public Integer getInteger(int idx);
+
 	/**
 	 * Gets the double.
 	 *
@@ -50,7 +74,14 @@ public interface CriteriaResult
 	 * @return the double
 	 */
 	public Double getDouble(int idx, Double defaultResult);
-	
+
+	/**
+	 * Gets the double. Default result is null.
+	 * @param idx idx
+	 * @return the double, default is null
+	 */
+	public Double getDouble(int idx);
+
 	/**
 	 * Gets the double.
 	 *
@@ -59,7 +90,15 @@ public interface CriteriaResult
 	 * @return the double
 	 */
 	public Double getDouble(String columnName, Double defaultResult);
-	
+
+	/**
+	 * Gets the double. Default result is null.
+	 *
+	 * @param columnName the column name
+	 * @return the double, default result is null
+	 */
+	public Double getDouble(String columnName);
+
 	/**
 	 * Gets the integer.
 	 *
@@ -68,7 +107,15 @@ public interface CriteriaResult
 	 * @return the integer
 	 */
 	public Integer getInteger(String columnName, Integer defaultResult);
-	
+
+	/**
+	 * Gets the integer. Default value is null.
+	 *
+	 * @param columnName the column name
+	 * @return the integer, default value is null
+	 */
+	public Integer getInteger(String columnName);
+
 	/**
 	 * Gets the long.
 	 *
@@ -77,7 +124,14 @@ public interface CriteriaResult
 	 * @return the long
 	 */
 	public Long getLong(int idx, Long defaultResult);
-	
+
+	/**
+	 * Gets the long, default result is null.
+	 * @param idx idx
+	 * @return the long, default result is null
+	 */
+	public Long getLong(int idx);
+
 	/**
 	 * Gets the long.
 	 *
@@ -86,7 +140,15 @@ public interface CriteriaResult
 	 * @return the long
 	 */
 	public Long getLong(String columnName, Long defaultResult);
-	
+
+	/**
+	 * Gets the long, default value is null.
+	 *
+	 * @param columnName the column name
+	 * @return the long, default value is null
+	 */
+	public Long getLong(String columnName);
+
 	/**
 	 * Gets the short.
 	 *
@@ -95,7 +157,14 @@ public interface CriteriaResult
 	 * @return the short
 	 */
 	public Short getShort(int idx, Short defaultResult);
-	
+
+	/**
+	 * Gets the short, default result is null.
+	 * @param idx idx
+	 * @return the short, default result is null
+	 */
+	public Short getShort(int idx);
+
 	/**
 	 * Gets the short.
 	 *
@@ -104,7 +173,14 @@ public interface CriteriaResult
 	 * @return the short
 	 */
 	public Short getShort(String columnName, Short defaultResult);
-	
+
+	/**
+	 * Gets the short, default result is null.
+	 * @param columnName the column name
+	 * @return the short, default result is null
+	 */
+	public Short getShort(String columnName);
+
 	/**
 	 * Gets the boolean.
 	 *
@@ -113,7 +189,15 @@ public interface CriteriaResult
 	 * @return the boolean
 	 */
 	public Boolean getBoolean(int idx, Boolean defaultResult);
-	
+
+	/**
+	 * Gets the boolean, default result is null
+	 *
+	 * @param idx idx
+	 * @return the boolean, default result is null
+	 */
+	public Boolean getBoolean(int idx);
+
 	/**
 	 * Gets the boolean.
 	 *
@@ -122,7 +206,14 @@ public interface CriteriaResult
 	 * @return the boolean
 	 */
 	public Boolean getBoolean(String columnName, Boolean defaultResult);
-	
+
+	/**
+	 * Gets the boolean, default result is boolean
+	 * @param columnName column name
+	 * @return the boolean, default result is null
+	 */
+	public Boolean getBoolean(String columnName);
+
 	/**
 	 * Gets the date.
 	 *
@@ -131,7 +222,14 @@ public interface CriteriaResult
 	 * @return the date
 	 */
 	public Date getDate(int idx, Date defaultResult);
-	
+
+	/**
+	 * Gets the date, default result is null.
+	 * @param idx idx
+	 * @return the date, default result is null
+	 */
+	public Date getDate(int idx);
+
 	/**
 	 * Gets the date.
 	 *
@@ -140,7 +238,14 @@ public interface CriteriaResult
 	 * @return the date
 	 */
 	public Date getDate(String columnName, Date defaultResult);
-	
+
+	/**
+	 * Gets the date, default result is null
+	 * @param columnName the column name
+	 * @return the date, default result is null
+	 */
+	public Date getDate(String columnName);
+
 	/**
 	 * Gets the value.
 	 *
@@ -149,7 +254,15 @@ public interface CriteriaResult
 	 * @return the value
 	 */
 	public Object getValue(int idx, Object defaultResult);
-	
+
+	/**
+	 * Gets the object, default value is null.
+	 *
+	 * @param idx idx
+	 * @return the object, default value is null
+	 */
+	public Object getValue(int idx);
+
 	/**
 	 * Gets the value.
 	 *
@@ -158,7 +271,15 @@ public interface CriteriaResult
 	 * @return the value
 	 */
 	public Object getValue(String columnName, Object defaultResult);
-	
+
+	/**
+	 * Gets the object, default value is null
+	 *
+	 * @param columnName the column name
+	 * @return the object, default value is null
+	 */
+	public Object getValue(String columnName);
+
 	/**
 	 * Gets the rows number.
 	 *

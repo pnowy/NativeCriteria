@@ -25,7 +25,9 @@ public class NativeCriteria implements NativeExp
 	 * Hibernate session.
 	 */
 	private NativeQueryProvider nativeProvider;
-
+	/**
+	 *
+	 */
 	private NativeQuery nativeQuery;
 
 	/**
@@ -64,7 +66,7 @@ public class NativeCriteria implements NativeExp
 	private Integer offset;
 
 	/**
-	 * Distintc.
+	 * Distinct.
 	 */
 	private boolean distinct;
 
@@ -78,7 +80,6 @@ public class NativeCriteria implements NativeExp
 	 */
 	private enum Operator
 	{
-
 		/**
 		 * The AND.
 		 */
@@ -116,7 +117,7 @@ public class NativeCriteria implements NativeExp
 	}
 
 	/**
-	 * Construcotr.
+	 * Constructor.
 	 *
 	 * @param nativeProvider native select provider
 	 * @param mainTable      the main table
@@ -147,16 +148,6 @@ public class NativeCriteria implements NativeExp
 		this.whereExps = new LinkedHashMap<NativeExp, Operator>();
 		this.havingExps = new LinkedHashMap<NativeExp, Operator>();
 		this.joins = new ArrayList<NativeJoin>();
-	}
-
-	/**
-	 * Set native provider.
-	 *
-	 * @param nativeProvider
-	 */
-	public void setNativeProvider(NativeQueryProvider nativeProvider)
-	{
-		this.nativeProvider = nativeProvider;
 	}
 
 	/**

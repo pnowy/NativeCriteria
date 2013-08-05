@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.core;
 
 /**
- * Native provider.
+ * Interface for native provider which supply engine to execute query.
  */
 public interface NativeQueryProvider
 {

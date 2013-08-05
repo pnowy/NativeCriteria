@@ -50,7 +50,7 @@ public class HibernateNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameter(String name, Object val)
 	{
-
+		queryInfo.getParameters().put(name, val);
 		query.setParameter(name, val);
 		return this;
 	}
@@ -58,6 +58,7 @@ public class HibernateNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setString(String name, String value)
 	{
+		queryInfo.getParameters().put(name, value);
 		query.setString(name, value);
 		return this;
 	}
@@ -65,6 +66,7 @@ public class HibernateNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameterList(String name, Collection values)
 	{
+		queryInfo.getParameters().put(name, values);
 		query.setParameterList(name, values);
 		return this;
 	}
@@ -72,6 +74,7 @@ public class HibernateNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameterList(String name, Object[] values)
 	{
+		queryInfo.getParameters().put(name, values);
 		query.setParameterList(name, values);
 		return this;
 	}

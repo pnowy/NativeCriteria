@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Native test implementation of query.
+ *
+ * Doesn't work on database, only register generated sql. Used for testing application.
+ *
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 30.07.13 17:40
  */
@@ -38,42 +42,40 @@ public class NativeQueryTest implements NativeQuery
 	@Override
 	public NativeQuery setMaxResults(int maxResults)
 	{
-//		query.put("maxResult", ObjectUtils.toString(maxResults));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setFirstResult(int firstResult)
 	{
-//		query.put("firstResult", ObjectUtils.toString(firstResult));
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameter(String name, Object val)
 	{
-//		query.put(name, ObjectUtils.toString(val));
+		queryInfo.getParameters().put(name, val);
 		return this;
 	}
 
 	@Override
 	public NativeQuery setString(String name, String value)
 	{
-//		query.put(name, value);
+		queryInfo.getParameters().put(name, value);
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameterList(String name, Collection values)
 	{
-//		query.put(name, ObjectUtils.toString(values));
+		queryInfo.getParameters().put(name, values);
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameterList(String name, Object[] values)
 	{
-//		query.put(name, ObjectUtils.toString(values));
+		queryInfo.getParameters().put(name, values);
 		return this;
 	}
 

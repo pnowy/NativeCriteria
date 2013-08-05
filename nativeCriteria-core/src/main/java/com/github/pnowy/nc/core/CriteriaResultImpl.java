@@ -69,7 +69,12 @@ public class CriteriaResultImpl implements CriteriaResult
 		
 		return res;
 	}
-	
+
+	@Override
+	public Boolean getBoolean(int idx) {
+		return getBoolean(idx, null);
+	}
+
 	@Override
 	public Date getDate(int idx, Date defaultResult)
 	{
@@ -81,6 +86,11 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Date getDate(int idx) {
+		return getDate(idx, null);
+	}
+
+	@Override
 	public Integer getInteger(int idx, Integer defaultResult)
 	{
 		Object val = getValue(idx, null);
@@ -89,7 +99,12 @@ public class CriteriaResultImpl implements CriteriaResult
 		
 		return Integer.parseInt(val.toString());
 	}
-	
+
+	@Override
+	public Integer getInteger(int idx) {
+		return getInteger(idx, null);
+	}
+
 	@Override
 	public Double getDouble(int idx, Double defaultResult)
 	{
@@ -98,6 +113,11 @@ public class CriteriaResultImpl implements CriteriaResult
 			return defaultResult;
 		
 		return Double.valueOf(val.toString());
+	}
+
+	@Override
+	public Double getDouble(int idx) {
+		return getDouble(idx, null);
 	}
 
 	@Override
@@ -111,6 +131,11 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Double getDouble(String columnName) {
+		return getDouble(columnName, null);
+	}
+
+	@Override
 	public Long getLong(int idx, Long defaultResult)
 	{
 		Object val = getValue(idx, null);
@@ -118,6 +143,11 @@ public class CriteriaResultImpl implements CriteriaResult
 			return defaultResult;
 		
 		return Long.parseLong(val.toString());
+	}
+
+	@Override
+	public Long getLong(int idx) {
+		return getLong(idx, null);
 	}
 
 	@Override
@@ -131,6 +161,11 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Short getShort(int idx) {
+		return getShort(idx, null);
+	}
+
+	@Override
 	public String getString(int idx, String defaultResult)
 	{
 		Object val = getValue(idx, null);
@@ -138,6 +173,12 @@ public class CriteriaResultImpl implements CriteriaResult
 			return defaultResult;
 		
 		return val.toString();
+	}
+
+	@Override
+	public String getString(int idx)
+	{
+		return getString(idx, null);
 	}
 	
 	@Override
@@ -166,7 +207,12 @@ public class CriteriaResultImpl implements CriteriaResult
 			return val;
 		}
 	}
-	
+
+	@Override
+	public Object getValue(int idx) {
+		return getValue(idx, null);
+	}
+
 	@Override
 	public Integer getRowsNumber()
 	{
@@ -190,12 +236,22 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Boolean getBoolean(String columnName) {
+		return getBoolean(columnName, null);
+	}
+
+	@Override
 	public Date getDate(String columnName, Date defaultResult)
 	{
 		if (projection == null)
 			throw new IllegalStateException(
 					"Only supported method with a fixed projection!");
 		return getDate(projection.getProjectionIndex(columnName), defaultResult);
+	}
+
+	@Override
+	public Date getDate(String columnName) {
+		return getDate(columnName, null);
 	}
 
 	@Override
@@ -208,12 +264,22 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Integer getInteger(String columnName) {
+		return getInteger(columnName, null);
+	}
+
+	@Override
 	public Long getLong(String columnName, Long defaultResult)
 	{
 		if (projection == null)
 			throw new IllegalStateException(
 					"Only supported method with a fixed projection!");
 		return getLong(projection.getProjectionIndex(columnName), defaultResult);
+	}
+
+	@Override
+	public Long getLong(String columnName) {
+		return getLong(columnName, null);
 	}
 
 	@Override
@@ -226,12 +292,23 @@ public class CriteriaResultImpl implements CriteriaResult
 	}
 
 	@Override
+	public Short getShort(String columnName) {
+		return getShort(columnName, null);
+	}
+
+	@Override
 	public String getString(String columnName, String defaultResult)
 	{
 		if (projection == null)
 			throw new IllegalStateException(
 					"Only supported method with a fixed projection!");
 		return getString(projection.getProjectionIndex(columnName), defaultResult);
+	}
+
+	@Override
+	public String getString(String columnName)
+	{
+		return getString(columnName, null);
 	}
 
 	@Override
@@ -243,4 +320,8 @@ public class CriteriaResultImpl implements CriteriaResult
 		return getValue(projection.getProjectionIndex(columnName), defaultResult);
 	}
 
+	@Override
+	public Object getValue(String columnName) {
+		return getValue(columnName, null);
+	}
 }

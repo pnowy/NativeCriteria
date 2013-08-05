@@ -1,8 +1,10 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.NativeTestProvider;
+import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -19,11 +21,11 @@ public class NativeProjectionTest
 	public void testSimpleProjection() throws Exception
 	{
 		NativeCriteria nc = new NativeCriteria(new NativeTestProvider(), "mainTable", "mt");
-		nc.setProjection(NativeExps.projection().addProjection("twojaStara", "tw"));
-		nc.list();
+		nc.criteriaResult();
 
 
-		log.info("QueryInfo: {}", nc.getQueryInfo().getSql());
+
+		log.info("QueryInfo: {}", nc.getQueryInfo().getSummary());
 
 	}
 }

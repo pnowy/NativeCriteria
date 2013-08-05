@@ -459,7 +459,7 @@ public class NativeProjection
 	 */
 	public boolean hasProjections()
 	{
-		return projections.size() > 0;
+		return CollectionUtils.isNotEmpty(projections);
 	}
 
 	/**
