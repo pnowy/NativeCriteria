@@ -61,9 +61,4 @@ public class NativeBetweenExp implements NativeExp
 		query.setParameter(highValueVar, highValue);
 	}
 
-//	public void setValues(SQLQuery query)
-//	{
-//		query.setParameter(lowValueVar, lowValue);
-//		query.setParameter(highValueVar, highValue);
-//	}
 }

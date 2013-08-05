@@ -15,6 +15,7 @@
     <artifactId>nativeCriteria-root</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <url>https://github.com/pnowy/NativeCriteria</url>
 
     <name>NativeCriteria - Root</name>
     <description>Native Criteria Root</description>
@@ -63,6 +64,12 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <!--
+    mvn clean deploy -Dgpg.passphrase=PASSPHRASE
+    mvn clean javadoc:jar source:jar deploy -Dgpg.passphrase=PASSPHRASE
+    mvn clean package verify release:preform -Dgpg.passphrase=PASSPHRASE
+    -->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -154,40 +161,54 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.1</version>
-            </plugin>
-            <plugin>
+                <!-- explicitly define maven-deploy-plugin after other to force exec order -->
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.7</version>
-                <!--<configuration>
-                    &lt;!&ndash;SECOND APPROACH - ARTIFACTS IN TRUNK &ndash;&gt;
-                    &lt;!&ndash;<altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>&ndash;&gt;
-                    <altDeploymentRepository>release-repo::default::file://${project.basedir}/releases</altDeploymentRepository>
-                    &lt;!&ndash; FIRST APPROACH - ARTIFACTS IN BRANCH &ndash;&gt;
-                    &lt;!&ndash;<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>&ndash;&gt;
-                </configuration>-->
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <goals><goal>deploy</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>deploy</phase>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>deploy</phase>
+                        <goals><goal>jar</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- GPG PLUGIN TO SIGN RELEASES ARTIFACTS-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-
     </build>
 
-    <!--
-    <profiles>
-        <profile>
-            <id>deploy-snapshot</id>
-            <properties>
-                <altDeploymentRepository>snapshot-repo::default::file://${project.basedir}/snapshots</altDeploymentRepository>
-            </properties>
-        </profile>
-        <profile>
-            <id>deploy-release</id>
-            <properties>
-                <altDeploymentRepository>release-repo::default::file://${project.basedir}/releases</altDeploymentRepository>
-            </properties>
-        </profile>
-    </profiles>
-    -->
+
 
 </project>

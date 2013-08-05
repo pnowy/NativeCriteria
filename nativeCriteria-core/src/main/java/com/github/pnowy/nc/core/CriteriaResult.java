@@ -287,5 +287,10 @@ public interface CriteriaResult
 	 */
 	public Integer getRowsNumber();
 
+	/**
+	 * Get query information.
+	 *
+	 * @return query information
+	 */
 	public QueryInfo getQueryInfo();
 }

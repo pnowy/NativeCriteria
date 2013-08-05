@@ -19,7 +19,7 @@
     <description>Native Criteria Core Library</description>
 
     <dependencies>
-        <!--BASE NATIVE LIBRARY -->
+        <!-- BASE NATIVE LIBRARY -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>

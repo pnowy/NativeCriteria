@@ -1,12 +1,10 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.NativeTestProvider;
-import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
-import com.github.pnowy.nc.core.NativeExps;
-import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -22,7 +20,7 @@ public class NativeProjectionTest
 	{
 		NativeCriteria nc = new NativeCriteria(new NativeTestProvider(), "mainTable", "mt");
 		nc.criteriaResult();
-
+		Assert.assertTrue(nc.getSQL().contains("mainTable"));
 
 
 		log.info("QueryInfo: {}", nc.getQueryInfo().getSummary());
