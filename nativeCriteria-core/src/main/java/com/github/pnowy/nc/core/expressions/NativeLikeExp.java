@@ -42,9 +42,4 @@ public class NativeLikeExp implements NativeExp
 		query.setString(varName, value);
 	}
 
-//	@Override
-//	public void setValues(SQLQuery query)
-//	{
-//		query.setString(varName, value);
-//	}
 }

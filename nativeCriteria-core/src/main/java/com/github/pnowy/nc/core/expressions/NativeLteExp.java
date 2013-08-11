@@ -47,9 +47,4 @@ public class NativeLteExp implements NativeExp
 		query.setParameter(varName, value);
 	}
 
-//	public void setValues(SQLQuery query)
-//	{
-//		query.setParameter(varName, value);
-//		if (log.isDebugEnabled()) log.debug("varName={}, value={}",varName,value);
-//	}
 }

@@ -42,9 +42,4 @@ public class NativeNotEqExp implements NativeExp
 		query.setParameter(varName, value);
 	}
 
-//	@Override
-//	public void setValues(SQLQuery query)
-//	{
-//		query.setParameter(varName, value);
-//	}
 }

@@ -68,11 +68,4 @@ public class NativeNotInExp implements NativeExp
 			query.setParameterList(varName, arrValues);
 	}
 
-//	public void setValues(SQLQuery query)
-//	{
-//		if (values != null)
-//			query.setParameterList(varName, values);
-//		else if (arrValues != null)
-//			query.setParameterList(varName, arrValues);
-//	}
 }

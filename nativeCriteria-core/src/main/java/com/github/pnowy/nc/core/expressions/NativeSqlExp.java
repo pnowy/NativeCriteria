@@ -25,12 +25,6 @@ public class NativeSqlExp implements NativeExp
 		this.sql = sql;
 	}
 	
-//	@Override
-//	public void setValues(SQLQuery query)
-//	{
-//		// don't need to set parameteres
-//	}
-	
 	@Override
 	public String toSQL()
 	{
