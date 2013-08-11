@@ -20,6 +20,7 @@ public abstract class NativeExpGenericTest {
 	protected static final Logger log = LoggerFactory.getLogger(NativeExpGenericTest.class);
 	protected final String MAIN_TABLE = "mainTable";
 	protected final String MAIN_ALIAS = "mt";
+	protected final String MAIN_ALIAS_WITH_DOT = "mt.";
 
 	protected NativeCriteria nc;
 	protected String sql;
@@ -39,9 +40,14 @@ public abstract class NativeExpGenericTest {
 		sql = qi.getSql().toLowerCase();
 		parameters = qi.getParameters();
 		checkConditions();
-		log.info("SUMMARY: {}", nc.getQueryInfo().getSummary());
+		log.info("{}: {}",getClassName(), nc.getQueryInfo().getSummary());
 	}
 
 	protected abstract void prepareCriteria();
 	protected abstract void checkConditions();
+
+	protected String getClassName()
+	{
+		return getClass().getSimpleName();
+	}
 }

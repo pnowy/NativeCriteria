@@ -68,14 +68,22 @@ public class NativeQueryTest implements NativeQuery
 	@Override
 	public NativeQuery setParameterList(String name, Collection values)
 	{
-		queryInfo.getParameters().put(name, values);
+		for(Object o : values)
+		{
+			String objectName = name + "[" + o.toString() + "]";
+			queryInfo.getParameters().put(objectName, o);
+		}
 		return this;
 	}
 
 	@Override
 	public NativeQuery setParameterList(String name, Object[] values)
 	{
-		queryInfo.getParameters().put(name, values);
+		for(Object o : values)
+		{
+			String objectName = name + "[" + o.toString() + "]";
+			queryInfo.getParameters().put(objectName, o);
+		}
 		return this;
 	}
 

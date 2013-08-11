@@ -74,18 +74,4 @@ public class NativeInExp implements NativeExp
 			query.setParameterList(varName, arrValues);
 		}
 	}
-
-//	public void setValues(SQLQuery query)
-//	{
-//		if (values != null)
-//		{
-//			query.setParameterList(varName, values);
-//			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,values);
-//		}
-//		else if (arrValues != null)
-//		{
-//			query.setParameterList(varName, arrValues);
-//			if (log.isDebugEnabled()) log.debug("varName={}, values={}",varName,Arrays.toString(arrValues));
-//		}
-//	}
 }
