@@ -3,7 +3,7 @@ package com.github.pnowy.nc.core.expressions;
 import java.util.List;
 
 /**
- * Interface for joining classes.
+ * Interface for junction expression.
  */
 public interface NativeJunctionExp extends NativeExp
 {

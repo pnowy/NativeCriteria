@@ -85,6 +85,7 @@
         <!-- TESTING -->
         <testng.version>6.8.5</testng.version>
         <hsqldb.version>2.2.9</hsqldb.version>
+        <fest.assert.version>1.4</fest.assert.version>
     </properties>
 
     <dependencyManagement>
@@ -139,6 +140,13 @@
                 <version>${testng.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-assert</artifactId>
+                <version>${fest.assert.version}</version>
+                <scope>test</scope>
+            </dependency>
+
             <!-- HSQLDB FOR dbUnit TESTS -->
             <dependency>
                 <groupId>org.hsqldb</groupId>

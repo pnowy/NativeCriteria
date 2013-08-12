@@ -4,15 +4,16 @@ import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJunctionExp;
 import com.google.common.collect.Lists;
-import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.List;
+
+import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 08.08.13 21:35
  */
-public class NativeConjunctionExpTest extends NativeExpGenericTest {
+public class NativeDisjunctionExpTest extends NativeExpGenericTest {
 
 	@Override
 	protected void prepareCriteria()
@@ -21,24 +22,24 @@ public class NativeConjunctionExpTest extends NativeExpGenericTest {
 		String COLUMN_TWO = MAIN_ALIAS_WITH_DOT + "column_two";
 		String COLUMN_THREE = MAIN_ALIAS_WITH_DOT + "column_three";
 		String COLUMN_FOUR = MAIN_ALIAS_WITH_DOT + "column_four";
-		// first conjunction
-		NativeJunctionExp conjunction = NativeExps.conjunction();
-		conjunction.add(NativeExps.eq(COLUMN_ONE, "value1"));
-		conjunction.add(NativeExps.like(COLUMN_TWO, "value2"));
-		// second conjunction
+		// first disjunction
+		NativeJunctionExp disjunction = NativeExps.disjunction();
+		disjunction.add(NativeExps.eq(COLUMN_ONE, "value1"));
+		disjunction.add(NativeExps.like(COLUMN_TWO, "value2"));
+		// second disjunction
 		List<NativeExp> expressions = Lists.newArrayList();
 		expressions.add(NativeExps.eq(COLUMN_THREE, "value3"));
 		expressions.add(NativeExps.gt(COLUMN_FOUR, 56));
-		NativeJunctionExp conjunction2 = NativeExps.conjunction();
-		conjunction2.add(expressions);
-
-		nc.add(NativeExps.conjunction(Lists.<NativeExp>newArrayList(conjunction, conjunction2)));
+		NativeJunctionExp disjunction2   = NativeExps.disjunction();
+		disjunction2.add(expressions);
+		// main disjunction
+		nc.add(NativeExps.disjunction(Lists.<NativeExp>newArrayList(disjunction, disjunction2)));
 	}
 
 	@Override
 	protected void checkConditions()
 	{
-		assertThat(sql).containsIgnoringCase("and").containsIgnoringCase("(").containsIgnoringCase(")");
+		assertThat(sql).containsIgnoringCase("or").containsIgnoringCase("(").containsIgnoringCase(")");
 	}
 
 }
