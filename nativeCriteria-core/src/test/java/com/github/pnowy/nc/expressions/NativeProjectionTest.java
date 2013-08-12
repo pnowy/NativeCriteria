@@ -43,10 +43,11 @@ public class NativeProjectionTest
 	public void testAggregateProjection() throws Exception
 	{
 		nc.setProjection(NativeExps.projection().addProjection("t1.column").addAggregateProjection("t1.c3", NativeProjection.AggregateProjection.COUNT));
+		nc.addHaving(NativeExps.gt("t1.c3", 34));
 		nc.criteriaResult();
 
 		String sql = nc.getQueryInfo().getSql();
-		assertThat(sql).containsIgnoringCase("group by");
+		assertThat(sql).containsIgnoringCase("group by").containsIgnoringCase("having");
 		log.info("QueryInfo: {}", nc.getQueryInfo().getSummary());
 	}
 
