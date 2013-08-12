@@ -120,7 +120,7 @@ public class NativeJoin
     public String column(String columnName){
         return tableAlias + "." + columnName;
     }
-	
+
 	/**
 	 * Konstruktor.
 	 *

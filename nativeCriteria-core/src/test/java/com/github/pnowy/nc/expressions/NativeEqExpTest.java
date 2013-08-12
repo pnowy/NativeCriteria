@@ -14,6 +14,7 @@ public class NativeEqExpTest extends NativeExpGenericTest {
 	protected void prepareCriteria()
 	{
 		nc.add(NativeExps.eq(MAIN_ALIAS_WITH_DOT+"col1", VALUE_TO_CHECK));
+		nc.addOr(NativeExps.eq(MAIN_ALIAS_WITH_DOT + "col2", VALUE_TO_CHECK));
 	}
 
 	@Override

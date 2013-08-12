@@ -65,12 +65,6 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <!--
-    mvn clean deploy -Dgpg.passphrase=PASSPHRASE
-    mvn clean javadoc:jar source:jar deploy -Dgpg.passphrase=PASSPHRASE
-    mvn clean package verify release:preform -Dgpg.passphrase=PASSPHRASE
-    -->
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- BASE NATIVE LIBRARY -->
@@ -169,36 +163,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- explicitly define maven-deploy-plugin after other to force exec order -->
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>deploy</phase>
-                        <goals><goal>deploy</goal></goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>deploy</phase>
-                        <goals><goal>jar-no-fork</goal></goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <phase>deploy</phase>
-                        <goals><goal>jar</goal></goals>
-                    </execution>
-                </executions>
             </plugin>
             <!-- GPG PLUGIN TO SIGN RELEASES ARTIFACTS-->
             <plugin>
