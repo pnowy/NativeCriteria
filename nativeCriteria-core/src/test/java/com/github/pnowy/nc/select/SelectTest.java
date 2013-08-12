@@ -2,9 +2,12 @@ package com.github.pnowy.nc.select;
 
 import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
+import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.core.hibernate.HibernateQueryProvider;
 import com.github.pnowy.nc.utils.HibernateUtil;
+import com.github.pnowy.nc.utils.Transactional;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.context.internal.ThreadLocalSessionContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,22 +15,12 @@ import org.testng.annotations.Test;
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com> Date: 30.07.13 17:41
  */
-public class SelectTest // extends GenericTest
+public class SelectTest implements Transactional
 {
-	@BeforeClass
-	public void setUp() throws Exception {
-
-	}
-
-	@Test(enabled = false)
-	public void selectTest() {
-
-		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		s.beginTransaction();
-//		s.createSQLQuery("").list();
-		NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(s), "TEST_TABLE", "s");
-		// NativeCriteria nc = new NativeCriteria(new JpaQueryProvider(em), "TEST_TABLE", "s");
+	@Override
+	public void transaction(NativeQueryProvider provider)
+	{
+		NativeCriteria nc = new NativeCriteria(provider, "TEST_TABLE", "s");
 		// nc.setProjection(NativeExps.projection().addProjection("id"));
 		// nc.setLimit(12);
 		nc.setOffset(2);
@@ -36,12 +29,11 @@ public class SelectTest // extends GenericTest
 		while(result.next()) {
 			System.out.println(result.getLong(0, 0l) + " | " + result.getString(1, null));
 		}
-
-		s.getTransaction().commit();
-
-		ThreadLocalSessionContext.unbind(HibernateUtil.getSessionFactory());
 	}
 
-
-
+	@Test
+	public void test()
+	{
+		HibernateUtil.executeTransaction(this);
+	}
 }
