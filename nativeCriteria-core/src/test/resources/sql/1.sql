@@ -1,16 +1,11 @@
-CREATE TABLE TEST_TABLE (
-  ID NUMBER(15) PRIMARY KEY,
-  APP_NAME VARCHAR2(32),
-  APP_COL VARCHAR2(32),
-  STATUS VARCHAR2(20),
-  EMAIL VARCHAR2(64),
-  VENDOR VARCHAR2 (32)
+CREATE TABLE ADDRESS (
+  ID NUMBER(18) PRIMARY KEY,
+  CITY VARCHAR2(64),
+  STREET VARCHAR2(64),
+  BUILDING_NUMBER VARCHAR2(16),
+  ZIP_CODE VARCHAR2(16)
 );
 
-create sequence SEQ_TEST_TABLE;
+create sequence SEQ_ADDRESS;
 
-insert into test_table(id, app_name, app_col, status, email, vendor) values (seq_test_table.nextval, 'test app name0','app col','test status','pn@pn.wp', null);
-insert into test_table(id, app_name, app_col, status, email, vendor) values (seq_test_table.nextval, 'test app name1','app col','test status','pn@pn.wp', null);
-insert into test_table(id, app_name, app_col, status, email, vendor) values (seq_test_table.nextval, 'test app name2','app col','test status','pn@pn.wp', null);
-insert into test_table(id, app_name, app_col, status, email, vendor) values (seq_test_table.nextval, 'test app name3','app col','test status','pn@pn.wp', null);
-insert into test_table(id, app_name, app_col, status, email, vendor) values (seq_test_table.nextval, 'test app name4','app col','test status','pn@pn.wp', null);
+insert into ADDRESS(id, city, street, building_number, zip_code) values (seq_address.nextval, 'WARSAW','JEROZOLIMSKIE','34','34-567');
