@@ -1,7 +1,8 @@
 package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.expressions.NativeProjection;
-import com.github.pnowy.nc.core.expressions.NativeProjection;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -180,14 +181,43 @@ public class CriteriaResultImpl implements CriteriaResult
 	{
 		return getString(idx, null);
 	}
-	
-	@Override
-	public Object getValue(int idx, Object defaultResult)
+
+	/**
+	 * Preconditions to check actual record.
+	 */
+	private void checkCurrentRecordIdx()
 	{
 		if (recordIdx == -1 || recordIdx >= results.size())
 			throw new IndexOutOfBoundsException("Record out of range!. RecordIdx="+recordIdx+", recordSize="+results.size());
+	}
+
+	private boolean hasMultipleProjection()
+	{
+		return projection == null || projection.countProjections() > 1;
+	}
+
+	@Override
+	public String getCurrentRecordDesc()
+	{
+		checkCurrentRecordIdx();
+
+		if (hasMultipleProjection())
+		{
+			Object[] row = results.get(recordIdx);
+			return StringUtils.join(row, " | ");
+		}
+		else
+		{
+			return ObjectUtils.toString(results.get(recordIdx));
+		}
+	}
+
+	@Override
+	public Object getValue(int idx, Object defaultResult)
+	{
+		checkCurrentRecordIdx();
 		
-		if (projection == null || projection.countProjections() > 1)
+		if (hasMultipleProjection())
 		{
 			Object[] row = results.get(recordIdx);
 			if (idx < 0 || idx >= row.length)

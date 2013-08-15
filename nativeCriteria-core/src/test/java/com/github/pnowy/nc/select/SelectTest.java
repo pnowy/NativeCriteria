@@ -23,13 +23,12 @@ public class SelectTest implements Transactional
 	public void transaction(NativeQueryProvider provider)
 	{
 		NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
-		nc.setProjection(NativeExps.projection().addProjection("id"));
 		nc.add(NativeExps.eq("a.city", "WARSAW"));
 		CriteriaResult result = nc.criteriaResult();
 		while(result.next())
 		{
-			Long id = result.getLong("id");
-			assertThat(id).isNotNull();
+			String desc = result.getCurrentRecordDesc();
+			assertThat(desc).isNotNull().containsIgnoringCase("|").contains("WARSAW");
 		}
 		assertThat(result.getRowsNumber()).isGreaterThan(0);
 	}

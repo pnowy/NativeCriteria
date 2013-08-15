@@ -293,4 +293,17 @@ public interface CriteriaResult
 	 * @return query information
 	 */
 	public QueryInfo getQueryInfo();
+
+	/**
+	 * Method return all values from current row with pipe separator.
+	 * Example:
+	 * <p>
+	 *     0 | ColumnValue1 | ColumnValue2 | ColumnValue3 | ...<br />
+	 *     1 | ColumnValue2 | ColumnValue2 | ColumnValue3 | ...<br />
+	 *     2 | ...
+	 * </p>
+	 *
+	 * @return current rown from result
+	 */
+	public String getCurrentRecordDesc();
 }

@@ -14,58 +14,68 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <name>NativeCriteria - Spring Integration</name>
+    <description>Native Criteria Spring Integration Library</description>
+
     <properties>
         <org.springframework.version>3.1.1.RELEASE</org.springframework.version>
-        <!--<hibernate.version>3.5.4-Final</hibernate.version>-->
-        <!-- TESTING -->
-        <testng.version>6.8.5</testng.version>
-        <hsqldb.version>2.2.9</hsqldb.version>
     </properties>
 
     <dependencies>
+
+        <!-- SPRING REQUIRED DEPENDENCIES -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${org.springframework.version}</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${org.springframework.version}</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${org.springframework.version}</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${org.springframework.version}</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework.version}</version>
+
+
+        <!-- NATIVE CRITERIA REQUIRED DEPENDENCIES  && TEST WITH HIBERNATE -->
+         <dependency>
+             <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.core.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>nativeCriteria-core</artifactId>
+            <groupId>com.github.pnowy.nc</groupId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
-       <!-- <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>-->
 
-        <!-- Logging -->
+        <!-- LOGGING -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -83,18 +93,19 @@
             <artifactId>log4j</artifactId>
         </dependency>
 
-        <!-- TESTNG -->
+        <!-- TESTING -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
         </dependency>
-        <!-- HSQLDB FOR dbUnit TESTS -->
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

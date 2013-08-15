@@ -8,7 +8,7 @@ import java.io.LineNumberReader;
 import java.io.Reader;
 
 /**
- * Simple tool to run database scripts from files.
+ * Simple tool to run database scripts from files using JDBCTemplate.
  */
 public class ScriptRunner
 {
