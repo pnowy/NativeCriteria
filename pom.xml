@@ -22,7 +22,6 @@
 
     <modules>
         <module>nativeCriteria-core</module>
-        <!--<module>nativeCriteria-si</module>-->
     </modules>
 
     <licenses>
