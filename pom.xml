@@ -11,7 +11,7 @@
 
     <groupId>com.github.pnowy.nc</groupId>
     <artifactId>nativeCriteria-root</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <url>https://github.com/pnowy/NativeCriteria</url>
 
@@ -45,9 +45,8 @@
 
     <scm>
         <url>https://github.com/pnowy/NativeCriteria</url>
-        <connection>scm:git:https://github.com/pnowy/NativeCriteria</connection>
-        <developerConnection>scm:git:https://github.com/pnowy/NativeCriteria</developerConnection>
-      <tag>nativeCriteria-root-1.0</tag>
+        <connection>scm:git:git@github.com:pnowy/NativeCriteria.git</connection>
+        <developerConnection>scm:git:git@github.com:pnowy/NativeCriteria.git</developerConnection>
   </scm>
 
     <distributionManagement>
@@ -154,7 +153,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
+   <!-- <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -174,7 +173,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
             </plugin>
-            <!-- GPG PLUGIN TO SIGN RELEASES ARTIFACTS-->
+            &lt;!&ndash; GPG PLUGIN TO SIGN RELEASES ARTIFACTS&ndash;&gt;
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -189,7 +188,7 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 
 
