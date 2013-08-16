@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.github.pnowy.nc</groupId>
         <artifactId>nativeCriteria-root</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SHANPSHOT</version>
     </parent>
 
     <artifactId>nativeCriteria-core</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>NativeCriteria - Core</name>
