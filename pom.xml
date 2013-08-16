@@ -13,7 +13,7 @@
 
     <groupId>com.github.pnowy.nc</groupId>
     <artifactId>nativeCriteria-root</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <url>https://github.com/pnowy/NativeCriteria</url>
 
@@ -49,7 +49,7 @@
         <url>https://github.com/pnowy/NativeCriteria</url>
         <connection>scm:git:ssh://github.com/pnowy/NativeCriteria</connection>
         <!--<connection>scm:git:git://github.com/pnowy/NativeCriteria</connection>-->
-        <developerConnection>https://github.com/pnowy/NativeCriteria</developerConnection>
+        <developerConnection>scm:git:git+ssh://github.com/pnowy/NativeCriteria</developerConnection>
     </scm>
 
     <distributionManagement>
