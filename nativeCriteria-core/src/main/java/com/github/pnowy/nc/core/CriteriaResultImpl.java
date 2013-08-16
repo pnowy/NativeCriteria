@@ -1,6 +1,7 @@
 package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -210,6 +211,12 @@ public class CriteriaResultImpl implements CriteriaResult
 		{
 			return ObjectUtils.toString(results.get(recordIdx));
 		}
+	}
+
+	@Override
+	public <T> T getRow(NativeObjectMapper<T> mapper)
+	{
+		return mapper.mapObject(this);
 	}
 
 	@Override

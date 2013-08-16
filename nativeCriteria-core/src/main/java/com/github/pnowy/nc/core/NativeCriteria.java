@@ -4,6 +4,8 @@ import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJoin;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -326,6 +328,24 @@ public class NativeCriteria implements NativeExp
 	public CriteriaResult criteriaResult()
 	{
 		return new CriteriaResultImpl(list(), projection, nativeQuery.getQueryInfo());
+	}
+
+	/**
+	 * Return result list based on object mapper.
+	 *
+	 * @param mapper object mapper
+	 * @param <T> object mapper type
+	 * @return result list
+	 */
+	public <T> List<T> getResultAsList(NativeObjectMapper<T> mapper)
+	{
+		CriteriaResult criteriaResult = criteriaResult();
+		List<T> result = Lists.newArrayList();
+		while (criteriaResult.next())
+		{
+			result.add(criteriaResult.getRow(mapper));
+		}
+		return result;
 	}
 
 	public QueryInfo getQueryInfo()

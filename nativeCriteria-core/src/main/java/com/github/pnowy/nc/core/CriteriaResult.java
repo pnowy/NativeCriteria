@@ -1,5 +1,7 @@
 package com.github.pnowy.nc.core;
 
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+
 import java.util.Date;
 
 /**
@@ -306,4 +308,14 @@ public interface CriteriaResult
 	 * @return current rown from result
 	 */
 	public String getCurrentRecordDesc();
+
+	/**
+	 * Mapping criteria result to object.
+	 *
+	 * @param mapper implementation of mapper
+	 * @param <T> class to return
+	 * @return object
+	 */
+	public <T> T getRow(NativeObjectMapper<T> mapper);
+
 }

@@ -4,33 +4,44 @@ import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.NativeQueryProvider;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import com.github.pnowy.nc.utils.Address;
 import com.github.pnowy.nc.utils.HibernateUtil;
 import com.github.pnowy.nc.utils.Transactional;
+import org.fest.assertions.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-import static org.fest.assertions.Assertions.assertThat;
+
+import java.util.List;
 
 /**
  * Simple database test.
  * Przemek Nowak <przemek.nowak.pl@gmail.com> Date: 30.07.13 17:41
  */
-public class SelectTest implements Transactional
+public class SelectTestAsList implements Transactional
 {
-	private static final Logger log = LoggerFactory.getLogger(SelectTest.class);
+	private static final Logger log = LoggerFactory.getLogger(SelectTestAsList.class);
 
 	@Override
 	public void transaction(NativeQueryProvider provider)
 	{
 		NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
 		nc.add(NativeExps.eq("a.city", "WARSAW"));
-		CriteriaResult result = nc.criteriaResult();
-		while(result.next())
-		{
-			String desc = result.getCurrentRecordDesc();
-			assertThat(desc).isNotNull().containsIgnoringCase("|").contains("WARSAW");
-		}
-		assertThat(result.getRowsNumber()).isGreaterThan(0);
+		List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
+			@Override
+			public Address mapObject(CriteriaResult cr)
+			{
+				Address a = new Address();
+				a.setId(cr.getLong(0));
+				a.setCity(cr.getString(1));
+				a.setStreet(cr.getString(2));
+				a.setBuildingNumber(cr.getString(3));
+				a.setZipCode(cr.getString(4));
+				return a;
+			}
+		});
+		Assertions.assertThat(res).isNotNull().hasSize(1);
 	}
 
 	@Test
