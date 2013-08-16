@@ -48,7 +48,6 @@
     <scm>
         <url>https://github.com/pnowy/NativeCriteria</url>
         <connection>scm:git:ssh://github.com/pnowy/NativeCriteria</connection>
-        <!--<connection>scm:git:git://github.com/pnowy/NativeCriteria</connection>-->
         <developerConnection>scm:git:git+ssh://github.com/pnowy/NativeCriteria</developerConnection>
     </scm>
 
