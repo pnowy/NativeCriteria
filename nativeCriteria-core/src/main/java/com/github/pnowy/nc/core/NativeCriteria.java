@@ -5,6 +5,7 @@ import com.github.pnowy.nc.core.expressions.NativeJoin;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class to build native sql queries.
@@ -22,6 +24,7 @@ import java.util.Map.Entry;
 public class NativeCriteria implements NativeExp
 {
 	private static final Logger LOG = LoggerFactory.getLogger(NativeCriteria.class);
+	private static final Logger PERFORMANCE_LOG = LoggerFactory.getLogger("NativeCriteriaPerformance");
 
 	/**
 	 * Hibernate session.
@@ -367,7 +370,20 @@ public class NativeCriteria implements NativeExp
 	public List<Object[]> list()
 	{
 		nativeQuery = buildCriteriaQuery();
-		return nativeQuery.list();
+		if (isLogPerformance())
+		{
+			Stopwatch stopwatch = new Stopwatch().start();
+			List<Object[]> res = nativeQuery.list();
+			checkEndExecutionTime(stopwatch.stop());
+			return res;
+		}
+		else
+			return nativeQuery.list();
+	}
+
+	private boolean isLogPerformance()
+	{
+		return PERFORMANCE_LOG.isInfoEnabled();
 	}
 
 	/**
@@ -378,52 +394,26 @@ public class NativeCriteria implements NativeExp
 	public Object uniqueResult()
 	{
 		nativeQuery = buildCriteriaQuery();
-		return nativeQuery.uniqueResult();
+		if (isLogPerformance())
+		{
+			Stopwatch stopwatch = new Stopwatch().start();
+			Object res = nativeQuery.uniqueResult();
+			checkEndExecutionTime(stopwatch.stop());
+			return res;
+		}
+		else
+			return nativeQuery.uniqueResult();
 	}
 
-//	@SuppressWarnings("unchecked")
-//	public List<Object[]> list()
-//	{
-//		SQLQuery query = buildCriteriaQuery();
-//		if (logPerformance)
-//		{
-//			long startTime = System.currentTimeMillis();
-//			List<Object[]> res = query.list();
-//			checkEndExecutionTime(startTime);
-//
-//			return res;
-//		}
-//		else
-//			return query.list();
-//	}
-
-//	public Object uniqueResult()
-//	{
-//		SQLQuery query = buildCriteriaQuery();
-//		if (logPerformance)
-//		{
-//			long startTime = System.currentTimeMillis();
-//			Object res = query.uniqueResult();
-//			checkEndExecutionTime(startTime);
-//
-//			return res;
-//		}
-//		else
-//			return query.uniqueResult();
-//	}
-
-	//TODO implement measure performance
-//	private void checkEndExecutionTime(long startTime)
-//	{
-//		long finishTime = System.currentTimeMillis();
-//		long executionTime = finishTime - startTime;
-//
-//		if (executionTime > longExecutionTime)
-//		{
-//			PERFORMANCE_LOG.error("Dlugi czas wykonania zapytania ({}ms, - {}",
-//					executionTime, getSQL());
-//		}
-//	}
+	/**
+	 * Log time to logger.
+	 *
+	 * @param stopwatch stopwatch with measure tim
+	 */
+	private void checkEndExecutionTime(Stopwatch stopwatch)
+	{
+		PERFORMANCE_LOG.info("Execution time ({}ms, - {}",stopwatch.elapsed(TimeUnit.MILLISECONDS), getSQL());
+	}
 
 	/**
 	 * Return query SQL.
