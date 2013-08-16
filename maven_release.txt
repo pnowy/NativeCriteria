@@ -12,7 +12,7 @@ mvn release:prepare
 mvn release:perform
 
 mvn clean javadoc:jar source:jar deploy -Dgpg.passphrase=PASSPHRASE
-mvn clean package verify release:preform -Dgpg.passphrase=PASSPHRASE
+mvn clean package verify release:perform -Dgpg.passphrase=PASSPHRASE
 
 Then, Go to https://oss.sonatype.org
 Login to the Nexus UI.
