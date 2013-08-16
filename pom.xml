@@ -46,7 +46,7 @@
     <scm>
         <url>https://github.com/pnowy/NativeCriteria</url>
         <connection>scm:git:git://github.com/pnowy/NativeCriteria</connection>
-        <developerConnection>scm:git:git://github.com/pnowy/NativeCriteria</developerConnection>
+        <developerConnection>https://github.com/pnowy/NativeCriteria</developerConnection>
     </scm>
 
     <distributionManagement>
