@@ -153,7 +153,7 @@
         </dependencies>
     </dependencyManagement>
 
-   <!-- <build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -173,7 +173,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.1</version>
             </plugin>
-            &lt;!&ndash; GPG PLUGIN TO SIGN RELEASES ARTIFACTS&ndash;&gt;
+            <!-- GPG PLUGIN TO SIGN RELEASES ARTIFACTS-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -188,7 +188,7 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 
 
 
