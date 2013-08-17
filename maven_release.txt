@@ -7,7 +7,7 @@ Details
 Basically all I need to do is:
 
 -- GENERATE SNAPSHOT
-mvn clean javadoc:jar source:jar deploy -Dgpg.passphrase=PASSPHRASE
+mvn clean javadoc:jar source:jar deploy -Darguments=-Dgpg.passphrase=PASSPHRASE
 -- RELEASE
 mvn release:clean
 mvn release:prepare -Darguments=-Dgpg.passphrase=PASSPHRASE
