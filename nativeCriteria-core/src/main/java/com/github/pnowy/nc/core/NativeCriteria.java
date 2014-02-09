@@ -4,6 +4,7 @@ import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJoin;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
@@ -331,6 +332,19 @@ public class NativeCriteria implements NativeExp
 	public CriteriaResult criteriaResult()
 	{
 		return new CriteriaResultImpl(list(), projection, nativeQuery.getQueryInfo());
+	}
+
+	/**
+	 * Returt result according with provided {@link CriteriaResultTransformer}.
+	 *
+	 * param criteriaResultTransformer prepared criteria result transformer
+	 * @param <T> generic type of result of criteria result transformer
+	 *
+	 * @return transformed object by provided criteria result transformer
+	 */
+	public <T> T criteriaResult(CriteriaResultTransformer<T> criteriaResultTransformer)
+	{
+		return criteriaResultTransformer.transform(criteriaResult());
 	}
 
 	/**
