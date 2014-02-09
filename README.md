@@ -1,9 +1,6 @@
-Light weight Java library for generate dynamic SQL
---------------------------------------------------
-
 Main advantages / assumptions:
 * simple, friendly API
-* without any other gdenerated classed based on database schema
+* without any other generated classed based on database schema
 * possibility to build complex joins with detailed projections
 * work on all databases supported by Hibernate
 * designed for a select queries (not supported update queries now)
@@ -12,7 +9,7 @@ Main advantages / assumptions:
 
 ```
 NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
-c.setProjection(NativeExps.projection().addProjection("alias.column_name"));
+c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
 c.add(NativeExps.isNull("alias.column_name"));
 c.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC));
 CriteriaResult res = c.criteriaResult();
@@ -31,7 +28,7 @@ c.setProjection(NativeExps.projection().addProjection(Lists.newArrayList("alias.
 
 ```
 
-## Get result as object list
+## Get result as object list by NativeObjectMapper
 
 ```
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
@@ -49,6 +46,26 @@ List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
 		return a;
 	}
 });
+
+```
+
+## Get any result by CriteriaResultTransformer
+
+```
+NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
+nc.add(NativeExps.eq("a.city", "WARSAW"));
+Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map<String, String>>() {
+			@Override
+			public Map<String, String> transform(CriteriaResult criteriaResult)
+			{
+				Map<String, String> result = Maps.newHashMap();
+				while (criteriaResult.next())
+				{
+					result.put(criteriaResult.getString(1), criteriaResult.getString(4));
+				}
+				return result;
+			}
+		});
 
 ```
 
