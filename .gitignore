@@ -1,8 +1,4 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+*.iml
 /.idea/
 /target/
+/nativeCriteria-core/target/
