@@ -70,8 +70,9 @@
         <!-- LOGGING -->
         <slf4j.version>1.7.2</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <logback.version>1.0.13</logback.version>
         <!-- UTILS -->
-        <guava.version>14.0.1</guava.version>
+        <guava.version>15.0</guava.version>
         <apache.commons.lang.version>3.1</apache.commons.lang.version>
         <apache.commons.collections.version>3.2.1</apache.commons.collections.version>
         <!-- TESTING -->
@@ -107,7 +108,7 @@
                 <version>${apache.commons.collections.version}</version>
             </dependency>
 
-            <!-- LOGGING -->
+            <!-- LOGGING = SLF4J + LOGBACK -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -115,22 +116,11 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
-                <version>${slf4j.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>${log4j.version}</version>
-            </dependency>
+
 
             <!-- TESTING -->
             <dependency>
