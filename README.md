@@ -69,8 +69,12 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 
 ```
 
-## Logger to log execution sql time in log4j properties:
-log4j.logger.NativeCriteriaPerformance=INFO
+## Logger to log execution sql time:
+```
+            <logger name="NativeCriteriaPerformance" level="DEBUG">
+                <appender-ref ref="stdout" />
+            </logger>
+```
 
 ## Library available on Maven Central Repository
 ```

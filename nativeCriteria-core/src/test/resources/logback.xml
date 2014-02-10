@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
-    <!-- PRZEMEK APPENDER-->
-    <appender name="PRZEMEK" class="ch.qos.logback.core.ConsoleAppender">
-        <DatePattern>'.'yyyy-MM-dd</DatePattern>
-        <Target>System.out</Target>
-        <encoder>
-            <pattern>%d{HH:mm:ss} - %m%n</pattern>
-        </encoder>
-    </appender>
 
     <!-- CONSOLE APPENDER -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
@@ -19,7 +11,11 @@
     </appender>
 
     <logger name="przemek" level="DEBUG">
-        <appender-ref ref="PRZEMEK"/>
+        <appender-ref ref="stdout"/>
+    </logger>
+
+    <logger name="NativeCriteriaPerformance" level="DEBUG">
+        <appender-ref ref="stdout" />
     </logger>
 
     <root level="INFO">
