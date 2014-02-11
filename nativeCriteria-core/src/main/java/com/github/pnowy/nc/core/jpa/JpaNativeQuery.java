@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
+ * JPA implementation of native query.
+ * 
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 30.07.13 00:12
  */
@@ -52,7 +54,7 @@ public class JpaNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameter(String name, Object val)
 	{
-
+		queryInfo.getParameters().put(name, val);
 		query.setParameter(name, val);
 		return this;
 	}
@@ -60,6 +62,7 @@ public class JpaNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setString(String name, String value)
 	{
+		queryInfo.getParameters().put(name, value);
 		query.setParameter(name, value);
 		return this;
 	}
@@ -67,6 +70,7 @@ public class JpaNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameterList(String name, Collection values)
 	{
+		queryInfo.getParameters().put(name, values);
 		query.setParameter(name, values);
 		return this;
 	}
@@ -74,6 +78,7 @@ public class JpaNativeQuery implements NativeQuery
 	@Override
 	public NativeQuery setParameterList(String name, Object[] values)
 	{
+		queryInfo.getParameters().put(name, values);
 		query.setParameter(name, values);
 		return this;
 	}
