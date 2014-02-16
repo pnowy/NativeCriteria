@@ -81,6 +81,10 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
         <dependency>
             <groupId>com.github.pnowy.nc</groupId>
             <artifactId>nativeCriteria-core</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
 ```
+
+### Release 1.2 changes:
+ * Added CriteriaResultTransformer interface
+ * Migration to logback as logging implementation (from log4j)
