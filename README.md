@@ -19,7 +19,7 @@
 
 ## Simple select example:
 
-```
+```java
 		NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
 		c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
 		c.add(NativeExps.isNull("alias.column_name"));
@@ -40,16 +40,15 @@
 ```
 ## Simple select example with inner join
 
-```
+```java
 NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
 c.addJoin(NativeExps.innerJoin("table_name_to_join", "alias2", "alias.left_column", "alias2.right_column"));
 c.setProjection(NativeExps.projection().addProjection(Lists.newArrayList("alias.table_column","alias2.table_column")));
-
 ```
 
 ## Get result as object list by NativeObjectMapper
 
-```
+```java
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
 nc.add(NativeExps.eq("a.city", "WARSAW"));
 List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
@@ -70,7 +69,7 @@ List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
 
 ## Get any result by CriteriaResultTransformer
 
-```
+```java
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
 nc.add(NativeExps.eq("a.city", "WARSAW"));
 Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map<String, String>>() {
@@ -89,14 +88,14 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 ```
 
 ## Logger to log execution sql time:
-```
+```xml
 <logger name="NativeCriteriaPerformance" level="DEBUG">
 	<appender-ref ref="stdout" />
 </logger>
 ```
 
 ## Library available on Maven Central Repository
-```
+```xml
 <dependency>
 	<groupId>com.github.pnowy.nc</groupId>
 	<artifactId>nativeCriteria-core</artifactId>
