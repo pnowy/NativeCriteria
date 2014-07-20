@@ -1,14 +1,11 @@
 package com.github.pnowy.nc;
 
-import com.beust.jcommander.internal.Lists;
-import com.github.pnowy.nc.core.QueryInfo;
-import com.google.common.collect.Maps;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
+
+import com.beust.jcommander.internal.Lists;
+import com.github.pnowy.nc.core.NativeQuery;
+import com.github.pnowy.nc.core.QueryInfo;
 
 /**
  * Native test implementation of query.

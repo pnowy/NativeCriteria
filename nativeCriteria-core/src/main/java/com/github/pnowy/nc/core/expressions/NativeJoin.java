@@ -1,9 +1,9 @@
 package com.github.pnowy.nc.core.expressions;
 
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
-
 import static com.google.common.base.Preconditions.checkArgument;
+
+import com.github.pnowy.nc.core.NativeQuery;
+import com.github.pnowy.nc.utils.Strings;
 
 /**
  * Native Join.
@@ -77,9 +77,9 @@ public class NativeJoin
 	}
     
     public NativeJoin(String tableName, String tableAlias, JoinType joinType, NativeExp complexJoin){
-        if (StringUtils.isBlank(tableName))
+        if (Strings.isBlank(tableName))
             throw new IllegalStateException("tableName is null!");
-        if (StringUtils.isBlank(tableAlias))
+        if (Strings.isBlank(tableAlias))
             throw new IllegalStateException("tableAlias is null!");
         checkArgument(joinType != JoinType.CROSS && joinType != JoinType.NATURAL);
         this.tableName = tableName;
@@ -99,15 +99,15 @@ public class NativeJoin
 	 */
 	public NativeJoin(String tableName, String tableAlias, JoinType joinType, String leftColumn, String rightColumn)
 	{
-		if (StringUtils.isBlank(tableName))
+		if (Strings.isBlank(tableName))
 			throw new IllegalStateException("tableName is null!");
-		if (StringUtils.isBlank(tableAlias))
+		if (Strings.isBlank(tableAlias))
 			throw new IllegalStateException("tableAlias is null!");
 		if (joinType == null)
 			throw new IllegalStateException("joinTYpe is null!");
 		else if (joinType.equals(JoinType.NATURAL) || joinType.equals(JoinType.CROSS))
 			throw new IllegalArgumentException("This constructor doesn't support natural and cross join!");
-		if (StringUtils.isBlank(rightColumn) || StringUtils.isBlank(leftColumn))
+		if (Strings.isBlank(rightColumn) || Strings.isBlank(leftColumn))
 			throw new IllegalStateException("Incorrect join columns!");
 		
 		this.tableName = tableName;
@@ -130,9 +130,9 @@ public class NativeJoin
 	 */
 	public NativeJoin(String tableName, String tableAlias, JoinType joinType)
 	{
-		if (StringUtils.isBlank(tableName))
+		if (Strings.isBlank(tableName))
 			throw new IllegalStateException("tableName is null!");
-		if (StringUtils.isBlank(tableAlias))
+		if (Strings.isBlank(tableAlias))
 			throw new IllegalStateException("tableAlias is null!");
 		if (joinType == null)
 			throw new IllegalStateException("joinTYpe is null!");

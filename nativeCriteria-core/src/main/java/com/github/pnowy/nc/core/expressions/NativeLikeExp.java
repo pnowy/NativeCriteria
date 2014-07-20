@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
@@ -20,9 +20,9 @@ public class NativeLikeExp implements NativeExp
 	 */
 	public NativeLikeExp(String columnName, String value)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
-		if (StringUtils.isBlank(value))
+		if (Strings.isBlank(value))
 			throw new IllegalStateException("value is null!");
 		
 		this.columnName = columnName;

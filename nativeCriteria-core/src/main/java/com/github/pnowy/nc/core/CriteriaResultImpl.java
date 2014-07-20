@@ -1,12 +1,12 @@
 package com.github.pnowy.nc.core;
 
-import com.github.pnowy.nc.core.expressions.NativeProjection;
-import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Date;
 import java.util.List;
+
+import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import com.github.pnowy.nc.utils.Objects;
+import com.google.common.base.Joiner;
 
 /**
  * Implementation CriteriaResult.
@@ -205,11 +205,11 @@ public class CriteriaResultImpl implements CriteriaResult
 		if (hasMultipleProjection())
 		{
 			Object[] row = results.get(recordIdx);
-			return StringUtils.join(row, " | ");
+			return Joiner.on(" | ").join(row);
 		}
 		else
 		{
-			return ObjectUtils.toString(results.get(recordIdx));
+			return Objects.toString(results.get(recordIdx));
 		}
 	}
 
@@ -227,8 +227,9 @@ public class CriteriaResultImpl implements CriteriaResult
 		if (hasMultipleProjection())
 		{
 			Object[] row = results.get(recordIdx);
-			if (idx < 0 || idx >= row.length)
+			if (idx < 0 || idx >= row.length) {
 				throw new IndexOutOfBoundsException("Value out of range in record!");
+			}
 			
 			if (row[idx] == null)
 				return defaultResult;

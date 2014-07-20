@@ -1,8 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 
 /**
  * Default expression for where.
@@ -19,7 +18,7 @@ public class NativeSqlExp implements NativeExp
 	 */
 	public NativeSqlExp(String sql)
 	{
-		if (StringUtils.isEmpty(sql))
+		if (Strings.isBlank(sql))
 			throw new IllegalStateException("sql is empty!");
 		
 		this.sql = sql;

@@ -43,12 +43,12 @@
         </developer>
     </developers>
 
-    <scm>
-        <url>https://github.com/pnowy/NativeCriteria</url>
-        <connection>scm:git:git://github.com/pnowy/NativeCriteria.git</connection>
-        <developerConnection>scm:git:git@github.com:pnowy/NativeCriteria.git</developerConnection>
-    <tag>nativeCriteria-root-1.0</tag>
-  </scm>
+	<scm>
+		<url>https://github.com/pnowy/NativeCriteria</url>
+		<connection>scm:git:git://github.com/pnowy/NativeCriteria.git</connection>
+		<developerConnection>scm:git:git@github.com:pnowy/NativeCriteria.git</developerConnection>
+		<tag>nativeCriteria-root-1.0</tag>
+	</scm>
 
     <distributionManagement>
         <repository>
@@ -66,15 +66,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- BASE NATIVE LIBRARY -->
-        <hibernate.core.version>4.2.3.Final</hibernate.core.version>
+        <hibernate.core.version>4.3.5.Final</hibernate.core.version>
         <!-- LOGGING -->
         <slf4j.version>1.7.2</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
         <logback.version>1.0.13</logback.version>
         <!-- UTILS -->
-        <guava.version>15.0</guava.version>
-        <apache.commons.lang.version>3.1</apache.commons.lang.version>
-        <apache.commons.collections.version>3.2.1</apache.commons.collections.version>
+        <guava.version>17.0</guava.version>
         <!-- TESTING -->
         <testng.version>6.8.5</testng.version>
         <hsqldb.version>2.2.9</hsqldb.version>
@@ -96,16 +93,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${apache.commons.lang.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${apache.commons.collections.version}</version>
             </dependency>
 
             <!-- LOGGING = SLF4J + LOGBACK -->
@@ -180,7 +167,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>

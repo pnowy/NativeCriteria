@@ -1,13 +1,11 @@
 package com.github.pnowy.nc.core;
 
-import com.github.pnowy.nc.core.expressions.*;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Collections2;
-
 import java.util.Collection;
 import java.util.List;
 
-import com.github.pnowy.nc.core.expressions.NativeJoin.JoinType;
+import com.github.pnowy.nc.core.expressions.*;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
 
 /**
  * Class to build native sql expressions. The best way to build expressions - static import methods from this class.

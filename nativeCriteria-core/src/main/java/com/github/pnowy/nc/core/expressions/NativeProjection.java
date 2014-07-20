@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-
+import com.github.pnowy.nc.core.NativeCriteria;
+import com.github.pnowy.nc.utils.Strings;
+import com.github.pnowy.nc.utils.VarGenerator;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import com.github.pnowy.nc.core.NativeCriteria;
-import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
  * Native projections.
@@ -236,8 +234,7 @@ public class NativeProjection
 	 */
 	public NativeProjection addProjection(String columnName)
 	{
-		if (StringUtils.isBlank(columnName))
-		{
+		if (Strings.isBlank(columnName)) {
 			throw new IllegalStateException("columnName is null!");
 		}
 
@@ -254,7 +251,7 @@ public class NativeProjection
 	 */
 	public NativeProjection addProjection(String columnName, String alias)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 		{
 			throw new IllegalStateException("columnName is null!");
 		}
@@ -271,7 +268,7 @@ public class NativeProjection
 	 */
 	public NativeProjection addProjection(List<String> columns)
 	{
-		if (CollectionUtils.isEmpty(columns))
+		if (columns == null || columns.isEmpty())
 		{
 			throw new IllegalStateException("column is empty!");
 		}
@@ -377,12 +374,10 @@ public class NativeProjection
 	public NativeProjection addAggregateProjection(String columnName,
 	                                               AggregateProjection projection)
 	{
-		if (StringUtils.isBlank(columnName))
-		{
+		if (Strings.isBlank(columnName)){
 			throw new IllegalStateException("columnName is null!");
 		}
-		if (projection == null)
-		{
+		if (projection == null) {
 			throw new IllegalStateException("projection is null!");
 		}
 
@@ -402,7 +397,7 @@ public class NativeProjection
 	public NativeProjection addAggregateProjection(String columnName, String alias,
 	                                               AggregateProjection projection)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 		{
 			throw new IllegalStateException("columnName is null!");
 		}
@@ -423,7 +418,7 @@ public class NativeProjection
 	 */
 	public NativeProjection addGroupProjection(String columnName)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 		{
 			throw new IllegalStateException("columnName is null!");
 		}
@@ -459,7 +454,7 @@ public class NativeProjection
 	 */
 	public boolean hasProjections()
 	{
-		return CollectionUtils.isNotEmpty(projections);
+		return projections != null && !projections.isEmpty();
 	}
 
 	/**

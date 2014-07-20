@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
@@ -23,7 +23,7 @@ public class NativeNotBetweenExp implements NativeExp
 	 */
 	public NativeNotBetweenExp(String columnName, Object lowValue, Object highValue)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (lowValue == null)
 			throw new IllegalStateException("lowValue is null!");

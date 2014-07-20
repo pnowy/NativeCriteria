@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
@@ -20,7 +20,7 @@ public class NativeNotEqExp implements NativeExp
 	 */
 	public NativeNotEqExp(String columnName, Object value)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (value == null)
 			throw new IllegalStateException("value is null!");

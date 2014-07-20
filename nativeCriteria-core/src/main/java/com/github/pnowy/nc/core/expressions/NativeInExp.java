@@ -1,14 +1,13 @@
 package com.github.pnowy.nc.core.expressions;
 
-import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.utils.VarGenerator;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.github.pnowy.nc.utils.VarGenerator;
 
-import java.util.Collection;
+import com.github.pnowy.nc.core.NativeQuery;
+import com.github.pnowy.nc.utils.Strings;
+import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
  * The Class NativeInExp.
@@ -30,7 +29,7 @@ public class NativeInExp implements NativeExp
 	@SuppressWarnings("unchecked")
 	public NativeInExp(String columnName, Collection values)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (values == null)
 			throw new IllegalStateException("values is null!");
@@ -46,7 +45,7 @@ public class NativeInExp implements NativeExp
 	 */
 	public NativeInExp(String columnName, Object[] values)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (values == null)
 			throw new IllegalStateException("values is null!");

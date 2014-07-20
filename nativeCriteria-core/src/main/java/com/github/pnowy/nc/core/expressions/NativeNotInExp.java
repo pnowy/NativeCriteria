@@ -3,9 +3,7 @@ package com.github.pnowy.nc.core.expressions;
 import java.util.List;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.utils.VarGenerator;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
@@ -27,7 +25,7 @@ public class NativeNotInExp implements NativeExp
 	@SuppressWarnings("unchecked")
 	public NativeNotInExp(String columnName, List values)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (values == null)
 			throw new IllegalStateException("values is null!");
@@ -43,7 +41,7 @@ public class NativeNotInExp implements NativeExp
 	 */
 	public NativeNotInExp(String columnName, Object[] values)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (values == null)
 			throw new IllegalStateException("values is null!");

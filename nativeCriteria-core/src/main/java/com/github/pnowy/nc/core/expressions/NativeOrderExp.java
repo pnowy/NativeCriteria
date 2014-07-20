@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 
 /**
  * Native ORDER BY expression.
@@ -65,7 +65,7 @@ public class NativeOrderExp
 	 */
 	public NativeOrderExp add(String columnName, OrderType orderType)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 		{
 			throw new IllegalStateException("columnName is null!");
 		}

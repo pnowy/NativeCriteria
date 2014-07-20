@@ -1,23 +1,24 @@
 package com.github.pnowy.nc.core;
 
-import com.github.pnowy.nc.core.expressions.NativeExp;
-import com.github.pnowy.nc.core.expressions.NativeJoin;
-import com.github.pnowy.nc.core.expressions.NativeOrderExp;
-import com.github.pnowy.nc.core.expressions.NativeProjection;
-import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
-import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
-import com.google.common.base.Stopwatch;
-import com.google.common.collect.Lists;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.github.pnowy.nc.core.expressions.NativeExp;
+import com.github.pnowy.nc.core.expressions.NativeJoin;
+import com.github.pnowy.nc.core.expressions.NativeOrderExp;
+import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import com.github.pnowy.nc.utils.Strings;
+import com.google.common.base.Stopwatch;
+import com.google.common.collect.Lists;
 
 /**
  * Class to build native sql queries.
@@ -135,11 +136,11 @@ public class NativeCriteria implements NativeExp
 		{
 			throw new IllegalStateException("NativeProvider is null!");
 		}
-		if (StringUtils.isBlank(mainTable))
+		if (Strings.isBlank(mainTable))
 		{
 			throw new IllegalStateException("mainTable is null");
 		}
-		if (StringUtils.isBlank(mainAlias))
+		if (Strings.isBlank(mainAlias))
 		{
 			throw new IllegalStateException("mainAlias is null");
 		}
@@ -384,15 +385,15 @@ public class NativeCriteria implements NativeExp
 	public List<Object[]> list()
 	{
 		nativeQuery = buildCriteriaQuery();
-		if (isLogPerformance())
-		{
-			Stopwatch stopwatch = new Stopwatch().start();
+		if (isLogPerformance()) {
+			Stopwatch stopwatch = Stopwatch.createStarted();
 			List<Object[]> res = nativeQuery.list();
 			checkEndExecutionTime(stopwatch.stop());
 			return res;
 		}
-		else
+		else {
 			return nativeQuery.list();
+		}
 	}
 
 	private boolean isLogPerformance()
@@ -410,7 +411,7 @@ public class NativeCriteria implements NativeExp
 		nativeQuery = buildCriteriaQuery();
 		if (isLogPerformance())
 		{
-			Stopwatch stopwatch = new Stopwatch().start();
+			Stopwatch stopwatch = Stopwatch.createStarted();
 			Object res = nativeQuery.uniqueResult();
 			checkEndExecutionTime(stopwatch.stop());
 			return res;

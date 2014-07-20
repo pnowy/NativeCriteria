@@ -1,11 +1,10 @@
 package com.github.pnowy.nc.core.expressions;
 
-import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.utils.VarGenerator;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.github.pnowy.nc.core.NativeQuery;
+import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 
 /**
@@ -25,7 +24,7 @@ public class NativeLteExp implements NativeExp
 	 */
 	public NativeLteExp(String columnName, Object value)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		if (value == null)
 			throw new IllegalStateException("value is null!");

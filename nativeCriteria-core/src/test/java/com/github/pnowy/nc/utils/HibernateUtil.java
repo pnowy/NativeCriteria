@@ -1,19 +1,18 @@
 package com.github.pnowy.nc.utils;
 
-import com.github.pnowy.nc.core.hibernate.HibernateQueryProvider;
+import java.io.InputStreamReader;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
-import java.io.InputStreamReader;
+import com.github.pnowy.nc.core.hibernate.HibernateQueryProvider;
 
 /**
  * Hibernate test utils to test NativeCriteria in real database (somethig like unit/integration tests).
- *
- * Date: 31.07.13 16:35
  */
 public class HibernateUtil
 {
@@ -25,7 +24,7 @@ public class HibernateUtil
 		{
 			Configuration configuration = new Configuration().configure("/ds/hibernate.cfg.xml");
 
-			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
+			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 		}
 		catch (HibernateException he)

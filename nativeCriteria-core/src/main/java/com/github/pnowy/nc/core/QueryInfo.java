@@ -1,8 +1,8 @@
 package com.github.pnowy.nc.core;
 
-import com.google.common.collect.Maps;
-import org.apache.commons.lang3.ObjectUtils;
+import com.github.pnowy.nc.utils.Objects;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,8 +13,7 @@ import java.util.Map;
  * 		<li>map with parameters</li>
  * </ul>
  *
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 01.08.13 22:01
+ * @author Przemek Nowak <przemek.nowak.pl@gmail.com>
  */
 public class QueryInfo
 {
@@ -24,7 +23,7 @@ public class QueryInfo
 	public QueryInfo(String sql)
 	{
 		this.sql = sql;
-		this.parameters = Maps.newHashMap();
+		this.parameters = new HashMap<String, Object>();
 	}
 
 	public String getSql()
@@ -41,7 +40,7 @@ public class QueryInfo
 		StringBuilder sb = new StringBuilder("QueryInfo:\n");
 		sb.append("sql: ").append(sql).append("\n");
 		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
-			sb.append("parameter name: ").append(entry.getKey()).append(", parameter value: ").append(ObjectUtils.toString(entry.getValue())).append("\n");
+			sb.append("parameter name: ").append(entry.getKey()).append(", parameter value: ").append(Objects.toString(entry.getValue())).append("\n");
 		}
 		return sb.toString();
 	}

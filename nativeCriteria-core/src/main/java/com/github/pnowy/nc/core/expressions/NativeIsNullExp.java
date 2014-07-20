@@ -1,8 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.core.NativeQuery;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pnowy.nc.utils.Strings;
 
 /**
  * Native IS NULL expression.
@@ -20,7 +19,7 @@ public class NativeIsNullExp implements NativeExp
 	 */
 	public NativeIsNullExp(String columnName)
 	{
-		if (StringUtils.isBlank(columnName))
+		if (Strings.isBlank(columnName))
 			throw new IllegalStateException("columnName is null!");
 		
 		this.columnName = columnName;
