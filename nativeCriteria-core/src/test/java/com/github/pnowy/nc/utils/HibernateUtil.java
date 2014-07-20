@@ -14,37 +14,33 @@ import com.github.pnowy.nc.core.hibernate.HibernateQueryProvider;
 /**
  * Hibernate test utils to test NativeCriteria in real database (somethig like unit/integration tests).
  */
-public class HibernateUtil
-{
+public class HibernateUtil {
+
 	private static SessionFactory sessionFactory;
 
-	static
-	{
-		try
-		{
+	static {
+		try {
 			Configuration configuration = new Configuration().configure("/ds/hibernate.cfg.xml");
 
-			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+					.applySettings(configuration.getProperties())
+						.build();
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		}
-		catch (HibernateException he)
-		{
+		} catch (HibernateException he) {
 			System.err.println("Error creating Session: " + he);
 			throw new ExceptionInInitializerError(he);
 		}
 		init();
 	}
 
-	public static SessionFactory getSessionFactory()
-	{
+	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
 	/**
 	 * Initialize test database when session factory is prepared.
 	 */
-	private static void init()
-	{
+	private static void init() {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 
@@ -60,8 +56,7 @@ public class HibernateUtil
 	 *
 	 * @param transaction transaction to execute, see {@link Transactional}
 	 */
-	public static void executeTransaction(Transactional transaction)
-	{
+	public static void executeTransaction(Transactional transaction) {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		s.beginTransaction();
 		transaction.transaction(new HibernateQueryProvider(s));
