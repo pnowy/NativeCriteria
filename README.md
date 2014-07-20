@@ -20,23 +20,23 @@
 ## Simple select example:
 
 ```java
-		NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
-		c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
-		c.add(NativeExps.isNull("alias.column_name"));
-		c.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC));
-		CriteriaResult res = c.criteriaResult();
-		while (res.next()) {
-			resp.add(res.getLong(0, null));
-		}
-		
-		CriteriaResult res = new NativeCriteria(new JpaQueryProvider(entityManager), "table_name", "alias")
-				.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
-				.add(NativeExps.isNull("alias.column_name"));
-				.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC))
-				.criteriaResult();
-		while (res.next()) {
-			resp.add(res.getLong(0, null));
-		}
+NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
+c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
+c.add(NativeExps.isNull("alias.column_name"));
+c.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC));
+CriteriaResult res = c.criteriaResult();
+while (res.next()) {
+	resp.add(res.getLong(0, null));
+}
+
+CriteriaResult res = new NativeCriteria(new JpaQueryProvider(entityManager), "table_name", "alias")
+		.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
+		.add(NativeExps.isNull("alias.column_name"));
+		.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC))
+		.criteriaResult();
+while (res.next()) {
+	resp.add(res.getLong(0, null));
+}
 ```
 ## Simple select example with inner join
 
