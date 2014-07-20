@@ -11,7 +11,7 @@
 
     <groupId>com.github.pnowy.nc</groupId>
     <artifactId>nativeCriteria-root</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <url>https://github.com/pnowy/NativeCriteria</url>
 
@@ -47,7 +47,7 @@
 		<url>https://github.com/pnowy/NativeCriteria</url>
 		<connection>scm:git:git://github.com/pnowy/NativeCriteria.git</connection>
 		<developerConnection>scm:git:git@github.com:pnowy/NativeCriteria.git</developerConnection>
-		<tag>nativeCriteria-root-1.3</tag>
+		<tag>nativeCriteria-root-1.0</tag>
 	</scm>
 
     <distributionManagement>
