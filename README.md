@@ -5,19 +5,38 @@ Main advantages / assumptions:
 * work on all databases supported by Hibernate
 * designed for a select queries (not supported update queries now)
 
+### Release 1.3 changes:
+ * Removed apache commons dependencies
+ * Added OracleUnicodeDialect and SQLServerUnicodeDiales classes which supporting NVARCHAR types in older Hibernate version and newer databases
+ 	(see problem descriptions at: http://www.tomecode.com/2012/01/08/how-to-fix-mapping-errors-in-hibernateno-dialect-mapping-for-jdbc-type-9-found-nclob-expected-nvarchar2/
+ 	 and http://www.componentix.com/blog/5/improved-hibernate-dialect-for-microsoft-sql-server)
+ * Upgraded Google Guava dependency to 17.0
+ * Upgraded Hibernate dependency to version 4.3.5.Final
+
+### Release 1.2 changes:
+ * Added CriteriaResultTransformer interface
+ * Migration to logback as logging implementation (from log4j)
+
 ## Simple select example:
 
 ```
-NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
-c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
-c.add(NativeExps.isNull("alias.column_name"));
-c.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC));
-CriteriaResult res = c.criteriaResult();
-while (res.next())
-{
-    resp.add(res.getLong(0, null));
-}
-
+		NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
+		c.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
+		c.add(NativeExps.isNull("alias.column_name"));
+		c.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC));
+		CriteriaResult res = c.criteriaResult();
+		while (res.next()) {
+			resp.add(res.getLong(0, null));
+		}
+		
+		CriteriaResult res = new NativeCriteria(new JpaQueryProvider(entityManager), "table_name", "alias")
+				.setProjection(NativeExps.projection().addProjection("alias.column_name"));  
+				.add(NativeExps.isNull("alias.column_name"));
+				.setOrder(NativeExps.order().add("alias.column_name", OrderType.ASC))
+				.criteriaResult();
+		while (res.next()) {
+			resp.add(res.getLong(0, null));
+		}
 ```
 ## Simple select example with inner join
 
@@ -71,20 +90,16 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 
 ## Logger to log execution sql time:
 ```
-            <logger name="NativeCriteriaPerformance" level="DEBUG">
-                <appender-ref ref="stdout" />
-            </logger>
+<logger name="NativeCriteriaPerformance" level="DEBUG">
+	<appender-ref ref="stdout" />
+</logger>
 ```
 
 ## Library available on Maven Central Repository
 ```
-        <dependency>
-            <groupId>com.github.pnowy.nc</groupId>
-            <artifactId>nativeCriteria-core</artifactId>
-            <version>1.2</version>
-        </dependency>
+<dependency>
+	<groupId>com.github.pnowy.nc</groupId>
+	<artifactId>nativeCriteria-core</artifactId>
+	<version>1.2</version>
+</dependency>
 ```
-
-### Release 1.2 changes:
- * Added CriteriaResultTransformer interface
- * Migration to logback as logging implementation (from log4j)
