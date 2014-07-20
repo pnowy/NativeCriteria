@@ -1,9 +1,9 @@
-Main advantages / assumptions:
-* simple, friendly API
-* without any other generated classed based on database schema
-* possibility to build complex joins with detailed projections
-* work on all databases supported by Hibernate
-* designed for a select queries (not supported update queries now)
+### Main advantages / assumptions:
+ * simple, friendly API
+ * without any other generated classed based on database schema
+ * possibility to build complex joins with detailed projections
+ * work on all databases supported by Hibernate
+ * designed for a select queries (not supported update queries now)
 
 ### Release 1.3 changes:
  * Removed apache commons dependencies
