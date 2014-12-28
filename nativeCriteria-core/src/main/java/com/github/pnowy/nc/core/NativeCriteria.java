@@ -355,7 +355,7 @@ public class NativeCriteria implements NativeExp
 	 * @param <T> object mapper type
 	 * @return result list
 	 */
-	public <T> List<T> getResultAsList(NativeObjectMapper<T> mapper)
+	public <T> List<T> criteriaResult(NativeObjectMapper<T> mapper)
 	{
 		CriteriaResult criteriaResult = criteriaResult();
 		List<T> result = Lists.newArrayList();

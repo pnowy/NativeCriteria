@@ -28,10 +28,9 @@ public class SelectTestAsList implements Transactional
 	{
 		NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
 		nc.add(NativeExps.eq("a.city", "WARSAW"));
-		List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
+		List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
 			@Override
-			public Address mapObject(CriteriaResult cr)
-			{
+			public Address mapObject(CriteriaResult cr) {
 				Address a = new Address();
 				a.setId(cr.getLong(0));
 				a.setCity(cr.getString(1));
