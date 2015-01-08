@@ -50,7 +50,7 @@ public class NativeJoin
 		RIGHT_OUTER ("RIGHT OUTER JOIN"),
 		
 		/** The FUL l_ outer. */
-		FULL_OUTER ("FULL OUTER");
+		FULL_OUTER ("FULL OUTER JOIN");
 		
 		/** The type. */
 		private String type;
