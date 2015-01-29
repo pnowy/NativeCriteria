@@ -28,6 +28,7 @@ public class CriteriaResultImpl implements CriteriaResult
 	 *
 	 * @param results the results
 	 * @param projection the projection
+	 * @param queryInfo query info
 	 */
 	public CriteriaResultImpl(List<Object[]> results, NativeProjection projection, QueryInfo queryInfo)
 	{

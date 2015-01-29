@@ -336,11 +336,9 @@ public class NativeCriteria implements NativeExp
 	}
 
 	/**
-	 * Returt result according with provided {@link CriteriaResultTransformer}.
+	 * Return result according with provided {@link CriteriaResultTransformer}.
 	 *
-	 * param criteriaResultTransformer prepared criteria result transformer
-	 * @param <T> generic type of result of criteria result transformer
-	 *
+	 * @param criteriaResultTransformer criteriaResultTransformer prepared criteria result transformer
 	 * @return transformed object by provided criteria result transformer
 	 */
 	public <T> T criteriaResult(CriteriaResultTransformer<T> criteriaResultTransformer)

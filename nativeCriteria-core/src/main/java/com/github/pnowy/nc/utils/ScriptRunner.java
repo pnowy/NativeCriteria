@@ -19,6 +19,8 @@ public class ScriptRunner
 
 	/**
 	 * Default constructor
+	 *
+	 * @param session session which will be used to run the script
 	 */
 	public ScriptRunner(Session session)
 	{
