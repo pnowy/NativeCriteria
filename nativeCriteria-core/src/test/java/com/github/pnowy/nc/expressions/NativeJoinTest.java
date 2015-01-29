@@ -61,7 +61,7 @@ public class NativeJoinTest
 		nc.addJoin(fullJoin("tableTwo", "t2", "t1.documentId", "t2.id"));
 		nc.criteriaResult();
 		String sql = nc.getQueryInfo().getSql();
-		assertThat(sql).containsIgnoringCase("full outer");
+		assertThat(sql).containsIgnoringCase("full outer join");
 		log.info("sql: {}", nc.getQueryInfo().getSql());
 	}
 
