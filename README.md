@@ -5,6 +5,10 @@
  * work on all databases supported by Hibernate
  * designed for a select queries (not supported update queries now)
 
+### Release 1.3.1 changes
+ * Fixed missing JOIN statement for FULL OUTER JOIN ([pull request](https://github.com/pnowy/NativeCriteria/pull/1) reported by groestl).
+   The missing join does not work correctly on some databases (i.e. postgresql)
+
 ### Release 1.3 changes:
  * Removed apache commons dependencies
  * Added OracleUnicodeDialect and SQLServerUnicodeDiales classes which supporting NVARCHAR types in older Hibernate version and newer databases
