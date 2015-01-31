@@ -103,6 +103,6 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 <dependency>
 	<groupId>com.github.pnowy.nc</groupId>
 	<artifactId>nativeCriteria-core</artifactId>
-	<version>1.3</version>
+	<version>1.3.1</version>
 </dependency>
 ```
