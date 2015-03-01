@@ -5,11 +5,11 @@
  * work on all databases supported by Hibernate
  * designed for a select queries (not supported update queries now)
 
-### Release 1.3.1 changes
+##### Release 1.3.1 changes
  * Fixed missing JOIN statement for FULL OUTER JOIN ([pull request](https://github.com/pnowy/NativeCriteria/pull/1) reported by groestl).
    The missing join does not work correctly on some databases (i.e. postgresql)
 
-### Release 1.3 changes:
+##### Release 1.3 changes:
  * Removed apache commons dependencies
  * Added OracleUnicodeDialect and SQLServerUnicodeDiales classes which supporting NVARCHAR types in older Hibernate version and newer databases
  	(see problem descriptions at: http://www.tomecode.com/2012/01/08/how-to-fix-mapping-errors-in-hibernateno-dialect-mapping-for-jdbc-type-9-found-nclob-expected-nvarchar2/
@@ -17,11 +17,11 @@
  * Upgraded Google Guava dependency to 17.0
  * Upgraded Hibernate dependency to version 4.3.5.Final
 
-### Release 1.2 changes:
+##### Release 1.2 changes:
  * Added CriteriaResultTransformer interface
  * Migration to logback as logging implementation (from log4j)
 
-## Simple select example:
+### Simple select example:
 
 ```java
 NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
@@ -42,7 +42,7 @@ while (res.next()) {
 	resp.add(res.getLong(0, null));
 }
 ```
-## Simple select example with inner join
+### Simple select example with inner join
 
 ```java
 NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "table_name", "alias");
@@ -50,7 +50,7 @@ c.addJoin(NativeExps.innerJoin("table_name_to_join", "alias2", "alias.left_colum
 c.setProjection(NativeExps.projection().addProjection(Lists.newArrayList("alias.table_column","alias2.table_column")));
 ```
 
-## Get result as object list by NativeObjectMapper
+### Get result as object list by NativeObjectMapper
 
 ```java
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
@@ -71,7 +71,7 @@ List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
 
 ```
 
-## Get any result by CriteriaResultTransformer
+### Get any result by CriteriaResultTransformer
 
 ```java
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
@@ -91,14 +91,14 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 
 ```
 
-## Logger to log execution sql time:
+### Logger to log execution sql time:
 ```xml
 <logger name="NativeCriteriaPerformance" level="DEBUG">
 	<appender-ref ref="stdout" />
 </logger>
 ```
 
-## Library available on Maven Central Repository
+### Library available on Maven Central Repository
 ```xml
 <dependency>
 	<groupId>com.github.pnowy.nc</groupId>
@@ -106,3 +106,7 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 	<version>1.3.1</version>
 </dependency>
 ```
+
+### Development && Participation
+
+For development is used the GitFlow approach. If you want to participate on the development please perform the pull request to the **develop** branch.
