@@ -19,7 +19,7 @@
 
     <modules>
         <module>nativeCriteria-core</module>
-		<module>nativeCriteria-spring</module>
+		<!--<module>nativeCriteria-spring</module>-->
 	</modules>
 
     <licenses>
