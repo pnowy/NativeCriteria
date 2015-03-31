@@ -1,4 +1,8 @@
-1. Migrate to gradle (?)
-2. Provide the integration with Spring out of the box.
-3. Upgrade hibernate
-4. Use bintray
+1.4
+ - removed logback implementation (client can provide own implementation)
+ - upgraded hibernate
+
+2.0
+ - Migrate to gradle (?)
+ - Provide the integration with Spring out of the box.
+ - Use bintray (?)
