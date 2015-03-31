@@ -66,7 +66,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gpg.skip>false</gpg.skip>
         <!-- BASE NATIVE LIBRARY -->
-        <hibernate.core.version>4.3.5.Final</hibernate.core.version>
+        <hibernate.core.version>4.3.8.Final</hibernate.core.version>
         <!-- LOGGING -->
         <slf4j.version>1.7.2</slf4j.version>
         <logback.version>1.0.13</logback.version>
@@ -95,20 +95,21 @@
                 <version>${guava.version}</version>
             </dependency>
 
-            <!-- LOGGING = SLF4J + LOGBACK -->
+            <!-- LOGGING = SLF4J as API -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
-                <scope>compile</scope>
             </dependency>
+
+
+            <!-- we assume that customer provide the implementation -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+                <scope>test</scope>
             </dependency>
-
-
             <!-- TESTING -->
             <dependency>
                 <groupId>org.testng</groupId>
