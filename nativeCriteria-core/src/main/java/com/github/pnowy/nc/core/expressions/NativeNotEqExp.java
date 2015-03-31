@@ -7,39 +7,34 @@ import com.github.pnowy.nc.utils.VarGenerator;
 /**
  * Native NOT EQUAL expression.
  */
-public class NativeNotEqExp implements NativeExp
-{
-	private String columnName;
-	private String varName;
-	private Object value;
-	
-	/**
-	 *
-	 * @param columnName the column name
-	 * @param value the value
-	 */
-	public NativeNotEqExp(String columnName, Object value)
-	{
-		if (Strings.isBlank(columnName))
-			throw new IllegalStateException("columnName is null!");
-		if (value == null)
-			throw new IllegalStateException("value is null!");
-		
-		this.columnName = columnName;
-		this.value = value;
-	}
-	
-	@Override
-	public String toSQL()
-	{
-		varName = VarGenerator.gen(columnName);
-		return columnName + " <> :" + varName;
-	}
+public class NativeNotEqExp implements NativeExp {
+    private String columnName;
+    private String varName;
+    private Object value;
 
-	@Override
-	public void setValues(NativeQuery query)
-	{
-		query.setParameter(varName, value);
-	}
+    /**
+     * @param columnName the column name
+     * @param value      the value
+     */
+    public NativeNotEqExp(String columnName, Object value) {
+        if (Strings.isBlank(columnName))
+            throw new IllegalStateException("columnName is null!");
+        if (value == null)
+            throw new IllegalStateException("value is null!");
+
+        this.columnName = columnName;
+        this.value = value;
+    }
+
+    @Override
+    public String toSQL() {
+        varName = VarGenerator.gen(columnName);
+        return columnName + " <> :" + varName;
+    }
+
+    @Override
+    public void setValues(NativeQuery query) {
+        query.setParameter(varName, value);
+    }
 
 }

@@ -12,10 +12,10 @@ import java.sql.Types;
 @SuppressWarnings("unused")
 public class OracleUnicodeDialect extends Oracle10gDialect {
 
-	public OracleUnicodeDialect() {
-		registerHibernateType(Types.NVARCHAR, StringType.INSTANCE.getName());
-		registerColumnType(Types.VARCHAR, "nvarchar($1)");
-		registerColumnType(Types.CLOB, "nclob");
-		registerColumnType(Types.NCLOB, "nclob");
-	}
+    public OracleUnicodeDialect() {
+        registerHibernateType(Types.NVARCHAR, StringType.INSTANCE.getName());
+        registerColumnType(Types.VARCHAR, "nvarchar($1)");
+        registerColumnType(Types.CLOB, "nclob");
+        registerColumnType(Types.NCLOB, "nclob");
+    }
 }
