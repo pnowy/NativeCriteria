@@ -32,6 +32,15 @@ public class QueryInfo {
         return parameters;
     }
 
+    /**
+     * Class returns summary of executed query.
+     *
+     * @return description which contains the following information about query:
+     *      <ul>
+     *          <li>sql</li>
+     *          <li>map with parameters</li>
+     *      </ul>
+     */
     public String getSummary() {
         StringBuilder sb = new StringBuilder("QueryInfo:\n");
         sb.append("sql: ").append(sql).append("\n");
