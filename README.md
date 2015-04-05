@@ -109,4 +109,6 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 
 ### Development && Participation
 
+[![Build Status](https://travis-ci.org/pnowy/NativeCriteria.svg?branch=develop)](https://travis-ci.org/pnowy/NativeCriteria)
+
 For development is used the GitFlow approach. If you want to participate on the development please perform the pull request to the **develop** branch.
