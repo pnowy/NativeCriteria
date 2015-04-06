@@ -1,6 +1,6 @@
 1.4
  - removed logback implementation (client can provide own implementation)
- - upgraded hibernate
+ - upgraded hibernate & other dependencies to newer versions
  - changed a little API (from NativeCriteria#getResultAsList to NativeCriteria#criteriaResult)
  - integration with Travis CI
 
