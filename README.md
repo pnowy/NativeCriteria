@@ -5,6 +5,12 @@
  * work on all databases supported by Hibernate
  * designed for a select queries (not supported update queries now)
 
+##### Release 1.4 changes
+  * Removed logback implementation (client can provide own logger implementation)
+  * Upgraded hibernate to 4.3.8.Final & other dependencies to newer versions
+  * Changed a little API (from NativeCriteria#getResultAsList to NativeCriteria#criteriaResult)
+  * Integration with Travis CI
+
 ##### Release 1.3.1 changes
  * Fixed missing JOIN statement for FULL OUTER JOIN ([pull request](https://github.com/pnowy/NativeCriteria/pull/1) reported by groestl).
    The missing join does not work correctly on some databases (i.e. postgresql)
@@ -57,8 +63,7 @@ NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSessi
 nc.add(NativeExps.eq("a.city", "WARSAW"));
 List<Address> res = nc.getResultAsList(new NativeObjectMapper<Address>() {
         @Override
-	public Address mapObject(CriteriaResult cr)
-	{
+	public Address mapObject(CriteriaResult cr) {
 		Address a = new Address();
 		a.setId(cr.getLong(0));
 		a.setCity(cr.getString(1));
@@ -78,11 +83,9 @@ NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSessi
 nc.add(NativeExps.eq("a.city", "WARSAW"));
 Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map<String, String>>() {
 			@Override
-			public Map<String, String> transform(CriteriaResult criteriaResult)
-			{
+			public Map<String, String> transform(CriteriaResult criteriaResult) {
 				Map<String, String> result = Maps.newHashMap();
-				while (criteriaResult.next())
-				{
+				while (criteriaResult.next()) {
 					result.put(criteriaResult.getString(1), criteriaResult.getString(4));
 				}
 				return result;
@@ -103,7 +106,7 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 <dependency>
 	<groupId>com.github.pnowy.nc</groupId>
 	<artifactId>nativeCriteria-core</artifactId>
-	<version>1.3.1</version>
+	<version>1.4</version>
 </dependency>
 ```
 
