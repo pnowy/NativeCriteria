@@ -7,19 +7,16 @@ import org.testng.Assert;
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
  * Date: 07.08.13 21:16
  */
-public class NativeNotBetweenExpTest extends NativeExpGenericTest
-{
+public class NativeNotBetweenExpTest extends NativeExpGenericTest {
 
-	@Override
-	protected void prepareCriteria()
-	{
-		nc.add(NativeExps.notBetween("col1", 12, 34));
-	}
+    @Override
+    protected void prepareCriteria() {
+        nc.add(NativeExps.notBetween("col1", 12, 34));
+    }
 
-	@Override
-	protected void checkConditions()
-	{
-		Assert.assertTrue(sql.contains("not between"));
-		Assert.assertTrue(parameters.containsValue(12));
-	}
+    @Override
+    protected void checkConditions() {
+        Assert.assertTrue(sql.contains("not between"));
+        Assert.assertTrue(parameters.containsValue(12));
+    }
 }

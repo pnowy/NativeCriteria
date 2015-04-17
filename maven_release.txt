@@ -23,3 +23,6 @@ THEN Click the Release button and it should also appear in maven central etc
 
 
 
+by jgitflow-maven-plugin
+------------------------
+

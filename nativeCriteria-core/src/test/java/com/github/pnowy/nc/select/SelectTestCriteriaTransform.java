@@ -18,37 +18,31 @@ import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * Simple database test.
- *
  */
-public class SelectTestCriteriaTransform implements Transactional
-{
-	private static final Logger log = LoggerFactory.getLogger(SelectTestCriteriaTransform.class);
+public class SelectTestCriteriaTransform implements Transactional {
+    private static final Logger log = LoggerFactory.getLogger(SelectTestCriteriaTransform.class);
 
-	@Override
-	public void transaction(NativeQueryProvider provider)
-	{
-		NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
-		nc.add(NativeExps.eq("a.city", "WARSAW"));
-		Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map<String, String>>() {
-			@Override
-			public Map<String, String> transform(CriteriaResult criteriaResult)
-			{
-				Map<String, String> result = Maps.newHashMap();
-				while (criteriaResult.next())
-				{
-					result.put(criteriaResult.getString(1), criteriaResult.getString(4));
-				}
-				return result;
-			}
-		});
-		log.info("result: {}", result);
-		assertThat(result).isNotNull().hasSize(1);
-		assertThat(result.get("WARSAW")).isEqualToIgnoringCase("34-567");
-	}
+    @Override
+    public void transaction(NativeQueryProvider provider) {
+        NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
+        nc.add(NativeExps.eq("a.city", "WARSAW"));
+        Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map<String, String>>() {
+            @Override
+            public Map<String, String> transform(CriteriaResult criteriaResult) {
+                Map<String, String> result = Maps.newHashMap();
+                while (criteriaResult.next()) {
+                    result.put(criteriaResult.getString(1), criteriaResult.getString(4));
+                }
+                return result;
+            }
+        });
+        log.info("result: {}", result);
+        assertThat(result).isNotNull().hasSize(1);
+        assertThat(result.get("WARSAW")).isEqualToIgnoringCase("34-567");
+    }
 
-	@Test
-	public void test()
-	{
-		HibernateUtil.executeTransaction(this);
-	}
+    @Test
+    public void test() {
+        HibernateUtil.executeTransaction(this);
+    }
 }

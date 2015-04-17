@@ -6,15 +6,14 @@
     <parent>
         <groupId>com.github.pnowy.nc</groupId>
         <artifactId>nativeCriteria-root</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4</version>
     </parent>
 
     <artifactId>nativeCriteria-core</artifactId>
-    <version>1.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>NativeCriteria - Core</name>
-    <description>Native Criteria Core Library</description>
+    <description>Native Criteria Core Module</description>
 
     <dependencies>
         <!-- BASE NATIVE LIBRARY -->

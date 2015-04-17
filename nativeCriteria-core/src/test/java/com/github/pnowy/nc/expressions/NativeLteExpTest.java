@@ -8,18 +8,16 @@ import org.testng.Assert;
  * Date: 08.08.13 21:58
  */
 public class NativeLteExpTest extends NativeExpGenericTest {
-	private static final String VALUE_TO_CHECK = "valueToCheck";
+    private static final String VALUE_TO_CHECK = "valueToCheck";
 
-	@Override
-	protected void prepareCriteria()
-	{
-		nc.add(NativeExps.lte(MAIN_ALIAS_WITH_DOT+"col1",VALUE_TO_CHECK));
-	}
+    @Override
+    protected void prepareCriteria() {
+        nc.add(NativeExps.lte(MAIN_ALIAS_WITH_DOT + "col1", VALUE_TO_CHECK));
+    }
 
-	@Override
-	protected void checkConditions()
-	{
-		Assert.assertTrue(sql.contains("<="));
-		Assert.assertTrue(parameters.containsValue(VALUE_TO_CHECK));
-	}
+    @Override
+    protected void checkConditions() {
+        Assert.assertTrue(sql.contains("<="));
+        Assert.assertTrue(parameters.containsValue(VALUE_TO_CHECK));
+    }
 }

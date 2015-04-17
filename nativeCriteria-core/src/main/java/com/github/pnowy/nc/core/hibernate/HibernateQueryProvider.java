@@ -1,7 +1,6 @@
 package com.github.pnowy.nc.core.hibernate;
 
 import com.github.pnowy.nc.core.NativeQuery;
-import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 import org.hibernate.Session;
 
@@ -12,23 +11,19 @@ import javax.persistence.EntityManager;
  *
  * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class HibernateQueryProvider implements NativeQueryProvider
-{
-	private Session session;
+public class HibernateQueryProvider implements NativeQueryProvider {
+    private Session session;
 
-	public HibernateQueryProvider(Session session)
-	{
-		this.session = session;
-	}
+    public HibernateQueryProvider(Session session) {
+        this.session = session;
+    }
 
-	public HibernateQueryProvider(EntityManager entityManager)
-	{
-		this.session = entityManager.unwrap(Session.class);
-	}
+    public HibernateQueryProvider(EntityManager entityManager) {
+        this.session = entityManager.unwrap(Session.class);
+    }
 
-	@Override
-	public NativeQuery getNativeQuery(String sql)
-	{
-		return new HibernateNativeQuery(sql, session.createSQLQuery(sql));
-	}
+    @Override
+    public NativeQuery getNativeQuery(String sql) {
+        return new HibernateNativeQuery(sql, session.createSQLQuery(sql));
+    }
 }

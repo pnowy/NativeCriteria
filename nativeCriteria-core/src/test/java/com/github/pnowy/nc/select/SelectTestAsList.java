@@ -19,33 +19,30 @@ import java.util.List;
  * Simple database test.
  * Przemek Nowak <przemek.nowak.pl@gmail.com> Date: 30.07.13 17:41
  */
-public class SelectTestAsList implements Transactional
-{
-	private static final Logger log = LoggerFactory.getLogger(SelectTestAsList.class);
+public class SelectTestAsList implements Transactional {
+    private static final Logger log = LoggerFactory.getLogger(SelectTestAsList.class);
 
-	@Override
-	public void transaction(NativeQueryProvider provider)
-	{
-		NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
-		nc.add(NativeExps.eq("a.city", "WARSAW"));
-		List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
-			@Override
-			public Address mapObject(CriteriaResult cr) {
-				Address a = new Address();
-				a.setId(cr.getLong(0));
-				a.setCity(cr.getString(1));
-				a.setStreet(cr.getString(2));
-				a.setBuildingNumber(cr.getString(3));
-				a.setZipCode(cr.getString(4));
-				return a;
-			}
-		});
-		Assertions.assertThat(res).isNotNull().hasSize(1);
-	}
+    @Override
+    public void transaction(NativeQueryProvider provider) {
+        NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
+        nc.add(NativeExps.eq("a.city", "WARSAW"));
+        List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
+            @Override
+            public Address mapObject(CriteriaResult cr) {
+                Address a = new Address();
+                a.setId(cr.getLong(0));
+                a.setCity(cr.getString(1));
+                a.setStreet(cr.getString(2));
+                a.setBuildingNumber(cr.getString(3));
+                a.setZipCode(cr.getString(4));
+                return a;
+            }
+        });
+        Assertions.assertThat(res).isNotNull().hasSize(1);
+    }
 
-	@Test
-	public void test()
-	{
-		HibernateUtil.executeTransaction(this);
-	}
+    @Test
+    public void test() {
+        HibernateUtil.executeTransaction(this);
+    }
 }

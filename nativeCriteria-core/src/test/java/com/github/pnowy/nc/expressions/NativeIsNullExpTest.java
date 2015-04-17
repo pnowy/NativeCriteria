@@ -9,17 +9,15 @@ import org.testng.Assert;
  */
 public class NativeIsNullExpTest extends NativeExpGenericTest {
 
-	@Override
-	protected void prepareCriteria()
-	{
-		nc.add(NativeExps.isNull(MAIN_ALIAS_WITH_DOT + "col1"));
-	}
+    @Override
+    protected void prepareCriteria() {
+        nc.add(NativeExps.isNull(MAIN_ALIAS_WITH_DOT + "col1"));
+    }
 
-	@Override
-	protected void checkConditions()
-	{
-		Assert.assertTrue(sql.contains("is null"));
-		Assert.assertTrue(sql.contains(MAIN_ALIAS_WITH_DOT + "col1"));
-	}
+    @Override
+    protected void checkConditions() {
+        Assert.assertTrue(sql.contains("is null"));
+        Assert.assertTrue(sql.contains(MAIN_ALIAS_WITH_DOT + "col1"));
+    }
 
 }
