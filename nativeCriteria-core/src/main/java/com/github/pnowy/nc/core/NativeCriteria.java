@@ -104,7 +104,7 @@ public class NativeCriteria implements NativeExp {
          *
          * @param value the value
          */
-        private Operator(String value) {
+        Operator(String value) {
             this.value = value;
         }
 
@@ -306,6 +306,36 @@ public class NativeCriteria implements NativeExp {
      */
     public CriteriaResult criteriaResult() {
         return new CriteriaResultImpl(list(), projection, nativeQuery.getQueryInfo());
+    }
+
+    /**
+     * Method fetch the row count for prepared criteria.
+     *
+     * @param columnName the column name for row count
+     * @return number of rows for given criteria
+     */
+    public int fetchCount(String columnName) {
+        NativeOrderExp backupOrder = this.orderExp;
+        Integer backupOffset = this.offset;
+        Integer backupLimit = this.limit;
+        NativeProjection backupProjection = this.getProjection();
+
+        this.setOrder(null);
+        this.setLimit(null);
+        this.setOffset(null);
+        this.setProjection(NativeExps.projection().addAggregateProjection(columnName, NativeProjection.AggregateProjection.COUNT));
+        CriteriaResult res = this.criteriaResult();
+
+        this.setOrder(backupOrder);
+        this.setOffset(backupOffset);
+        this.setLimit(backupLimit);
+        this.setProjection(backupProjection);
+
+        if (res.next()) {
+            return res.getInteger(columnName);
+        } else {
+            throw new IllegalStateException("The fetch count did not work!");
+        }
     }
 
     /**
