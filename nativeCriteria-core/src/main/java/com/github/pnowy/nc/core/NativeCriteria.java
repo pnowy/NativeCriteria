@@ -309,26 +309,39 @@ public class NativeCriteria implements NativeExp {
     }
 
     /**
-     * Method fetch the row count for prepared criteria.
+     * Fetch count without distinct.
      *
      * @param columnName the column name for row count
      * @return number of rows for given criteria
      */
     public int fetchCount(String columnName) {
+        return fetchCount(columnName, false);
+    }
+
+    /**
+     * Method fetch the row count for prepared criteria.
+     *
+     * @param columnName the column name for row count
+     * @return number of rows for given criteria
+     */
+    public int fetchCount(String columnName, boolean distinct) {
         NativeOrderExp backupOrder = this.orderExp;
         Integer backupOffset = this.offset;
         Integer backupLimit = this.limit;
+        boolean backupDistinct = this.distinct;
         NativeProjection backupProjection = this.getProjection();
 
         this.setOrder(null);
         this.setLimit(null);
         this.setOffset(null);
+        this.setDistinct(distinct);
         this.setProjection(NativeExps.projection().addAggregateProjection(columnName, NativeProjection.AggregateProjection.COUNT));
         CriteriaResult res = this.criteriaResult();
 
         this.setOrder(backupOrder);
         this.setOffset(backupOffset);
         this.setLimit(backupLimit);
+        this.setDistinct(backupDistinct);
         this.setProjection(backupProjection);
 
         if (res.next()) {

@@ -2,6 +2,7 @@ package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -84,6 +85,10 @@ public interface CriteriaResult {
      */
     Double getDouble(int idx);
 
+    BigDecimal getBigDecimal(int idx);
+
+    BigDecimal getBigDecimal(int idx, BigDecimal defaultResult);
+
     /**
      * Gets the double.
      *
@@ -100,6 +105,23 @@ public interface CriteriaResult {
      * @return the double, default result is null
      */
     Double getDouble(String columnName);
+
+    /**
+     * Gets the big decimal. Default result is null.
+     *
+     * @param columnName the column name
+     * @return the big decimal, default result is null
+     */
+    BigDecimal getBigDecimal(String columnName);
+
+    /**
+     * Gets the big deciimal.
+     *
+     * @param columnName the column name
+     * @param defaultResult the default result
+     * @return the big decimal
+     */
+    BigDecimal getBigDecimal(String columnName, BigDecimal defaultResult);
 
     /**
      * Gets the integer.

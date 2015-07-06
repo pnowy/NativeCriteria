@@ -39,6 +39,7 @@ public class FetchCountTest implements Transactional {
                 a.setStreet(cr.getString(2));
                 a.setBuildingNumber(cr.getString(3));
                 a.setZipCode(cr.getString(4));
+                a.setAmount(cr.getBigDecimal(5));
                 return a;
             }
         });

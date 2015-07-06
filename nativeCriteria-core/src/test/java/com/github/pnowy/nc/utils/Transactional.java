@@ -9,5 +9,5 @@ import com.github.pnowy.nc.core.NativeQueryProvider;
  * Date: 12.08.13 22:44
  */
 public interface Transactional {
-    public void transaction(NativeQueryProvider provider);
+    void transaction(NativeQueryProvider provider);
 }

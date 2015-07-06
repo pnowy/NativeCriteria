@@ -1,5 +1,7 @@
 package com.github.pnowy.nc.utils;
 
+import java.math.BigDecimal;
+
 /**
  * Test class mapping address table.
  * <p/>
@@ -12,6 +14,7 @@ public class Address {
     private String street;
     private String buildingNumber;
     private String zipCode;
+    private BigDecimal amount;
 
     public String getBuildingNumber() {
         return buildingNumber;
@@ -53,6 +56,13 @@ public class Address {
         this.zipCode = zipCode;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 
     @Override
     public String toString() {
