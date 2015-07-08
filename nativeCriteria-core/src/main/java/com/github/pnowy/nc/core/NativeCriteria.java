@@ -322,6 +322,7 @@ public class NativeCriteria implements NativeExp {
      * Method fetch the row count for prepared criteria.
      *
      * @param columnName the column name for row count
+     * @param distinct use distinct count for specified column name
      * @return number of rows for given criteria
      */
     public int fetchCount(String columnName, boolean distinct) {
