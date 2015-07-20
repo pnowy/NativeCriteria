@@ -1,5 +1,6 @@
 package com.github.pnowy.nc.core.expressions;
 
+import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.utils.Strings;
 
@@ -8,7 +9,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Native Join.
  */
-public class NativeJoin {
+public class NativeJoin implements NativeExp {
 
     /**
      * Table name.
@@ -36,6 +37,8 @@ public class NativeJoin {
     private String rightColumn;
 
     private NativeExp complexJoinExp;
+
+    private NativeCriteria customJoinTable;
 
     /**
      * The Enum JoinType.
@@ -82,7 +85,7 @@ public class NativeJoin {
          *
          * @param type the type
          */
-        private JoinType(String type) {
+        JoinType(String type) {
             this.type = type;
         }
 
@@ -130,6 +133,34 @@ public class NativeJoin {
             throw new IllegalStateException("Incorrect join columns!");
 
         this.tableName = tableName;
+        this.tableAlias = tableAlias;
+        this.joinType = joinType;
+        this.leftColumn = leftColumn;
+        this.rightColumn = rightColumn;
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param nativeCriteria   the custom query for join
+     * @param tableAlias  the table alias
+     * @param joinType    the join type
+     * @param leftColumn  the left column
+     * @param rightColumn the right column
+     */
+    public NativeJoin(NativeCriteria nativeCriteria, String tableAlias, JoinType joinType, String leftColumn, String rightColumn) {
+        if (nativeCriteria == null)
+            throw new IllegalStateException("native criteria for custom join table is null!");
+        if (Strings.isBlank(tableAlias))
+            throw new IllegalStateException("tableAlias is null!");
+        if (joinType == null)
+            throw new IllegalStateException("joinTYpe is null!");
+        else if (joinType.equals(JoinType.NATURAL) || joinType.equals(JoinType.CROSS))
+            throw new IllegalArgumentException("This constructor doesn't support natural and cross join!");
+        if (Strings.isBlank(rightColumn) || Strings.isBlank(leftColumn))
+            throw new IllegalStateException("Incorrect join columns!");
+
+        this.customJoinTable = nativeCriteria;
         this.tableAlias = tableAlias;
         this.joinType = joinType;
         this.leftColumn = leftColumn;
@@ -186,7 +217,8 @@ public class NativeJoin {
      * @return the string
      */
     public String toSQL() {
-        String joinSQL = joinType.getType() + " " + tableName + " " + tableAlias;
+        String fromSQL = customJoinTable != null ? " ("+customJoinTable.toSQL()+") " : tableName;
+        String joinSQL = joinType.getType() + " " + fromSQL + " " + tableAlias;
 
         if (joinType.equals(JoinType.NATURAL) || joinType.equals(JoinType.CROSS)) {
             return joinSQL;
@@ -198,6 +230,9 @@ public class NativeJoin {
     }
 
     public void setValues(NativeQuery query) {
+        if (customJoinTable != null) {
+            customJoinTable.setValues(query);
+        }
         if (complexJoinExp != null) {
             complexJoinExp.setValues(query);
         }

@@ -2,6 +2,7 @@ package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.NativeTestProvider;
 import com.github.pnowy.nc.core.NativeCriteria;
+import com.github.pnowy.nc.core.NativeExps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
@@ -31,6 +32,20 @@ public class NativeJoinTest {
         String sql = nc.getQueryInfo().getSql();
         assertThat(sql).containsIgnoringCase("inner join");
         log.info("sql: {}", nc.getQueryInfo().getSql());
+    }
+
+    @Test
+    public void testCustomJoinTable() throws Exception {
+        NativeCriteria subNativeCriteria = new NativeCriteria(new NativeTestProvider(), "subTableOne", "st1");
+        subNativeCriteria.setProjection(NativeExps.projection().addProjection("st1.request_id", "requestId"));
+        subNativeCriteria.addJoin(NativeExps.innerJoin("subTableTwo", "st2", "st1.id", "st1.sb1_id"));
+        subNativeCriteria.add(NativeExps.eq("st1.name", "Awangarda"));
+
+        nc.addJoin(NativeExps.innerJoin(subNativeCriteria, "w", "w.requestId", "t1.request_id"));
+        nc.criteriaResult();
+        String sql = nc.getQueryInfo().getSql();
+        assertThat(sql).containsIgnoringCase("inner join");
+        log.info("sql: {}", nc.getQueryInfo().getSummary());
     }
 
     @Test

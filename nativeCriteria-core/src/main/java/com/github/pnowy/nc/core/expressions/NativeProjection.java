@@ -64,7 +64,7 @@ public class NativeProjection {
          *
          * @param value the value
          */
-        private AggregateProjection(String value) {
+        AggregateProjection(String value) {
             this.value = value;
         }
 

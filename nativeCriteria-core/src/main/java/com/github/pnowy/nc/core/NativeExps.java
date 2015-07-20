@@ -289,6 +289,18 @@ public class NativeExps {
         return new NativeJoin(tableName, tableAlias, NativeJoin.JoinType.INNER, complexJoinExp);
     }
 
+    public static NativeJoin innerJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.INNER, leftColumn, rightColumn);
+    }
+
+    public static NativeJoin leftJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.LEFT_OUTER, leftColumn, rightColumn);
+    }
+
+    public static NativeJoin rightJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.RIGHT_OUTER, leftColumn, rightColumn);
+    }
+
     /**
      * Right outer join.
      *
@@ -326,6 +338,20 @@ public class NativeExps {
      */
     public static NativeJoin fullJoin(String tableName, String tableAlias, String leftColumn, String rightColumn) {
         return new NativeJoin(tableName, tableAlias, NativeJoin.JoinType.FULL_OUTER, leftColumn, rightColumn);
+    }
+
+    /**
+     * Full out join with sub Native Criteria with custom join table (select).
+     *
+     * @param nativeCriteria sub native criteria with definition of custom join select / table
+     * @param tableAlias the table alias
+     * @param leftColumn the left column
+     * @param rightColumn the right column
+     *
+     * @return the native join
+     */
+    public static NativeJoin fullJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.FULL_OUTER, leftColumn, rightColumn);
     }
 
     /**

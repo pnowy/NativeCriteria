@@ -22,7 +22,7 @@
 
     mvn clean javadoc:jar source:jar deploy -Darguments=-Dgpg.passphrase=PASSPHRASE
 
-### RELEASE NEW VERSION (by the maven release plugin)
+### RELEASE NEW VERSION (by the maven release plugin) DEPRECATED
 
     mvn release:clean
     mvn release:prepare -Darguments=-Dgpg.passphrase=PASSPHRASE
