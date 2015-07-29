@@ -1,10 +1,9 @@
-package com.github.pnowy.nc;
+package com.github.pnowy.nc.spring;
 
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
-import com.github.pnowy.nc.orderby.OrderByApproach;
 import com.google.common.base.Preconditions;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

@@ -20,6 +20,7 @@
     <modules>
         <module>nativeCriteria-core</module>
 		<module>nativeCriteria-spring</module>
+        <module>nativeCriteria-test</module>
 	</modules>
 
     <licenses>
