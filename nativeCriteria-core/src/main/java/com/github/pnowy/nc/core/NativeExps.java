@@ -146,6 +146,17 @@ public class NativeExps {
     }
 
     /**
+     * ILIKE expression.
+     *
+     * @param columnName the column name
+     * @param value      the value
+     * @return the native exp
+     */
+    public static NativeExp ilike(String columnName, String value) {
+        return new NativeILikeExp(columnName, value);
+    }
+
+    /**
      * Not like expression.
      *
      * @param columnName the column name
@@ -155,6 +166,18 @@ public class NativeExps {
     public static NativeExp notLike(String columnName, String value) {
         return new NativeNotLikeExp(columnName, value);
     }
+
+    /**
+     * Not like expression.
+     *
+     * @param columnName the column name
+     * @param value      the value
+     * @return the native exp
+     */
+    public static NativeExp notILike(String columnName, String value) {
+        return new NativeNotILikeExp(columnName, value);
+    }
+
 
     /**
      * Between expression.
