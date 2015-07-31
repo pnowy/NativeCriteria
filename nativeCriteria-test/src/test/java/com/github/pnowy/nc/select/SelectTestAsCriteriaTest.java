@@ -6,11 +6,11 @@ import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.utils.HibernateUtil;
 import com.github.pnowy.nc.utils.Transactional;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
  * Simple database test.
@@ -18,8 +18,8 @@ import static org.fest.assertions.Assertions.assertThat;
  * Przemek Nowak [przemek.nowak.pl@gmail.com]
  * Date: 30.07.13 17:41
  */
-public class SelectTestAsCriteria implements Transactional {
-    private static final Logger log = LoggerFactory.getLogger(SelectTestAsCriteria.class);
+public class SelectTestAsCriteriaTest implements Transactional {
+    private static final Logger log = LoggerFactory.getLogger(SelectTestAsCriteriaTest.class);
 
     @Override
     public void transaction(NativeQueryProvider provider) {

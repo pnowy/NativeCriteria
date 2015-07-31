@@ -8,19 +8,19 @@ import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
 import com.github.pnowy.nc.utils.HibernateUtil;
 import com.github.pnowy.nc.utils.Transactional;
 import com.google.common.collect.Maps;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
 
 import java.util.Map;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Simple database test.
  */
-public class SelectTestCriteriaTransform implements Transactional {
-    private static final Logger log = LoggerFactory.getLogger(SelectTestCriteriaTransform.class);
+public class SelectTestCriteriaTransformTest implements Transactional {
+    private static final Logger log = LoggerFactory.getLogger(SelectTestCriteriaTransformTest.class);
 
     @Override
     public void transaction(NativeQueryProvider provider) {

@@ -44,7 +44,7 @@ public class HibernateUtil {
         s.beginTransaction();
 
         ScriptRunner scriptRunner = new ScriptRunner(s);
-        scriptRunner.runScript(new InputStreamReader(HibernateUtil.class.getResourceAsStream("/sql/1.sql")));
+        scriptRunner.runScript(new InputStreamReader(HibernateUtil.class.getResourceAsStream("/liquibase/1.sql")));
 
         s.getTransaction().commit();
         s.close();

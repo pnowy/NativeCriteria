@@ -5,19 +5,21 @@ import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
-import com.github.pnowy.nc.utils.Address;
+import com.github.pnowy.nc.domain.Address;
 import com.github.pnowy.nc.utils.HibernateUtil;
 import com.github.pnowy.nc.utils.Transactional;
-import org.fest.assertions.Assertions;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /**
  * Simple database test.
- * Przemek Nowak <przemek.nowak.pl@gmail.com> Date: 30.07.13 17:41
+ *
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class FetchCountTest implements Transactional {
     private static final Logger log = LoggerFactory.getLogger(FetchCountTest.class);
@@ -28,7 +30,7 @@ public class FetchCountTest implements Transactional {
         nc.add(NativeExps.eq("a.city", "WARSAW"));
 
         int i = nc.fetchCount("a.city");
-        Assertions.assertThat(i).isEqualTo(1);
+        assertThat(i).isEqualTo(1);
 
         List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
             @Override
@@ -43,7 +45,7 @@ public class FetchCountTest implements Transactional {
                 return a;
             }
         });
-        Assertions.assertThat(res).isNotNull().hasSize(1);
+        assertThat(res).isNotNull().hasSize(1);
     }
 
     @Test

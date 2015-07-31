@@ -1,4 +1,4 @@
-package com.github.pnowy.nc.utils;
+package com.github.pnowy.nc.domain;
 
 import java.math.BigDecimal;
 

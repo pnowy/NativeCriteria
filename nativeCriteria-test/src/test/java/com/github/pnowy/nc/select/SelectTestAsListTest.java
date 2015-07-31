@@ -5,22 +5,23 @@ import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
-import com.github.pnowy.nc.utils.Address;
+import com.github.pnowy.nc.domain.Address;
 import com.github.pnowy.nc.utils.HibernateUtil;
 import com.github.pnowy.nc.utils.Transactional;
-import org.fest.assertions.Assertions;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Simple database test.
  * Przemek Nowak <przemek.nowak.pl@gmail.com> Date: 30.07.13 17:41
  */
-public class SelectTestAsList implements Transactional {
-    private static final Logger log = LoggerFactory.getLogger(SelectTestAsList.class);
+public class SelectTestAsListTest implements Transactional {
+    private static final Logger log = LoggerFactory.getLogger(SelectTestAsListTest.class);
 
     @Override
     public void transaction(NativeQueryProvider provider) {
@@ -38,7 +39,7 @@ public class SelectTestAsList implements Transactional {
                 return a;
             }
         });
-        Assertions.assertThat(res).isNotNull().hasSize(1);
+        assertThat(res).isNotNull().hasSize(1);
     }
 
     @Test

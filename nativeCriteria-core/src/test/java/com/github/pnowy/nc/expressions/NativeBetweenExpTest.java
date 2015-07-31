@@ -1,11 +1,11 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
-import org.testng.Assert;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 07.08.13 21:16
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class NativeBetweenExpTest extends NativeExpGenericTest {
 
@@ -16,7 +16,7 @@ public class NativeBetweenExpTest extends NativeExpGenericTest {
 
     @Override
     protected void checkConditions() {
-        Assert.assertTrue(sql.contains("between"));
-        Assert.assertTrue(parameters.containsValue(12));
+        assertThat(sql).contains("between");
+        assertThat(parameters.containsValue(12)).isTrue();
     }
 }

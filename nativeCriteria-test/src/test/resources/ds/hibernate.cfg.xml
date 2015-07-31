@@ -5,9 +5,9 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
-		<property name="connection.url">jdbc:hsqldb:mem:paging;sql.syntax_ora=true</property>
-		<property name="connection.user">sa</property>
+		<property name="connection.driver_class">org.h2.Driver</property>
+		<property name="connection.url">jdbc:h2:mem:bootdemo;DB_CLOSE_DELAY=-1</property>
+		<!--<property name="connection.user">sa</property>-->
 
 		<property name="show_sql">true</property>
 		<property name="dialet">org.hibernate.dialect.Oracle10gDialect</property>
