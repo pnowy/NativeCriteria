@@ -1,5 +1,6 @@
 package com.github.pnowy.nc;
 
+import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.jpa.JpaQueryProvider;
 import com.github.pnowy.nc.spring.SpringNativeCriteria;
 import org.junit.Test;
@@ -21,9 +22,9 @@ public class ApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("test");
-        SpringNativeCriteria nc = new SpringNativeCriteria(new JpaQueryProvider(entityManager), "car", "c");
-        nc.criteriaResult();
-	}
+        SpringNativeCriteria nc = new SpringNativeCriteria(new JpaQueryProvider(entityManager), "ADDRESS", "c");
+        CriteriaResult cr = nc.criteriaResult();
+        System.out.println(cr.getRowsNumber());
+    }
 
 }

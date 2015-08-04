@@ -10,6 +10,8 @@
         </encoder>
     </appender>
 
+    <logger name="org.hibernate" level="WARN"/>
+
     <logger name="NativeCriteriaPerformance" level="DEBUG">
         <appender-ref ref="stdout" />
     </logger>

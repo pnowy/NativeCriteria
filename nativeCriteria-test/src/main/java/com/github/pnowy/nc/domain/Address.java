@@ -1,12 +1,11 @@
 package com.github.pnowy.nc.domain;
 
-import java.math.BigDecimal;
-
 /**
- * Test class mapping address table.
- * <p/>
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 16.08.13 19:13
+ * <p>
+ *  Test class mapping address table.
+ * </p>
+ *
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class Address {
     private Long id;
@@ -14,7 +13,6 @@ public class Address {
     private String street;
     private String buildingNumber;
     private String zipCode;
-    private BigDecimal amount;
 
     public String getBuildingNumber() {
         return buildingNumber;
@@ -54,14 +52,6 @@ public class Address {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
     }
 
     @Override

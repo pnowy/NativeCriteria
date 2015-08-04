@@ -11,10 +11,10 @@ spring:
         database: H2
         openInView: false
         show_sql: true
-        generate-ddl: true
+        generate-ddl: false
         hibernate:
-            ddl-auto: create-drop
+            ddl-auto: none
             naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
         properties:
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
             hibernate.cache.use_second_level_cache: false
