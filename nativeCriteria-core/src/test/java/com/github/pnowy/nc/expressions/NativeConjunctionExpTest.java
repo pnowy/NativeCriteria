@@ -7,7 +7,8 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>

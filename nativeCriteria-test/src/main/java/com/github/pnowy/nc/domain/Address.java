@@ -1,10 +1,11 @@
-package com.github.pnowy.nc.utils;
+package com.github.pnowy.nc.domain;
 
 /**
- * Test class mapping address table.
- * <p/>
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 16.08.13 19:13
+ * <p>
+ *  Test class mapping address table.
+ * </p>
+ *
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class Address {
     private Long id;
@@ -52,7 +53,6 @@ public class Address {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
 
     @Override
     public String toString() {

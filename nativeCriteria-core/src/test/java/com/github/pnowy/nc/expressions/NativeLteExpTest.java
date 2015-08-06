@@ -1,11 +1,11 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
-import org.testng.Assert;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 08.08.13 21:58
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class NativeLteExpTest extends NativeExpGenericTest {
     private static final String VALUE_TO_CHECK = "valueToCheck";
@@ -17,7 +17,7 @@ public class NativeLteExpTest extends NativeExpGenericTest {
 
     @Override
     protected void checkConditions() {
-        Assert.assertTrue(sql.contains("<="));
-        Assert.assertTrue(parameters.containsValue(VALUE_TO_CHECK));
+        assertThat(sql).contains("<=");
+        assertThat(parameters.containsValue(VALUE_TO_CHECK)).isTrue();
     }
 }

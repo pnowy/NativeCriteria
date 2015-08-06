@@ -2,7 +2,8 @@ package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
 import com.google.common.collect.Lists;
-import org.testng.Assert;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
@@ -18,11 +19,11 @@ public class NativeInExpTest extends NativeExpGenericTest {
 
     @Override
     protected void checkConditions() {
-        Assert.assertTrue(sql.contains("in"));
-        Assert.assertTrue(parameters.containsValue("A1"));
-        Assert.assertTrue(parameters.containsValue("B1"));
-        Assert.assertFalse(parameters.containsValue("A3"));
-        Assert.assertFalse(parameters.containsValue("B3"));
+        assertThat(sql).contains("in");
+        assertThat(parameters.containsValue("A1")).isTrue();
+        assertThat(parameters.containsValue("B1")).isTrue();
+        assertThat(parameters.containsValue("A3")).isFalse();
+        assertThat(parameters.containsValue("B3")).isFalse();
     }
 
 }

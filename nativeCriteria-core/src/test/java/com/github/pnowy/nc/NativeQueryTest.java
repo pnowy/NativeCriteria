@@ -8,12 +8,14 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Native test implementation of query.
- * <p/>
- * Doesn't work on database, only register generated sql. Used for testing application.
- * <p/>
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 30.07.13 17:40
+ * <p>
+ *  Native test implementation of query.
+ * </p>
+ * <p>
+ *  Doesn't work on database, only register generated sql. Used for testing application.
+ * </p>
+ *
+ * Przemek Nowak [przemek.nowak.pl at gmail.com]
  */
 public class NativeQueryTest implements NativeQuery {
     private QueryInfo queryInfo;

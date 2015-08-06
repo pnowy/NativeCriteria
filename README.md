@@ -98,9 +98,9 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 
 ```
 
-### Logger to log execution sql time:
+### Logger to log execution sql time (available when the INFO level is enabled):
 ```xml
-<logger name="NativeCriteriaPerformance" level="DEBUG">
+<logger name="NativeCriteriaPerformance" level="INFO">
 	<appender-ref ref="stdout" />
 </logger>
 ```

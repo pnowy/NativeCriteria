@@ -50,12 +50,8 @@ public class QueryInfo {
         return sb.toString();
     }
 
-
     @Override
     public String toString() {
-        return "QueryInfo{" +
-                "parameters=" + parameters +
-                ", sql='" + sql + '\'' +
-                '}';
+        return getSummary();
     }
 }

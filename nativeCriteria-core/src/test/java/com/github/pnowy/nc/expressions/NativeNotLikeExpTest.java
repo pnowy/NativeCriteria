@@ -1,11 +1,11 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
-import org.testng.Assert;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 08.08.13 21:35
+ * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class NativeNotLikeExpTest extends NativeExpGenericTest {
 
@@ -16,8 +16,8 @@ public class NativeNotLikeExpTest extends NativeExpGenericTest {
 
     @Override
     protected void checkConditions() {
-        Assert.assertTrue(sql.contains("not like"));
-        Assert.assertTrue(parameters.containsValue("A1"));
+        assertThat(sql).contains("not like");
+        assertThat(parameters.containsValue("A1")).isTrue();
     }
 
 }

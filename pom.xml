@@ -19,7 +19,8 @@
 
     <modules>
         <module>nativeCriteria-core</module>
-		<!--<module>nativeCriteria-spring</module>-->
+		<module>nativeCriteria-spring</module>
+        <module>nativeCriteria-test</module>
 	</modules>
 
     <licenses>
@@ -69,13 +70,17 @@
         <hibernate.core.version>4.3.8.Final</hibernate.core.version>
         <!-- LOGGING -->
         <slf4j.version>1.7.12</slf4j.version>
-        <logback.version>1.1.3</logback.version>
         <!-- UTILS -->
         <guava.version>18.0</guava.version>
         <!-- TESTING -->
-        <testng.version>6.8.21</testng.version>
-        <hsqldb.version>2.3.2</hsqldb.version>
+        <testng.version>6.9.6</testng.version>
         <fest.assert.version>1.4</fest.assert.version>
+        <liquibase.version>3.4.0</liquibase.version>
+        <spring.boot.version>1.2.5.RELEASE</spring.boot.version>
+        <assertj-core.version>3.1.0</assertj-core.version>
+        <h2.version>1.4.187</h2.version>
+        <junit.version>4.12</junit.version>
+        <logback.version>1.1.3</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -102,14 +107,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
 
-
-            <!-- we assume that customer provide the implementation -->
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-                <scope>test</scope>
-            </dependency>
             <!-- TESTING -->
             <dependency>
                 <groupId>org.testng</groupId>
@@ -118,15 +115,34 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.easytesting</groupId>
-                <artifactId>fest-assert</artifactId>
-                <version>${fest.assert.version}</version>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>${hsqldb.version}</version>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- customer provide the implementation for SLF4J -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

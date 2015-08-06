@@ -6,9 +6,10 @@ package com.github.pnowy.nc.utils;
 public class Objects {
 
     /**
-     * <p>Gets the {@code toString} of an {@code Object} returning
-     * an empty string ("") if {@code null} input.</p>
-     * <p/>
+     * <p>
+     *     Gets the {@code toString} of an {@code Object} returning an empty string ("") if {@code null} input.
+     * </p>
+     *
      * <pre>
      * Objects.toString(null)         = ""
      * Objects.toString("")           = ""

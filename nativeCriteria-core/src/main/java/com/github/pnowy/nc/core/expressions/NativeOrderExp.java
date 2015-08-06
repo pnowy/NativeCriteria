@@ -1,6 +1,7 @@
 package com.github.pnowy.nc.core.expressions;
 
 import com.github.pnowy.nc.utils.Strings;
+import com.google.common.base.Preconditions;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -15,13 +16,29 @@ public class NativeOrderExp {
     public enum OrderType {
 
         /**
-         * The ASC.
+         * The ASC sorting with default db nulls last/first behaviour.
          */
         ASC("ASC"),
-        /**
-         * The DESC.
+        /*
+         * The ASC sorting with nulls first.
          */
-        DESC("DESC");
+        ASC_NULLS_FIRST("ASC NULLS FIRST"),
+        /**
+         * The ASC sorting with nulls last.
+         */
+        ASC_NULLS_LAST("ASC NULLS LAST"),
+        /**
+         * The DESC sorting with default db null last/first behaviour.
+         */
+        DESC("DESC"),
+        /**
+         * The DESC sorting with nulls first.
+         */
+        DESC_NULLS_FIRST("DESC NULLS FIRST"),
+        /**
+         * The DESC sorting with nulls last.
+         */
+        DESC_NULLS_LAST("DESC NULLS LAST");
 
         /**
          * The type.
@@ -33,7 +50,7 @@ public class NativeOrderExp {
          *
          * @param type the type
          */
-        private OrderType(String type) {
+        OrderType(String type) {
             this.type = type;
         }
 
@@ -67,6 +84,20 @@ public class NativeOrderExp {
         }
 
         orders.put(columnName, orderType);
+        return this;
+    }
+
+    /**
+     * Copy orders from different native expression.
+     *
+     * @param otherNativeExp different native order expression
+     * @return current native order expression with added expressions with different one provied as parameter
+     */
+    public NativeOrderExp add(NativeOrderExp otherNativeExp) {
+        Preconditions.checkNotNull(otherNativeExp);
+        for (Entry<String, OrderType> otherEntry : otherNativeExp.orders.entrySet()) {
+            this.add(otherEntry.getKey(), otherEntry.getValue());
+        }
         return this;
     }
 

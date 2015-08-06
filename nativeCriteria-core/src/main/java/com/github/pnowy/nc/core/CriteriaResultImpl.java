@@ -5,6 +5,7 @@ import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.github.pnowy.nc.utils.Objects;
 import com.google.common.base.Joiner;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -124,6 +125,20 @@ public class CriteriaResultImpl implements CriteriaResult {
     }
 
     @Override
+    public BigDecimal getBigDecimal(int idx) {
+        return getBigDecimal(idx, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(int idx, BigDecimal defaultResult) {
+        Object val = getValue(idx, null);
+        if (val == null)
+            return defaultResult;
+
+        return (BigDecimal) val;
+    }
+
+    @Override
     public Double getDouble(String columnName, Double defaultResult) {
         Object val = getValue(columnName, null);
         if (val == null)
@@ -135,6 +150,20 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Double getDouble(String columnName) {
         return getDouble(columnName, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(String columnName) {
+        return getBigDecimal(columnName, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(String columnName, BigDecimal defaultResult) {
+        Object val = getValue(columnName);
+        if (val == null)
+            return defaultResult;
+
+        return (BigDecimal) val;
     }
 
     @Override
