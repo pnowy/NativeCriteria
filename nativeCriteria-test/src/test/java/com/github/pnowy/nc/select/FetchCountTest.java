@@ -1,13 +1,11 @@
 package com.github.pnowy.nc.select;
 
+import com.github.pnowy.nc.AbstractDbTest;
 import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
-import com.github.pnowy.nc.core.NativeQueryProvider;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.github.pnowy.nc.domain.Address;
-import com.github.pnowy.nc.utils.HibernateUtil;
-import com.github.pnowy.nc.utils.Transactional;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,18 +15,18 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Simple database test.
+ * Simple database test with fetch count method usage.
+ * For each query is it possible to use the fetch count which returns the database count.
  *
  * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class FetchCountTest implements Transactional {
+public class FetchCountTest extends AbstractDbTest {
     private static final Logger log = LoggerFactory.getLogger(FetchCountTest.class);
 
-    @Override
-    public void transaction(NativeQueryProvider provider) {
-        NativeCriteria nc = new NativeCriteria(provider, "ADDRESS", "a");
-        nc.add(NativeExps.eq("a.city", "WARSAW"));
-
+    @Test
+    public void selectAddressCount() throws Exception {
+        NativeCriteria nc = createNativeCriteria("ADDRESS", "a");
+        nc.add(NativeExps.eq("a.city", "Warsaw"));
         int i = nc.fetchCount("a.city");
         assertThat(i).isEqualTo(1);
 
@@ -47,8 +45,4 @@ public class FetchCountTest implements Transactional {
         assertThat(res).isNotNull().hasSize(1);
     }
 
-    @Test
-    public void test() {
-        HibernateUtil.executeTransaction(this);
-    }
 }
