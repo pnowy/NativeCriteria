@@ -226,7 +226,7 @@ public class CriteriaResultImpl implements CriteriaResult {
 
         if (hasMultipleProjection()) {
             Object[] row = results.get(recordIdx);
-            return Joiner.on(" | ").join(row);
+            return Joiner.on(" | ").useForNull("null").join(row);
         } else {
             return Objects.toString(results.get(recordIdx));
         }
