@@ -1,2 +1,5 @@
-ID;CITY;STREET;BUILDING_NUMBER;ZIP_CODE
-1;Warsaw;Aleje Jerozolimskie;12A;25-996
+ID;CITY;STREET;BUILDING_NUMBER;ZIP_CODE;SUPPLIER_ID
+1;Warsaw;Aleje Jerozolimskie;12A;25-996;1
+2;Sydney;FarStreet;45;45-223;2
+3;Berlin;Grupper;23;90323;1
+4;Paris;Les Champs Elysees;46;32322;2

@@ -25,7 +25,9 @@ public class SimpleSelectTest extends AbstractDbTest {
         nc.add(NativeExps.eq("a.city", WARSAW));
         CriteriaResult result = nc.criteriaResult();
         while (result.next()) {
-            assertThat(result.getCurrentRecordDesc()).isNotNull().containsIgnoringCase("|").contains(WARSAW);
+            String currentRecordDesc = result.getCurrentRecordDesc();
+            log.info(currentRecordDesc);
+            assertThat(currentRecordDesc).isNotNull().containsIgnoringCase("|").contains(WARSAW);
         }
         assertThat(result.getRowsNumber()).isGreaterThan(0);
         log.info("{}", nc.getQueryInfo());

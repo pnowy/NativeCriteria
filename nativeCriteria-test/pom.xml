@@ -16,6 +16,10 @@
 	<name>NativeCriteria - Test</name>
 	<description>Native Criteria Test</description>
 
+    <properties>
+        <test.groups>com.github.pnowy.nc.DefaultGroup</test.groups>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -72,6 +76,35 @@
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <groups>${test.groups}</groups>
+                    <argLine>-Xmx256m</argLine>
+                    <runOrder>alphabetical</runOrder>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>postgresql</id>
+            <properties>
+                <test.groups>com.github.pnowy.nc.PostgresqlGroup,com.github.pnowy.nc.DefaultGroup</test.groups>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

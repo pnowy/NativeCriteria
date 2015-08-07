@@ -3,7 +3,6 @@ package com.github.pnowy.nc;
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,6 +17,8 @@ import javax.sql.DataSource;
 @Configuration
 public class DemoApplication implements EnvironmentAware {
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+
+    public static final String PROFILE_POSTGRESQL = "postgresql";
 
     public static void main(String[] args) {
         new SpringApplicationBuilder().run(args);
