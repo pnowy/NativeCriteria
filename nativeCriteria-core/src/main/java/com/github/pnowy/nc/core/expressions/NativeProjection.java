@@ -386,6 +386,8 @@ public class NativeProjection {
     /**
      * Return projection index.
      *
+     * Method returns -1 when the column projection does not exist.
+     *
      * @param columnName the column name
      * @return the projection index
      */

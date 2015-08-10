@@ -25,6 +25,11 @@ public class CriteriaResultImpl implements CriteriaResult {
     private int recordIdx = -1;
 
     /**
+     * Number of retrieved columns.
+     */
+    private int columnCounter = -1;
+
+    /**
      * Projections.
      */
     private NativeProjection projection;
@@ -45,6 +50,7 @@ public class CriteriaResultImpl implements CriteriaResult {
         this.results = results;
         this.queryInfo = queryInfo;
         this.projection = projection;
+        this.columnCounter = (results.size() > 0) ? (results.getClass().isArray() ? results.get(0).length : 1) : -1;
     }
 
     /**
@@ -271,6 +277,16 @@ public class CriteriaResultImpl implements CriteriaResult {
     }
 
     @Override
+    public Integer getRowNumber() {
+        return recordIdx;
+    }
+
+    @Override
+    public Integer getColumnCount() {
+        return columnCounter;
+    }
+
+    @Override
     public QueryInfo getQueryInfo() {
         return queryInfo;
     }
@@ -365,5 +381,13 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Object getValue(String columnName) {
         return getValue(columnName, null);
+    }
+
+    @Override
+    public boolean hasProperty(String columnName) {
+        if (projection == null) {
+            throw new IllegalStateException("Only supported method with a fixed projection!");
+        }
+        return projection.getProjectionIndex(columnName) > -1;
     }
 }

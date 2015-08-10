@@ -3,3 +3,4 @@ ID;CITY;STREET;BUILDING_NUMBER;ZIP_CODE;SUPPLIER_ID
 2;Sydney;FarStreet;45;45-223;2
 3;Berlin;Grupper;23;90323;1
 4;Paris;Les Champs Elysees;46;32322;2
+5;New York;HavanaStreet;12;43222;null

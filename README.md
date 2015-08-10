@@ -9,6 +9,12 @@
  * work on all databases supported by Hibernate
  * designed for a select queries (not supported update queries now)
 
+##### Release 2.0 changes
+ * New Spring module with Pageable support and bean property mapper
+ * New test module with examples on Spring Boot and H2 in memory database
+ * Fixed some minor bugs
+ * 
+ 
 ##### Release 1.4 changes
   * Removed logback implementation (client can provide own logger implementation)
   * Upgraded hibernate to 4.3.8.Final & other dependencies to newer versions
@@ -96,6 +102,32 @@ Map<String, String> result = nc.criteriaResult(new CriteriaResultTransformer<Map
 			}
 		});
 
+```
+
+## SPRING Integration module
+
+### Pageable support
+
+```java
+
+```
+
+### NativeBeanPropertyMapper
+
+```java
+SpringNativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s");
+    nc.setProjection(NativeExps.projection().addProjection(ImmutableMap.<String, String>builder()
+            .put("s.id", "id")
+            .put("s.name", "name")
+            .put("s.first_name", "firstName")
+            .put("s.last_name", "lastName")
+            .put("s.vat_identification_number", "vat_identification_number")
+            .put("s.phone_number", "phonenumber")
+            .put("s.email", "email")
+            .build()));
+    nc.setOrder(NativeExps.order().add("s.id", NativeOrderExp.OrderType.ASC));
+NativeBeanPropertyMapper<SupplierDTO> mapper = NativeBeanPropertyMapper.newInstance(SupplierDTO.class);
+List<SupplierDTO> results = nc.criteriaResult(mapper);
 ```
 
 ### Logger to log execution sql time (available when the INFO level is enabled):

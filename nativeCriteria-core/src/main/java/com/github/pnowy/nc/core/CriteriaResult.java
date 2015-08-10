@@ -283,7 +283,7 @@ public interface CriteriaResult {
      * @param defaultResult the default result
      * @return the value
      */
-    public Object getValue(int idx, Object defaultResult);
+    Object getValue(int idx, Object defaultResult);
 
     /**
      * Gets the object, default value is null.
@@ -311,11 +311,41 @@ public interface CriteriaResult {
     Object getValue(String columnName);
 
     /**
-     * Gets the rows number.
+     * Methods checks whether the result has the provided property.
+     * The existence or lack is checked by provided projection.
+     *
+     * @param columnName the column / alias which should exist on the select
+     * @return true if property result on the criteria projection
+     */
+    boolean hasProperty(String columnName);
+
+    /**
+     * Gets the rows number of returned db result..
      *
      * @return the rows number
      */
     Integer getRowsNumber();
+
+    /**
+     * Return current row number.
+     * The first row has number 0.
+     *
+     * @return current row number
+     */
+    Integer getRowNumber();
+
+    /**
+     * <p>Gets the column counter for current result.
+     *
+     * <p>The column count is determined by the result returned by DB not by the projections
+     * (due the fact that user could use star projection == not set projection at all).
+     *
+     * <p>When the returned result from DB is empty (the records weren't found on database) we cannot determine
+     * this value and then the -1 is returned.
+     *
+     * @return the column count, -1 in case of empty result (no record on db)
+     */
+    Integer getColumnCount();
 
     /**
      * Get query information.
