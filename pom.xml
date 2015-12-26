@@ -65,7 +65,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gpg.skip>false</gpg.skip>
+        <gpg.skip>true</gpg.skip>
         <!-- CORE -->
         <hibernate.core.version>4.3.11.Final</hibernate.core.version>
         <slf4j.version>1.7.13</slf4j.version>
