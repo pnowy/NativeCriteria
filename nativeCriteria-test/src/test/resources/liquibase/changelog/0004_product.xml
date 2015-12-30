@@ -6,30 +6,34 @@
 
     <include file="properties.xml" relativeToChangelogFile="true" />
 
-    <changeSet id="0002" author="pnowak" >
-        <createTable tableName="ADDRESS">
-            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}" >
+    <changeSet id="0004" author="pnowak" >
+        <createTable tableName="PRODUCT">
+            <column name="ID" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="CITY" type="VARCHAR(64)">
+            <column name="NAME" type="VARCHAR(64)">
                 <constraints nullable="false" />
             </column>
-            <column name="STREET" type="VARCHAR(64)" />
-            <column name="BUILDING_NUMBER" type="VARCHAR(16)" />
-            <column name="ZIP_CODE" type="VARCHAR(16)" />
+            <column name="CATEGORY_ID" type="BIGINT"/>
             <column name="SUPPLIER_ID" type="BIGINT"/>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="SUPPLIER_ID"
-                                 baseTableName="ADDRESS"
-                                 constraintName="fk_address_supplier_id"
+                                 baseTableName="PRODUCT"
+                                 constraintName="fk_product_supplier_id"
                                  referencedColumnNames="id"
                                  referencedTableName="SUPPLIER"/>
 
+        <addForeignKeyConstraint baseColumnNames="CATEGORY_ID"
+                                 baseTableName="PRODUCT"
+                                 constraintName="fk_product_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CATEGORY"/>
+
         <loadData encoding="UTF-8"
-                  file="liquibase/data/address.csv"
+                  file="liquibase/data/product.csv"
                   separator=";"
-                  tableName="ADDRESS"/>
+                  tableName="PRODUCT"/>
 
     </changeSet>
 
