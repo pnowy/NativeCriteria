@@ -11,7 +11,8 @@ public class AddressDTO {
     private String street;
     private String buildingNumber;
     private String zipCode;
-    private long supplierId; // primitive type in order to test NativeBeanPropertyMapper#primitivesDefaultedForNullValue
+    /** Primitive type in order to test {@linkplain com.github.pnowy.nc.spring.NativeBeanPropertyMapper#primitivesDefaultedForNullValue} */
+    private long supplierId;
 
     public Long getId() {
         return id;
