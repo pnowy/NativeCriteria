@@ -1,5 +1,7 @@
 package com.github.pnowy.nc.domain;
 
+import com.google.common.base.MoreObjects;
+
 /**
  * Category entity.
  *
@@ -23,5 +25,13 @@ public class Category extends AbstractEntity {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+            .add("name", name)
+            .add("code", code)
+            .toString();
     }
 }

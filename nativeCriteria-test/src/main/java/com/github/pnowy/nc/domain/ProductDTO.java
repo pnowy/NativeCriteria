@@ -1,16 +1,18 @@
 package com.github.pnowy.nc.domain;
 
+import com.google.common.base.MoreObjects;
+
 /**
- * Product DTO with category and supplier entities.
+ * Product DTO with categoryName and supplierName entities.
  *
  * @author Przemek Nowak [przemek dot nowak dot pl at gmail.com]
  */
 public class ProductDTO {
 
     private Long productId;
-    private String name;
-    private Category category;
-    private Supplier supplier;
+    private String productName;
+    private String categoryName;
+    private String supplierName;
 
     public Long getProductId() {
         return productId;
@@ -20,27 +22,37 @@ public class ProductDTO {
         this.productId = productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+            .add("productId", productId)
+            .add("name", productName)
+            .add("categoryName", categoryName)
+            .add("supplierName", supplierName)
+            .toString();
     }
 }
