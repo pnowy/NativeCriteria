@@ -1,17 +1,21 @@
-package com.github.pnowy.nc.domain;
+package com.github.pnowy.nc.mappers;
 
+import com.github.pnowy.nc.spring.NativeBeanPropertyMapper;
 import com.google.common.base.MoreObjects;
 
 /**
+ * Address DTO with supplier id as primitive long type.
+ *
+ * Primitive type in order to test {@linkplain NativeBeanPropertyMapper#isPrimitivesDefaultedForNullValue()} behavior.
+ *
  * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class AddressDTO {
+public class AddressPrimitiveDTO {
     private Long id;
     private String city;
     private String street;
     private String buildingNumber;
     private String zipCode;
-    /** Primitive type in order to test {@linkplain com.github.pnowy.nc.spring.NativeBeanPropertyMapper#primitivesDefaultedForNullValue} */
     private long supplierId;
 
     public Long getId() {

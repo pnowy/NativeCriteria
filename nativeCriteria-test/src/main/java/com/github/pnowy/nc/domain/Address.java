@@ -1,9 +1,10 @@
 package com.github.pnowy.nc.domain;
 
+import com.github.pnowy.nc.core.CriteriaResult;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+
 /**
- * <p>
- *  Test class mapping address table.
- * </p>
+ * <p>Test class mapping address table.</p>
  *
  * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
@@ -13,6 +14,19 @@ public class Address {
     private String street;
     private String buildingNumber;
     private String zipCode;
+
+    public static NativeObjectMapper<Address> NATIVE_OBJECT_MAPPER = new NativeObjectMapper<Address>() {
+        @Override
+        public Address mapObject(CriteriaResult cr) {
+            Address a = new Address();
+            a.setId(cr.getLong(0));
+            a.setCity(cr.getString(1));
+            a.setStreet(cr.getString(2));
+            a.setBuildingNumber(cr.getString(3));
+            a.setZipCode(cr.getString(4));
+            return a;
+        }
+    };
 
     public String getBuildingNumber() {
         return buildingNumber;

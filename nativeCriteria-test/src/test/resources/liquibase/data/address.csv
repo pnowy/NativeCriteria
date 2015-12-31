@@ -4,3 +4,4 @@ ID;CITY;STREET;BUILDING_NUMBER;ZIP_CODE;SUPPLIER_ID
 3;Berlin;Grupper;23;90323;1
 4;Paris;Les Champs Elysees;46;32322;2
 5;New York;HavanaStreet;12;43222;null
+6;Warsaw;Jana Pawla II;34G;24-445;null

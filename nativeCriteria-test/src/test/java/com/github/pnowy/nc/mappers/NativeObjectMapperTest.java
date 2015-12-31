@@ -1,7 +1,6 @@
-package com.github.pnowy.nc.select;
+package com.github.pnowy.nc.mappers;
 
 import com.github.pnowy.nc.AbstractDbTest;
-import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
@@ -23,23 +22,12 @@ public class NativeObjectMapperTest extends AbstractDbTest {
     private static final Logger log = LoggerFactory.getLogger(NativeObjectMapperTest.class);
 
     @Test
-    public void testSelectWithObjectMapper() throws Exception {
+    public void shouldRetrieveDataByNativeObjectMapper() throws Exception {
         NativeCriteria nc = createNativeCriteria("ADDRESS", "a");
         nc.add(NativeExps.eq("a.city", "Warsaw"));
-        List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
-            @Override
-            public Address mapObject(CriteriaResult cr) {
-                Address a = new Address();
-                a.setId(cr.getLong(0));
-                a.setCity(cr.getString(1));
-                a.setStreet(cr.getString(2));
-                a.setBuildingNumber(cr.getString(3));
-                a.setZipCode(cr.getString(4));
-                return a;
-            }
-        });
+        List<Address> res = nc.criteriaResult(Address.NATIVE_OBJECT_MAPPER);
         log.info("Result list: {}", res);
-        assertThat(res).isNotNull().hasSize(1);
+        assertThat(res).isNotNull().hasSize(2);
     }
 
 }

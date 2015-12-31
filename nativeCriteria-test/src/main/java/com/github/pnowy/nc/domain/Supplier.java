@@ -3,11 +3,11 @@ package com.github.pnowy.nc.domain;
 import com.google.common.base.MoreObjects;
 
 /**
- * Supplier DTO object for testing the NativeBeanPropertyMapper.
+ * Supplier entity for testing the NativeBeanPropertyMapper.
  *
  * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class SupplierDTO {
+public class Supplier {
     private Long id;
     private String name;
     private String firstName;
