@@ -1,7 +1,8 @@
 package com.github.pnowy.nc.spring;
 
-import com.github.pnowy.nc.core.CriteriaResult;
-import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import java.beans.PropertyDescriptor;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.*;
@@ -10,8 +11,9 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import java.beans.PropertyDescriptor;
-import java.util.*;
+import com.github.pnowy.nc.core.CriteriaResult;
+import com.github.pnowy.nc.core.exceptions.InvalidDataAccessException;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 
 /**
  * <p>Bean mapper is inspired by Spring {@link org.springframework.jdbc.core.BeanPropertyRowMapper}.
@@ -27,8 +29,8 @@ import java.util.*;
  * This mapper supports only criteria with fixed projections so before you will start use it
  * generate {@link SpringNativeCriteria} with defined projection.
  *
- * <p>The names are matched either directly from provided aliases in defined projection
- * or by transforming a bean property name to lower case or camel case.
+ * <p><strong>The names are matched either directly from provided aliases in defined projection
+ * or by transforming a bean property name to lower case or camel case.</strong></p>
  *
  * <p>For example if we have the bean with property firstName (with getters and setters)
  * the projection alias which will be mapped could have the following form:
@@ -103,7 +105,7 @@ public class NativeBeanPropertyMapper<T> implements NativeObjectMapper<T> {
         }
         else {
             if (!this.mappedClass.equals(mappedClass)) {
-                throw new InvalidDataAccessApiUsageException("The mapped class can not be reassigned to map to " +
+                throw new InvalidDataAccessException("The mapped class can not be reassigned to map to " +
                     mappedClass + " since it is already providing mapping for " + this.mappedClass);
             }
         }
@@ -255,9 +257,12 @@ public class NativeBeanPropertyMapper<T> implements NativeObjectMapper<T> {
                     }
                     catch (TypeMismatchException ex) {
                         if (value == null && this.primitivesDefaultedForNullValue) {
-                            logger.debug("Intercepted TypeMismatchException for row " + cr.getRowNumber() + " and column '" +
-                                alias + "' with null value when setting property '" + pd.getName() +
-                                "' of type " + pd.getPropertyType() + " on object: " + mappedObject);
+                            // we should initialize primitive by default value
+                            if (logger.isDebugEnabled()) {
+                                logger.debug("Intercepted TypeMismatchException for row " + cr.getRowNumber() + " and column '" +
+                                    alias + "' with null value when setting property '" + pd.getName() +
+                                    "' of type " + pd.getPropertyType() + " on object: " + mappedObject);
+                            }
                         }
                         else {
                             throw ex;

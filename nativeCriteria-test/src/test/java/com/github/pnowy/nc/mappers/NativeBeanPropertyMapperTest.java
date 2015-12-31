@@ -4,8 +4,7 @@ import com.github.pnowy.nc.AbstractDbTest;
 import com.github.pnowy.nc.core.CriteriaResult;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
-import com.github.pnowy.nc.domain.AddressDTO;
-import com.github.pnowy.nc.domain.SupplierDTO;
+import com.github.pnowy.nc.domain.Supplier;
 import com.github.pnowy.nc.spring.NativeBeanPropertyMapper;
 import com.github.pnowy.nc.spring.SpringNativeCriteria;
 import com.google.common.collect.ImmutableMap;
@@ -25,7 +24,7 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
  */
 public class NativeBeanPropertyMapperTest extends AbstractDbTest {
 
-    private SpringNativeCriteria addressDTOCriteria() {
+    private SpringNativeCriteria createAddressDTOCriteria() {
         SpringNativeCriteria nc = createSpringNativeCriteria("ADDRESS", "a");
             nc.setProjection(NativeExps.projection().addProjection(ImmutableMap.<String, String>builder()
                 .put("a.id", "id")
@@ -38,7 +37,7 @@ public class NativeBeanPropertyMapperTest extends AbstractDbTest {
         return nc;
     }
 
-    private SpringNativeCriteria supplierDTOCriteria() {
+    private SpringNativeCriteria createSupplierDTOCriteria() {
         SpringNativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s");
         nc.setProjection(NativeExps.projection().addProjection(ImmutableMap.<String, String>builder()
             .put("s.id", "id")
@@ -46,7 +45,7 @@ public class NativeBeanPropertyMapperTest extends AbstractDbTest {
             .put("s.first_name", "firstName")
             .put("s.last_name", "lastName")
             .put("s.vat_identification_number", "vat_identification_number")
-            .put("s.phone_number", "phonenumber")
+            .put("s.phone_number", "phoneNumber")
             .put("s.email", "email")
             .build()));
         nc.setOrder(NativeExps.order().add("s.id", NativeOrderExp.OrderType.ASC));
@@ -54,65 +53,65 @@ public class NativeBeanPropertyMapperTest extends AbstractDbTest {
     }
 
     @Test
-    public void testMappingSupplierDTO() throws Exception {
-        NativeBeanPropertyMapper<SupplierDTO> mapper = NativeBeanPropertyMapper.newInstance(SupplierDTO.class);
-        SpringNativeCriteria nc = supplierDTOCriteria();
+    public void shouldMapSupplierDTO() throws Exception {
+        NativeBeanPropertyMapper<Supplier> mapper = NativeBeanPropertyMapper.newInstance(Supplier.class);
+        SpringNativeCriteria nc = createSupplierDTOCriteria();
         CriteriaResult cr = nc.criteriaResult();
         if (cr.next()) {
-            SupplierDTO supplierDTO = mapper.mapObject(cr);
-            assertThat(supplierDTO.getId()).isNotNull().isEqualTo(1);
-            assertThat(supplierDTO.getFirstName()).isEqualTo("John");
-            assertThat(supplierDTO.getLastName()).isEqualTo("Doe");
-            assertThat(supplierDTO.getVatIdentificationNumber()).isEqualTo("6640004523");
-            assertThat(supplierDTO.getPhoneNumber()).isEqualTo("+48 883009323");
+            Supplier supplier = mapper.mapObject(cr);
+            assertThat(supplier.getId()).isNotNull().isEqualTo(1);
+            assertThat(supplier.getFirstName()).isEqualTo("John");
+            assertThat(supplier.getLastName()).isEqualTo("Doe");
+            assertThat(supplier.getVatIdentificationNumber()).isEqualTo("6640004523");
+            assertThat(supplier.getPhoneNumber()).isEqualTo("+48 883009323");
         }
     }
 
     @Test
-    public void testFullyPopulatedDTO() {
-        NativeBeanPropertyMapper<SupplierDTO> mapper = NativeBeanPropertyMapper.newInstance(SupplierDTO.class);
+    public void shouldMapFullyPopulatedSupplierDTO() {
+        NativeBeanPropertyMapper<Supplier> mapper = NativeBeanPropertyMapper.newInstance(Supplier.class);
         mapper.setCheckFullyPopulated(true);
-        SpringNativeCriteria nc = supplierDTOCriteria();
-        List<SupplierDTO> dtos = nc.criteriaResult(mapper);
+        SpringNativeCriteria nc = createSupplierDTOCriteria();
+        List<Supplier> dtos = nc.criteriaResult(mapper);
         assertThat(dtos.size()).isEqualTo(2);
     }
 
     @Test(expected = InvalidDataAccessApiUsageException.class)
-    public void testNotFullPopulatedDTO() {
+    public void shouldThrowErrorForNotFullPopulatedDTO() {
         SpringNativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s");
         nc.setProjection(NativeExps.projection().addProjection("s.id", "id"));
         nc.setOrder(NativeExps.order().add("s.id", NativeOrderExp.OrderType.ASC));
-        NativeBeanPropertyMapper<SupplierDTO> mapper = NativeBeanPropertyMapper.newInstance(SupplierDTO.class);
+        NativeBeanPropertyMapper<Supplier> mapper = NativeBeanPropertyMapper.newInstance(Supplier.class);
         mapper.setCheckFullyPopulated(true);
         nc.criteriaResult(mapper);
     }
 
     @Test
-    public void testCriteriaResultListMapping() {
-        SpringNativeCriteria nc = supplierDTOCriteria();
-        List<SupplierDTO> dtos = nc.criteriaResult(NativeBeanPropertyMapper.newInstance(SupplierDTO.class));
+    public void shouldReturnListOfObjectsForBeanPropertyMapper() {
+        SpringNativeCriteria nc = createSupplierDTOCriteria();
+        List<Supplier> dtos = nc.criteriaResult(NativeBeanPropertyMapper.newInstance(Supplier.class));
         assertThat(dtos.size()).isEqualTo(2);
-        SupplierDTO first = Iterables.getFirst(dtos, null);
+        Supplier first = Iterables.getFirst(dtos, null);
         assert first != null;
         assertThat(first.getId()).isEqualTo(1);
         assertThat(first.getLastName()).isEqualTo("Doe");
     }
 
     @Test
-    public void testPrimitiveValuesDefaultedForNullValue() {
-        SpringNativeCriteria nc =addressDTOCriteria();
-        NativeBeanPropertyMapper<AddressDTO> mapper = NativeBeanPropertyMapper.newInstance(AddressDTO.class);
+    public void shouldInitializePrimitivePropertyByDefaultValue() {
+        SpringNativeCriteria nc = createAddressDTOCriteria();
+        NativeBeanPropertyMapper<AddressPrimitiveDTO> mapper = NativeBeanPropertyMapper.newInstance(AddressPrimitiveDTO.class);
         mapper.setPrimitivesDefaultedForNullValue(true);
-        List<AddressDTO> list = nc.criteriaResult(mapper);
-        assertThat(list.size()).isEqualTo(5);
+        List<AddressPrimitiveDTO> list = nc.criteriaResult(mapper);
+        assertThat(list.size()).isGreaterThan(0);
     }
 
     @Test(expected = TypeMismatchException.class)
-    public void testPrimitiveValuesThrowExceptionForNullValue() {
-        SpringNativeCriteria nc =addressDTOCriteria();
-        NativeBeanPropertyMapper<AddressDTO> mapper = NativeBeanPropertyMapper.newInstance(AddressDTO.class);
-        List<AddressDTO> list = nc.criteriaResult(mapper);
-        assertThat(list.size()).isEqualTo(5);
+    public void shouldThrowExceptionForNullValueForPrimitiveProperty() {
+        SpringNativeCriteria nc = createAddressDTOCriteria();
+        NativeBeanPropertyMapper<AddressPrimitiveDTO> mapper = NativeBeanPropertyMapper.newInstance(AddressPrimitiveDTO.class);
+        List<AddressPrimitiveDTO> list = nc.criteriaResult(mapper);
+        assertThat(list.size()).isGreaterThan(0);
     }
 
 }

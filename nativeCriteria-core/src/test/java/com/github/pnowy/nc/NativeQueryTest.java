@@ -8,12 +8,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * <p>
- *  Native test implementation of query.
- * </p>
- * <p>
- *  Doesn't work on database, only register generated sql. Used for testing application.
- * </p>
+ * <p>Native test implementation of query.</p>
+ *
+ * <p>Doesn't work on database, only register generated sql. Used for testing application.</p>
  *
  * Przemek Nowak [przemek.nowak.pl at gmail.com]
  */

@@ -6,5 +6,7 @@
 
     <include file="classpath:liquibase/changelog/0001_supplier.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/changelog/0002_address.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/changelog/0003_category.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/changelog/0004_product.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

@@ -5,6 +5,7 @@ import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -233,6 +234,34 @@ public class NativeProjection {
 
         projections.add(new ProjectionBean(columnName, alias));
         return this;
+    }
+
+    /**
+     * <p>
+     *     Special approach of creating projection. With this approach the column name + alias could be provided as single String.
+     *     This method removing the requirement of creation new map with column names as keys and aliases as values. On this method that
+     *     kind of map is created out-of-the-box under the hood.
+     * </p>
+     *
+     * <p>The column with alias should be provides on the following pattern: <strong>"columnName as alias"</strong></p>
+     *
+     * @param columnsWithAliases column name with alias according the pattern <strong>"columnName as alias"</strong>, for example
+     *                        <strong>"p.name as productName"</strong>
+     * @return {@link NativeProjection}
+     */
+    public NativeProjection addProjectionWithAliases(String... columnsWithAliases) {
+        Preconditions.checkNotNull(columnsWithAliases);
+
+        Map<String, String> columnsProjection = Maps.newLinkedHashMap();
+        for (String columnWithAlias : columnsWithAliases) {
+            final String[] result = columnWithAlias.split("(?i) AS ");
+            if (result.length != 2) {
+                throw new IllegalArgumentException("There is the problem with provides column and alias statement: \" " +
+                    columnWithAlias + " \". Please check the statement. It should be pattern \"columnName as alias\"");
+            }
+            columnsProjection.put(result[0], result[1]);
+        }
+        return addProjection(columnsProjection);
     }
 
     /**

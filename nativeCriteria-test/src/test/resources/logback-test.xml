@@ -12,6 +12,10 @@
 
     <logger name="org.hibernate" level="WARN"/>
 
+    <logger name="NativeCriteriaPerformance" level="DEBUG">
+        <appender-ref ref="stdout" />
+    </logger>
+
     <root level="INFO">
         <appender-ref ref="stdout"/>
     </root>

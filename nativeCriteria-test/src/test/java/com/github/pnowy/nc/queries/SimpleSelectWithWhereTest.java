@@ -1,4 +1,4 @@
-package com.github.pnowy.nc.select;
+package com.github.pnowy.nc.queries;
 
 import com.github.pnowy.nc.AbstractDbTest;
 import com.github.pnowy.nc.core.CriteriaResult;
@@ -15,12 +15,12 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
  *
  * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class SimpleSelectTest extends AbstractDbTest {
-    private static final Logger log = LoggerFactory.getLogger(SimpleSelectTest.class);
+public class SimpleSelectWithWhereTest extends AbstractDbTest {
+    private static final Logger log = LoggerFactory.getLogger(SimpleSelectWithWhereTest.class);
     public static final String WARSAW = "Warsaw";
 
     @Test
-    public void selectAddress() throws Exception {
+    public void shouldSelectAddressesWhereCityIsWarsaw() throws Exception {
         NativeCriteria nc = createNativeCriteria("ADDRESS", "a");
         nc.add(NativeExps.eq("a.city", WARSAW));
         CriteriaResult result = nc.criteriaResult();

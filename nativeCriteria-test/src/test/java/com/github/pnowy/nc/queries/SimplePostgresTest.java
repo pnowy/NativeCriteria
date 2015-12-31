@@ -1,4 +1,4 @@
-package com.github.pnowy.nc.select;
+package com.github.pnowy.nc.queries;
 
 import com.github.pnowy.nc.AbstractPostgresqlTest;
 import com.github.pnowy.nc.core.CriteriaResult;
@@ -18,7 +18,7 @@ public class SimplePostgresTest extends AbstractPostgresqlTest {
     private static final Logger log = LoggerFactory.getLogger(SimplePostgresTest.class);
 
     @Test
-    public void selectAddress() throws Exception {
+    public void shouldSelectSupplier() throws Exception {
         NativeCriteria nc = createNativeCriteria("SUPPLIER", "s");
         CriteriaResult result = nc.criteriaResult();
         assertThat(result.getRowsNumber()).isGreaterThan(0);
