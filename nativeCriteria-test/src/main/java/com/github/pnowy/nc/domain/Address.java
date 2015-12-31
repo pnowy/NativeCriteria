@@ -8,8 +8,7 @@ import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
  *
  * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
-public class Address {
-    private Long id;
+public class Address extends AbstractEntity {
     private String city;
     private String street;
     private String buildingNumber;
@@ -42,14 +41,6 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getStreet() {
