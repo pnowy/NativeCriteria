@@ -102,9 +102,12 @@ NativeBeanPropertyMapper<SupplierDTO> mapper = NativeBeanPropertyMapper.newInsta
 List<SupplierDTO> results = nc.criteriaResult(mapper);
 ```
 
-### Logger to log execution sql time (available when the INFO level is enabled):
+### Logger to log execution sql time (available when the DEBUG level is enabled):
+
+You could always enable by:
+
 ```xml
-<logger name="NativeCriteriaPerformance" level="INFO">
+<logger name="NativeCriteriaPerformance" level="DEBUG">
 	<appender-ref ref="stdout" />
 </logger>
 ```
