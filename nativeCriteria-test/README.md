@@ -5,11 +5,11 @@
 
 ### Run tests on the PostgreSQL local db
 
-mvn clean test -Ppostgresql
+    mvn clean test -Ppostgresql
 
 ### Run tests on the MS SqlServer local db
 
-mvn clean test -Psqlserver
+    mvn clean test -Psqlserver
 
 ---
 

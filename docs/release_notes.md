@@ -1,8 +1,11 @@
+##### Release 2.1 changes
+ * Migrate to gradle (?)
+ * Use bintray (?)
+ 
 ##### Release 2.0 changes
  * New Spring module with Pageable support and bean property mapper
  * New test module with examples on Spring Boot and H2 in memory database
  * Fixed some minor bugs
- * 
  
 ##### Release 1.4 changes
   * Removed logback implementation (client can provide own logger implementation)

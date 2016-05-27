@@ -1,11 +1,3 @@
-### RELEASE PLANS
-
-2.0
- 
- * Migrate to gradle (?)
- * Provide the integration with Spring out of the box.
- * Use bintray (?)
- 
 ### RELEASE NEW VERSION (by jgitflow maven plugin)
  
     jgitflow:release-start -> starting the new release

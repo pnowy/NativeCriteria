@@ -1,0 +1,55 @@
+template:
+    url: https://github.com/CouscousPHP/Template-Dark
+    index: index.md
+
+# List of directories to include in the processing (by default it's empty, so all markdown files are parsed)
+# Paths are relative to the optional source path given when generating the website, repository root by default
+include:
+    - docs
+
+# List of directories to exclude from the processing (default contains "vendor" and "website")
+# Paths are relative to the optional include paths given when generating the website, repository root by default
+#exclude:
+#    - vendor
+#    - website
+#    - some/dir
+
+# Base URL of the published website
+baseUrl: http://pnowy.github.io/NativeCriteria
+
+# Used to link to the GitHub project
+github:
+    user: pnowy
+    repo: NativeCriteria
+
+title: NativeCriteria
+subTitle: Ultra lightweight library to generate dynamic SQL based on hibernate session
+
+# The left menu bar
+menu:
+    sections:
+        usage:
+            name: Usage
+            items:
+                releaseNotes:
+                    text: Release notes
+                    relativeUrl: release_notes.html
+                foo:
+                    text: Another link
+                    # Or absolute urls
+                    absoluteUrl: https://example.com
+        development:
+            name: Development
+            items:
+                home:
+                    text: Development rules
+                    absoluteUrl: http://pnowy.github.io/
+                testProject:
+                    text: Test project
+                    absoluteUrl: http://pnowy.github.io/
+        other:
+            name: Other
+            items:
+                myPage:
+                    text: Author page
+                    absoluteUrl: http://pnowy.github.io/
