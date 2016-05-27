@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 public class DemoApplication implements EnvironmentAware {
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 
-    public static final String PROFILE_POSTGRESQL = "postgresql";
+    static final String PROFILE_POSTGRESQL = "postgresql";
+    static final String PROFILE_SQLSERVER = "sqlserver";
 
     public static void main(String[] args) {
         new SpringApplicationBuilder().run(args);
