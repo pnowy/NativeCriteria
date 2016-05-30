@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Supplier entity for testing the NativeBeanPropertyMapper.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class Supplier extends AbstractEntity {
     private String name;

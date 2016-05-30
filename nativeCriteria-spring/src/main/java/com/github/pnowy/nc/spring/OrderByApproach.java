@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
  *
  * Enum determine the way how the ordering should be performed.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public enum OrderByApproach {
     /**

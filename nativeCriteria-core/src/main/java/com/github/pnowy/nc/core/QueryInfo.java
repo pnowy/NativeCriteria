@@ -12,7 +12,7 @@ import java.util.Map;
  *  <li>map with parameters</li>
  * </ul>
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class QueryInfo {
     private String sql;

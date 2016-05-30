@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Extended {@link NativeCriteria} with some features available on Spring Data Commons.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class SpringNativeCriteria extends NativeCriteria {
 

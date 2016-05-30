@@ -8,7 +8,7 @@ import com.google.common.base.MoreObjects;
  *
  * Primitive type in order to test {@linkplain NativeBeanPropertyMapper#isPrimitivesDefaultedForNullValue()} behavior.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class AddressPrimitiveDTO {
     private Long id;
