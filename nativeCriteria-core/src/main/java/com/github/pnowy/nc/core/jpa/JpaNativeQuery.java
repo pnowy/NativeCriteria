@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * <p>JPA implementation of native query.</p>
  *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * Przemek Nowak
  */
 public class JpaNativeQuery implements NativeQuery {
     private Query query;

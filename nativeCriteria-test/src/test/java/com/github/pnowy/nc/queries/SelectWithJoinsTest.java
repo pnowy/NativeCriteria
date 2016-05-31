@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Set of test with selecting data with joins.
  *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class SelectWithJoinsTest extends AbstractDbTest {
     private static final Logger log = LoggerFactory.getLogger(SelectWithJoinsTest.class);
@@ -58,6 +58,9 @@ public class SelectWithJoinsTest extends AbstractDbTest {
         assertThat(dto.getSupplierName()).isNotNull();
     }
 
+    @Test
+    public void shouldSelectWithNativeExps() throws Exception {
+        SpringNativeCriteria nc = createSpringNativeCriteria("PRODUCT", "p");
 
-
+    }
 }

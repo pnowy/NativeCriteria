@@ -31,7 +31,7 @@ public class NativeCriteria implements NativeExp {
      */
     private NativeQueryProvider nativeProvider;
     /**
-     *
+     * Native query.
      */
     private NativeQuery nativeQuery;
 
@@ -181,7 +181,7 @@ public class NativeCriteria implements NativeExp {
     }
 
     /**
-     * Add new condition to query.
+     * Add new condition to query with AND operator.
      *
      * @param exp the exp
      * @return the native criteria
