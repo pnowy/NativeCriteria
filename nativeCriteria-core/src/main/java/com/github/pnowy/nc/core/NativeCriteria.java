@@ -182,8 +182,8 @@ public class NativeCriteria implements NativeExp {
     /**
      * <p>Add new condition to query with AND operator.</p>
      *
-     * <p>Info about custom query: because it is a WHERE part of the query and could be invoked multiple times during criteria building the custom SQL
-     * cannot contains the 'WHERE' clause. This clause is added automatically by NativeCriteria engine.</p>
+     * <p>Info about custom query: because it is a WHERE part of the query and could be invoked multiple times during criteria building
+     * the custom SQL cannot contains the 'WHERE' clause. This clause is added automatically by NativeCriteria engine.</p>
      *
      * @param exp the exp
      * @return the native criteria
@@ -243,7 +243,9 @@ public class NativeCriteria implements NativeExp {
     }
 
     /**
-     * Add join.
+     * <p>Add join.</p>
+     *
+     * <p>If you decide to add custom SQL here please remember that custom SQL has to contain the JOIN clause at the beginning.</p>
      *
      * @param join the join
      * @return the native criteria
@@ -637,8 +639,11 @@ public class NativeCriteria implements NativeExp {
             }
             if (joins.size() > 0) {
                 for (NativeExp join : joins) {
-                    NativeJoin nativeJoin = (NativeJoin) join;
-                    sqlBuilder.append(", ").append(nativeJoin.getTableAlias()).append(".*");
+                    // we don't execute this part of code for custom joins
+                    if (join instanceof NativeJoin) {
+                        NativeJoin nativeJoin = (NativeJoin) join;
+                        sqlBuilder.append(", ").append(nativeJoin.getTableAlias()).append(".*");
+                    }
                 }
             }
         }

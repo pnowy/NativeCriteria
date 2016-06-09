@@ -31,4 +31,15 @@ public class CustomSqlQueriesPartsTest extends AbstractDbTest {
         log.info("{}", nc.getQueryInfo());
     }
 
+    @Test
+    public void shouldUseCustomJoinQuery() throws Exception {
+        NativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s");
+        nc.addJoin(NativeExps.customSql("JOIN ADDRESS a ON a.supplier_id=s.id"));
+        CriteriaResult result = nc.criteriaResult();
+        while (result.next()) {
+            String currentRecordDesc = result.getCurrentRecordDesc();
+            log.info(currentRecordDesc);
+        }
+        assertThat(result.getRowsNumber()).isGreaterThan(0);
+    }
 }

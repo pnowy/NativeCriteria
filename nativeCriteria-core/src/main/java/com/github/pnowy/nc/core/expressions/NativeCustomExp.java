@@ -40,7 +40,7 @@ public class NativeCustomExp implements NativeExp {
      * Create custom SQL query with single dynamic parameter.
      *
      * @param sql sql custom query
-     * @param varName variable name (with the colon at the beginning, should be equal to the alias within the query)
+     * @param varName variable name (important: without the colon at the beginning, the colon should be used only within the query)
      * @param value tha value to assign
      */
     public NativeCustomExp(String sql, String varName, Object value) {
@@ -52,7 +52,7 @@ public class NativeCustomExp implements NativeExp {
      * Create custom SQL with multiple dynamics parameters.
      *
      * @param sql sql custom query
-     * @param values the map with the variable names (the colon at the beginning) and the values to assign
+     * @param values the map with the variable names (important: without the colon at the beginning) and the values to assign
      */
     public NativeCustomExp(String sql, Map<String, Object> values) {
         this(sql);
