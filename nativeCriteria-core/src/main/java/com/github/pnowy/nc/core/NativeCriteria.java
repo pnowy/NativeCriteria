@@ -2,7 +2,6 @@ package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJoin;
-import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
 import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
@@ -43,7 +42,7 @@ public class NativeCriteria implements NativeExp {
     /**
      * Joins.
      */
-    private List<NativeJoin> joins;
+    private List<NativeExp> joins;
 
     /**
      * WHERE expressions.
@@ -58,7 +57,7 @@ public class NativeCriteria implements NativeExp {
     /**
      * Order expression.
      */
-    private NativeOrderExp orderExp;
+    private NativeExp orderExp;
 
     /**
      * Limit (max result).
@@ -145,7 +144,7 @@ public class NativeCriteria implements NativeExp {
 
         this.whereExps = new LinkedHashMap<NativeExp, Operator>();
         this.havingExps = new LinkedHashMap<NativeExp, Operator>();
-        this.joins = new ArrayList<NativeJoin>();
+        this.joins = new ArrayList<NativeExp>();
     }
 
     /**
@@ -181,7 +180,10 @@ public class NativeCriteria implements NativeExp {
     }
 
     /**
-     * Add new condition to query with AND operator.
+     * <p>Add new condition to query with AND operator.</p>
+     *
+     * <p>Info about custom query: because it is a WHERE part of the query and could be invoked multiple times during criteria building the custom SQL
+     * cannot contains the 'WHERE' clause. This clause is added automatically by NativeCriteria engine.</p>
      *
      * @param exp the exp
      * @return the native criteria
@@ -246,7 +248,7 @@ public class NativeCriteria implements NativeExp {
      * @param join the join
      * @return the native criteria
      */
-    public NativeCriteria addJoin(NativeJoin join) {
+    public NativeCriteria addJoin(NativeExp join) {
         if (join == null) {
             throw new IllegalStateException("Object exp is null!");
         }
@@ -256,12 +258,16 @@ public class NativeCriteria implements NativeExp {
     }
 
     /**
-     * Add order by.
+     * <p>Add order by.</p>
+     *
+     * <p>On this place could be used {@link com.github.pnowy.nc.core.expressions.NativeCustomExp}. If you decide to add custom SQL here
+     * please remember that custom SQL has to contain the ORDER BY text at the beginning.
+     * ORDER BY part.</p>
      *
      * @param orderExp the order exp
      * @return the native criteria
      */
-    public NativeCriteria setOrder(NativeOrderExp orderExp) {
+    public NativeCriteria setOrder(NativeExp orderExp) {
         this.orderExp = orderExp;
         return this;
     }
@@ -326,7 +332,7 @@ public class NativeCriteria implements NativeExp {
      * @return number of rows for given criteria
      */
     public int fetchCount(String columnName, boolean distinct) {
-        NativeOrderExp backupOrder = this.orderExp;
+        NativeExp backupOrder = this.orderExp;
         Integer backupOffset = this.offset;
         Integer backupLimit = this.limit;
         boolean backupDistinct = this.distinct;
@@ -579,7 +585,7 @@ public class NativeCriteria implements NativeExp {
      */
     private void appendJoinSQL(StringBuilder sqlBuilder) {
         final String SPACE = " ";
-        for (NativeJoin join : joins) {
+        for (NativeExp join : joins) {
             sqlBuilder.append(join.toSQL()).append(SPACE);
         }
     }
@@ -630,10 +636,9 @@ public class NativeCriteria implements NativeExp {
                 }
             }
             if (joins.size() > 0) {
-                for (NativeJoin join : joins) {
-                    sqlBuilder.append(", ")
-                            .append(join.getTableAlias())
-                            .append(".*");
+                for (NativeExp join : joins) {
+                    NativeJoin nativeJoin = (NativeJoin) join;
+                    sqlBuilder.append(", ").append(nativeJoin.getTableAlias()).append(".*");
                 }
             }
         }
@@ -660,11 +665,9 @@ public class NativeCriteria implements NativeExp {
         for (NativeExp exp : havingExps.keySet()) {
             exp.setValues(sqlQuery);
         }
-
-        for (NativeJoin join : joins) {
+        for (NativeExp join : joins) {
             join.setValues(sqlQuery);
         }
-
         if (limit != null) {
             sqlQuery.setMaxResults(limit);
         }
