@@ -189,7 +189,7 @@ public class NativeProjection {
                 sql.append(aggregateProjection.getValue())
                         .append("(").append(columnName).append(")");
             } else if (isSubquery()) {
-                sql.append("(").append(criteria.getSQL()).append(")");
+                sql.append("(").append(criteria.toSQL()).append(")");
             } else {
                 sql.append(columnName);
             }

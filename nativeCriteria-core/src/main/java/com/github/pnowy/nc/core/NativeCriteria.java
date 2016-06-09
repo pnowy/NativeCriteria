@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class NativeCriteria implements NativeExp {
     private static final Logger LOG = LoggerFactory.getLogger(NativeCriteria.class);
     private static final Logger PERFORMANCE_LOG = LoggerFactory.getLogger("NativeCriteriaPerformance");
+    private static final String SPACE = " ";
 
     /**
      * Hibernate session.
@@ -438,16 +439,7 @@ public class NativeCriteria implements NativeExp {
      * @param stopwatch stopwatch with measure tim
      */
     private void checkEndExecutionTime(Stopwatch stopwatch) {
-        PERFORMANCE_LOG.info("Execution time ({}ms, - {}", stopwatch.elapsed(TimeUnit.MILLISECONDS), getSQL());
-    }
-
-    /**
-     * Return query SQL.
-     *
-     * @return the sQL
-     */
-    public String getSQL() {
-        return buildSQL();
+        PERFORMANCE_LOG.info("Execution time ({}ms, - {}", stopwatch.elapsed(TimeUnit.MILLISECONDS), toSQL());
     }
 
     /**
@@ -456,52 +448,10 @@ public class NativeCriteria implements NativeExp {
      * @return the sQL query
      */
     private NativeQuery buildCriteriaQuery() {
-        NativeQuery nativeQuery = nativeProvider.getNativeQuery(buildSQL());
+        NativeQuery nativeQuery = nativeProvider.getNativeQuery(toSQL());
         setValues(nativeQuery);
 
         return nativeQuery;
-    }
-
-    /**
-     * Build SQL query.
-     *
-     * @return the string
-     */
-    private String buildSQL() {
-        final String SPACE = " ";
-
-        StringBuilder sqlBuilder = new StringBuilder();
-
-        // clause select i distinct
-        sqlBuilder.append("SELECT").append(SPACE);
-        if (distinct) {
-            sqlBuilder.append("DISTINCT").append(SPACE);
-        }
-
-        // columns
-        appendProjectionSQL(sqlBuilder);
-
-        // FROM
-        appendFromSQL(sqlBuilder);
-
-        // JOIN
-        appendJoinSQL(sqlBuilder);
-
-        // WHERE
-        appendWhereSQL(sqlBuilder);
-
-        // GROUP BY (PROJECTIONS)
-        appendGroupBySQL(sqlBuilder);
-
-        // HAVING
-        appendHavingSQL(sqlBuilder);
-
-        // ORDER BY
-        appendOrderBySQL(sqlBuilder);
-
-        String sql = sqlBuilder.toString();
-        LOG.debug("NativeCriteria SQL: " + sql);
-        return sql;
     }
 
     /**
@@ -510,7 +460,6 @@ public class NativeCriteria implements NativeExp {
      * @param sqlBuilder the sql builder
      */
     private void appendHavingSQL(StringBuilder sqlBuilder) {
-        final String SPACE = " ";
         boolean first = true;
         if (havingExps.size() > 0) {
             sqlBuilder.append("HAVING").append(SPACE);
@@ -561,20 +510,18 @@ public class NativeCriteria implements NativeExp {
      * @param sqlBuilder the sql builder
      */
     private void appendWhereSQL(StringBuilder sqlBuilder) {
-        final String SPACE = " ";
         boolean first = true;
         if (whereExps.size() > 0) {
             sqlBuilder.append("WHERE").append(SPACE);
 
             for (Entry<NativeExp, Operator> exp : whereExps.entrySet()) {
+                NativeExp whereExpression = exp.getKey();
                 if (first) {
-                    sqlBuilder.append(exp.getKey().toSQL()).append(SPACE);
+                    sqlBuilder.append(whereExpression.toSQL()).append(SPACE);
                     first = false;
                 } else {
-                    sqlBuilder.append(exp.getValue().getValue())
-                            .append(SPACE)
-                            .append(exp.getKey().toSQL())
-                            .append(SPACE);
+                    Operator ope = exp.getValue();
+                    sqlBuilder.append(ope.getValue()).append(SPACE).append(whereExpression.toSQL()).append(SPACE);
                 }
             }
         }
@@ -586,7 +533,6 @@ public class NativeCriteria implements NativeExp {
      * @param sqlBuilder the sql builder
      */
     private void appendJoinSQL(StringBuilder sqlBuilder) {
-        final String SPACE = " ";
         for (NativeExp join : joins) {
             sqlBuilder.append(join.toSQL()).append(SPACE);
         }
@@ -598,18 +544,15 @@ public class NativeCriteria implements NativeExp {
      * @param sqlBuilder the sql builder
      */
     private void appendFromSQL(StringBuilder sqlBuilder) {
-        final String SPACE = " ";
         sqlBuilder.append(SPACE).append("FROM").append(SPACE);
 
         boolean first = true;
         for (Entry<String, String> from : tables.entrySet()) {
             if (first) {
-                sqlBuilder.append(from.getKey()).append(SPACE)
-                        .append(from.getValue());
+                sqlBuilder.append(from.getKey()).append(SPACE).append(from.getValue());
                 first = false;
             } else {
-                sqlBuilder.append(", ").append(from.getKey()).append(SPACE)
-                        .append(from.getValue());
+                sqlBuilder.append(", ").append(from.getKey()).append(SPACE).append(from.getValue());
             }
         }
 
@@ -627,6 +570,7 @@ public class NativeCriteria implements NativeExp {
             sqlBuilder.append(projection.projectionToSQL());
         }
 
+        // if there is no defined projection we are adding projection automatically based on joins and tables
         if (projection == null || projection.countProjections() == 0) {
             boolean first = true;
             for (String alias : tables.values()) {
@@ -649,9 +593,45 @@ public class NativeCriteria implements NativeExp {
         }
     }
 
+    /**
+     * Build sql query
+     *
+     * @return sql query
+     */
     @Override
     public String toSQL() {
-        return buildSQL();
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        // clause select i distinct
+        sqlBuilder.append("SELECT").append(SPACE);
+        if (distinct) {
+            sqlBuilder.append("DISTINCT").append(SPACE);
+        }
+
+        // columns
+        appendProjectionSQL(sqlBuilder);
+
+        // FROM
+        appendFromSQL(sqlBuilder);
+
+        // JOIN
+        appendJoinSQL(sqlBuilder);
+
+        // WHERE
+        appendWhereSQL(sqlBuilder);
+
+        // GROUP BY (PROJECTIONS)
+        appendGroupBySQL(sqlBuilder);
+
+        // HAVING
+        appendHavingSQL(sqlBuilder);
+
+        // ORDER BY
+        appendOrderBySQL(sqlBuilder);
+
+        String sql = sqlBuilder.toString();
+        LOG.debug("NativeCriteria SQL: " + sql);
+        return sql;
     }
 
     @Override
