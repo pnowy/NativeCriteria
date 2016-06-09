@@ -49,7 +49,7 @@ import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
  * <p>Please note that this class is designed to provide convenience rather than high performance.
  * For best performance, consider using a custom {@link NativeObjectMapper} implementation.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com] based on Spring {@link org.springframework.jdbc.core.BeanPropertyRowMapper}
+ * @author Przemek Nowak based on Spring {@link org.springframework.jdbc.core.BeanPropertyRowMapper}
  */
 public class NativeBeanPropertyMapper<T> implements NativeObjectMapper<T> {
     protected final Logger logger = LoggerFactory.getLogger(NativeBeanPropertyMapper.class);

@@ -5,7 +5,7 @@ import com.github.pnowy.nc.core.CriteriaResult;
 /**
  * Iterface to map object from criteria result.
  *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public interface NativeObjectMapper<T> {
     T mapObject(CriteriaResult cr);

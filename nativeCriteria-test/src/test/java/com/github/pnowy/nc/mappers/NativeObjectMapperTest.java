@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Simple database test with {@linkplain NativeObjectMapper}.
  *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class NativeObjectMapperTest extends AbstractDbTest {
     private static final Logger log = LoggerFactory.getLogger(NativeObjectMapperTest.class);

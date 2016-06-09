@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 /**
  * Default hibernate provider.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class HibernateQueryProvider implements NativeQueryProvider {
     private Session session;
