@@ -109,6 +109,11 @@ public class NativeProjection {
         private NativeCriteria criteria;
 
         /**
+         * Custom projection
+         */
+        private NativeExp customProjection;
+
+        /**
          * @param columnName the column name
          * @param alias      the alias
          */
@@ -119,6 +124,8 @@ public class NativeProjection {
         }
 
         /**
+         * Create the projection bean.
+         *
          * @param columnName          the column name
          * @param alias               the alias
          * @param aggregateProjection the aggregate projection
@@ -140,6 +147,19 @@ public class NativeProjection {
             this.subquery = true;
             this.alias = alias;
             this.columnName = alias;
+        }
+
+        /**
+         * Create projection bean based on custom projection.
+         *
+         * @param customProjection
+         */
+        public ProjectionBean(NativeExp customProjection) {
+            this.customProjection = customProjection;
+        }
+
+        private boolean isCustomProjection() {
+            return customProjection != null;
         }
 
         /**
@@ -186,10 +206,11 @@ public class NativeProjection {
         public String toSQL() {
             StringBuilder sql = new StringBuilder();
             if (isAggregate()) {
-                sql.append(aggregateProjection.getValue())
-                        .append("(").append(columnName).append(")");
+                sql.append(aggregateProjection.getValue()).append("(").append(columnName).append(")");
             } else if (isSubquery()) {
                 sql.append("(").append(criteria.toSQL()).append(")");
+            } else if (isCustomProjection()) {
+                return customProjection.toSQL();
             } else {
                 sql.append(columnName);
             }
@@ -278,6 +299,11 @@ public class NativeProjection {
         for (String col : columns) {
             projections.add(new ProjectionBean(col, VarGenerator.gen(col)));
         }
+        return this;
+    }
+
+    public NativeProjection addProjection(NativeExp customProjection) {
+        projections.add(new ProjectionBean(customProjection));
         return this;
     }
 

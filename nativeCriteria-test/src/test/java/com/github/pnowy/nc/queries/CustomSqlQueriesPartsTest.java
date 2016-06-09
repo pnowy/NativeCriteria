@@ -42,4 +42,23 @@ public class CustomSqlQueriesPartsTest extends AbstractDbTest {
         }
         assertThat(result.getRowsNumber()).isGreaterThan(0);
     }
+
+    @Test
+    public void shouldUseCustomProjection() throws Exception {
+        NativeCriteria nc = createSpringNativeCriteria("ADDRESS", "a");
+        nc.setProjection(NativeExps.projection().addProjection("a.street", "street").addProjection(NativeExps.customSql("a.city as city")));
+
+        nc.criteriaResult();
+        String sql = nc.getQueryInfo().getSql();
+        assertThat(sql).contains("a.city as city");
+    }
+
+    @Test
+    public void shouldUseCustomOrder() throws Exception {
+        NativeCriteria nc = createSpringNativeCriteria("ADDRESS", "a");
+        nc.setOrder(NativeExps.customSql("ORDER BY a.id"));
+        nc.criteriaResult();
+        String sql = nc.getQueryInfo().getSql();
+        assertThat(sql).contains("ORDER BY a.id");
+    }
 }
