@@ -1,8 +1,9 @@
 package com.github.pnowy.nc.utils;
 
 /**
- * Class for additional Strings operations. Is embedded in Core
- * in order to avoid additional (non necessary) dependencies.
+ * <p>Class for additional Strings operations.</p>
+ *
+ * <p>Is embedded in Core in order to avoid additional (non necessary) dependencies.</p>
  */
 public class Strings {
 

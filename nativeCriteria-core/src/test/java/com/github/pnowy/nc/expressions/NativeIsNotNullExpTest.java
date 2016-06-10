@@ -1,7 +1,10 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
+import org.assertj.core.api.Assertions;
 import org.testng.Assert;
+
+import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
@@ -16,8 +19,8 @@ public class NativeIsNotNullExpTest extends NativeExpGenericTest {
 
     @Override
     protected void checkConditions() {
-        Assert.assertTrue(sql.contains("is not null"));
-        Assert.assertTrue(sql.contains(MAIN_ALIAS_WITH_DOT + "col1"));
+        assertThat(sql).contains("is not null");
+        assertThat(sql.contains(MAIN_ALIAS_WITH_DOT + "col1")).isTrue();
     }
 
 }

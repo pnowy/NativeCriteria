@@ -4,8 +4,8 @@ import com.github.pnowy.nc.core.CriteriaResult;
 
 /**
  * Criteria result transformer interface.
- * <p/>
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ *
+ * @author Przemek Nowak
  */
 public interface CriteriaResultTransformer<T> {
     T transform(CriteriaResult criteriaResult);

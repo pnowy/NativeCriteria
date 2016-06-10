@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="properties.xml" relativeToChangelogFile="true" />
+
+    <changeSet id="0002" author="pnowak" >
+        <createTable tableName="ADDRESS">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="CITY" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="STREET" type="VARCHAR(64)" />
+            <column name="BUILDING_NUMBER" type="VARCHAR(16)" />
+            <column name="ZIP_CODE" type="VARCHAR(16)" />
+            <column name="SUPPLIER_ID" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="SUPPLIER_ID"
+                                 baseTableName="ADDRESS"
+                                 constraintName="fk_address_supplier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="SUPPLIER"/>
+
+        <loadData encoding="UTF-8"
+                  file="liquibase/data/address.csv"
+                  separator=";"
+                  tableName="ADDRESS"/>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -2,7 +2,7 @@ package com.github.pnowy.nc.expressions;
 
 import static com.github.pnowy.nc.core.NativeExps.eq;
 import static com.github.pnowy.nc.core.NativeExps.sql;
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="properties.xml" relativeToChangelogFile="true" />
+
+    <changeSet id="0000" author="pnowak" dbms="postgresql,oracle">
+        <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="0001" author="pnowak">
+        <createTable tableName="SUPPLIER">
+            <column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(256)">
+                <constraints nullable="false" />
+            </column>
+            <column name="first_name" type="varchar(256)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="varchar(256)">
+                <constraints nullable="false" />
+            </column>
+            <column name="vat_identification_number" type="varchar(255)"/>
+            <column name="phone_number" type="varchar(32)"/>
+            <column name="email" type="varchar(64)"/>
+        </createTable>
+
+        <loadData encoding="UTF-8"
+                  file="liquibase/data/supplier.csv"
+                  separator=";"
+                  tableName="SUPPLIER"/>
+
+    </changeSet>
+
+</databaseChangeLog>

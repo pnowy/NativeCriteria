@@ -6,11 +6,47 @@ import com.google.common.collect.Collections2;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class to build native sql expressions. The best way to build expressions - static import methods from this class.
  */
 public class NativeExps {
+
+    /**
+     * Custom SQL expression.
+     *
+     * @param sql sql expression (without any dynamic parameters)
+     * @return the native exp
+     */
+    public static NativeExp customSql(final String sql) {
+        return new NativeCustomExp(sql);
+    }
+
+    /**
+     * Custom sql expression with single dynamic variable.
+     *
+     * @param sql sql expression
+     * @param varName variable name (alias) within sql expression
+     * @param value value for dynamic variable
+     *
+     * @return custom expression
+     */
+    public static NativeExp customSql(final String sql, String varName, Object value) {
+        return new NativeCustomExp(sql, varName, value);
+    }
+
+    /**
+     * Custom sql expression with multiple dynamic variables.
+     *
+     * @param sql custom sql expression
+     * @param values map where the key is an alias from query and the value is a value which should be substituted to query
+     *
+     * @return custom sql expression
+     */
+    public static NativeExp customSql(final String sql, Map<String, Object> values) {
+        return new NativeCustomExp(sql, values);
+    }
 
     /**
      * Equal expression
@@ -48,7 +84,7 @@ public class NativeExps {
 
     /**
      * In expression for collection.
-     * This method also service null values in collection, collections with one element (throught equal) and empty collections
+     * This method also service null values in collection, collections with one element (thorough equal) and empty collections
      * (empty result by adding sql 1=0)
      *
      * @param columnName the column name
@@ -146,6 +182,17 @@ public class NativeExps {
     }
 
     /**
+     * ILIKE expression.
+     *
+     * @param columnName the column name
+     * @param value      the value
+     * @return the native exp
+     */
+    public static NativeExp ilike(String columnName, String value) {
+        return new NativeILikeExp(columnName, value);
+    }
+
+    /**
      * Not like expression.
      *
      * @param columnName the column name
@@ -155,6 +202,18 @@ public class NativeExps {
     public static NativeExp notLike(String columnName, String value) {
         return new NativeNotLikeExp(columnName, value);
     }
+
+    /**
+     * Not like expression.
+     *
+     * @param columnName the column name
+     * @param value      the value
+     * @return the native exp
+     */
+    public static NativeExp notILike(String columnName, String value) {
+        return new NativeNotILikeExp(columnName, value);
+    }
+
 
     /**
      * Between expression.
@@ -244,6 +303,26 @@ public class NativeExps {
     }
 
     /**
+     * Create {@link NativeOrderExp} with ascending order for specified column.
+     *
+     * @param columnName column name
+     * @return native order expression with defined single ordering
+     */
+    public static NativeOrderExp ascOrder(String columnName) {
+        return order().add(columnName, NativeOrderExp.OrderType.ASC);
+    }
+
+    /**
+     * Create {@link NativeOrderExp} with descending order for specified column.
+     *
+     * @param columnName column name
+     * @return native order expression with defined single ordering
+     */
+    public static NativeOrderExp descOrder(String columnName) {
+        return order().add(columnName, NativeOrderExp.OrderType.DESC);
+    }
+
+    /**
      * Projection.
      *
      * @return the native projection
@@ -289,6 +368,18 @@ public class NativeExps {
         return new NativeJoin(tableName, tableAlias, NativeJoin.JoinType.INNER, complexJoinExp);
     }
 
+    public static NativeJoin innerJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.INNER, leftColumn, rightColumn);
+    }
+
+    public static NativeJoin leftJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.LEFT_OUTER, leftColumn, rightColumn);
+    }
+
+    public static NativeJoin rightJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.RIGHT_OUTER, leftColumn, rightColumn);
+    }
+
     /**
      * Right outer join.
      *
@@ -326,6 +417,20 @@ public class NativeExps {
      */
     public static NativeJoin fullJoin(String tableName, String tableAlias, String leftColumn, String rightColumn) {
         return new NativeJoin(tableName, tableAlias, NativeJoin.JoinType.FULL_OUTER, leftColumn, rightColumn);
+    }
+
+    /**
+     * Full out join with sub Native Criteria with custom join table (select).
+     *
+     * @param nativeCriteria sub native criteria with definition of custom join select / table
+     * @param tableAlias the table alias
+     * @param leftColumn the left column
+     * @param rightColumn the right column
+     *
+     * @return the native join
+     */
+    public static NativeJoin fullJoin(NativeCriteria nativeCriteria, String tableAlias, String leftColumn, String rightColumn) {
+        return new NativeJoin(nativeCriteria, tableAlias, NativeJoin.JoinType.FULL_OUTER, leftColumn, rightColumn);
     }
 
     /**

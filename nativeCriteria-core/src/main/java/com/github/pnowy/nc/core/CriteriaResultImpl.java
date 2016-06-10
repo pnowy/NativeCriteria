@@ -5,6 +5,7 @@ import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.github.pnowy.nc.utils.Objects;
 import com.google.common.base.Joiner;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,11 @@ public class CriteriaResultImpl implements CriteriaResult {
      * Record index.
      */
     private int recordIdx = -1;
+
+    /**
+     * Number of retrieved columns.
+     */
+    private int columnCounter = -1;
 
     /**
      * Projections.
@@ -44,6 +50,7 @@ public class CriteriaResultImpl implements CriteriaResult {
         this.results = results;
         this.queryInfo = queryInfo;
         this.projection = projection;
+        this.columnCounter = (results.size() > 0) ? (results.getClass().isArray() ? results.get(0).length : 1) : -1;
     }
 
     /**
@@ -64,9 +71,11 @@ public class CriteriaResultImpl implements CriteriaResult {
             return defaultResult;
 
         Boolean res;
-        if (val instanceof String)
+        if (val instanceof String) {
             res = Boolean.valueOf(val.toString());
-        else {
+        } else if (val instanceof Boolean) {
+            res = (Boolean) val;
+        } else {
             String v = val.toString();
             res = v.equals("1");
         }
@@ -122,6 +131,20 @@ public class CriteriaResultImpl implements CriteriaResult {
     }
 
     @Override
+    public BigDecimal getBigDecimal(int idx) {
+        return getBigDecimal(idx, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(int idx, BigDecimal defaultResult) {
+        Object val = getValue(idx, null);
+        if (val == null)
+            return defaultResult;
+
+        return (BigDecimal) val;
+    }
+
+    @Override
     public Double getDouble(String columnName, Double defaultResult) {
         Object val = getValue(columnName, null);
         if (val == null)
@@ -133,6 +156,20 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Double getDouble(String columnName) {
         return getDouble(columnName, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(String columnName) {
+        return getBigDecimal(columnName, null);
+    }
+
+    @Override
+    public BigDecimal getBigDecimal(String columnName, BigDecimal defaultResult) {
+        Object val = getValue(columnName);
+        if (val == null)
+            return defaultResult;
+
+        return (BigDecimal) val;
     }
 
     @Override
@@ -195,7 +232,7 @@ public class CriteriaResultImpl implements CriteriaResult {
 
         if (hasMultipleProjection()) {
             Object[] row = results.get(recordIdx);
-            return Joiner.on(" | ").join(row);
+            return Joiner.on(" | ").useForNull("null").join(row);
         } else {
             return Objects.toString(results.get(recordIdx));
         }
@@ -237,6 +274,16 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Integer getRowsNumber() {
         return results.size();
+    }
+
+    @Override
+    public Integer getRowNumber() {
+        return recordIdx;
+    }
+
+    @Override
+    public Integer getColumnCount() {
+        return columnCounter;
     }
 
     @Override
@@ -334,5 +381,13 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Object getValue(String columnName) {
         return getValue(columnName, null);
+    }
+
+    @Override
+    public boolean hasProperty(String columnName) {
+        if (projection == null) {
+            throw new IllegalStateException("Only supported method with a fixed projection!");
+        }
+        return projection.getProjectionIndex(columnName) > -1;
     }
 }

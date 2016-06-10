@@ -9,7 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 /**
  * Przemek Nowak <przemek.nowak.pl@gmail.com>
@@ -56,5 +57,23 @@ public class NativeProjectionTest {
         String sql = nc.getQueryInfo().getSql();
         assertThat(sql).containsIgnoringCase("avg");
         log.info("QueryInfo: {}", nc.getQueryInfo().getSummary());
+    }
+
+    @Test
+    public void testAliasesProjection() throws Exception {
+        nc.setProjection(NativeExps.projection().addProjectionWithAliases("t1.column as productName"));
+        nc.criteriaResult();
+
+        String sql = nc.getQueryInfo().getSql();
+        assertThat(sql).contains("t1.column as productName");
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testIncorrectAliasesProjection() {
+        nc.setProjection(NativeExps.projection().addProjectionWithAliases("t1.column by productName"));
+        nc.criteriaResult();
+
+        String sql = nc.getQueryInfo().getSql();
+        assertThat(sql).contains("t1.column as productName");
     }
 }

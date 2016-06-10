@@ -4,10 +4,9 @@ import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.core.NativeQueryProvider;
 
 /**
- * Native test provider. Used for testing application without database.
- * <p/>
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 30.07.13 17:39
+ * <p>Native test provider. Used for testing application without database.</p>
+ *
+ * Przemek Nowak
  */
 public class NativeTestProvider implements NativeQueryProvider {
     @Override

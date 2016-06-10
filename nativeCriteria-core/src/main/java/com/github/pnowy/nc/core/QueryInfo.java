@@ -6,14 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class contain some information about executed query.
- * Information:
+ * Class contain some information about executed query. Available information:
  * <ul>
- * <li>sql</li>
- * <li>map with parameters</li>
+ *  <li>sql</li>
+ *  <li>map with parameters</li>
  * </ul>
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class QueryInfo {
     private String sql;
@@ -43,19 +42,15 @@ public class QueryInfo {
      */
     public String getSummary() {
         StringBuilder sb = new StringBuilder("QueryInfo:\n");
-        sb.append("sql: ").append(sql).append("\n");
+        sb.append("\tSQL: ").append(sql).append("\n");
         for (Map.Entry<String, Object> entry : parameters.entrySet()) {
-            sb.append("parameter name: ").append(entry.getKey()).append(", parameter value: ").append(Objects.toString(entry.getValue())).append("\n");
+            sb.append("\tParameter name: ").append(entry.getKey()).append(", parameter value: ").append(Objects.toString(entry.getValue()));
         }
         return sb.toString();
     }
 
-
     @Override
     public String toString() {
-        return "QueryInfo{" +
-                "parameters=" + parameters +
-                ", sql='" + sql + '\'' +
-                '}';
+        return getSummary();
     }
 }

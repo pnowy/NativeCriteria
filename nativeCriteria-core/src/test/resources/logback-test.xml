@@ -10,10 +10,6 @@
         </encoder>
     </appender>
 
-    <logger name="przemek" level="DEBUG">
-        <appender-ref ref="stdout"/>
-    </logger>
-
     <logger name="NativeCriteriaPerformance" level="DEBUG">
         <appender-ref ref="stdout" />
     </logger>

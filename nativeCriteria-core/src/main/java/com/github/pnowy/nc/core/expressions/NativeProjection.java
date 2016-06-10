@@ -5,6 +5,7 @@ import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class NativeProjection {
          *
          * @param value the value
          */
-        private AggregateProjection(String value) {
+        AggregateProjection(String value) {
             this.value = value;
         }
 
@@ -108,6 +109,11 @@ public class NativeProjection {
         private NativeCriteria criteria;
 
         /**
+         * Custom projection
+         */
+        private NativeExp customProjection;
+
+        /**
          * @param columnName the column name
          * @param alias      the alias
          */
@@ -118,6 +124,8 @@ public class NativeProjection {
         }
 
         /**
+         * Create the projection bean.
+         *
          * @param columnName          the column name
          * @param alias               the alias
          * @param aggregateProjection the aggregate projection
@@ -139,6 +147,19 @@ public class NativeProjection {
             this.subquery = true;
             this.alias = alias;
             this.columnName = alias;
+        }
+
+        /**
+         * Create projection bean based on custom projection.
+         *
+         * @param customProjection
+         */
+        public ProjectionBean(NativeExp customProjection) {
+            this.customProjection = customProjection;
+        }
+
+        private boolean isCustomProjection() {
+            return customProjection != null;
         }
 
         /**
@@ -185,10 +206,11 @@ public class NativeProjection {
         public String toSQL() {
             StringBuilder sql = new StringBuilder();
             if (isAggregate()) {
-                sql.append(aggregateProjection.getValue())
-                        .append("(").append(columnName).append(")");
+                sql.append(aggregateProjection.getValue()).append("(").append(columnName).append(")");
             } else if (isSubquery()) {
-                sql.append("(").append(criteria.getSQL()).append(")");
+                sql.append("(").append(criteria.toSQL()).append(")");
+            } else if (isCustomProjection()) {
+                return customProjection.toSQL();
             } else {
                 sql.append(columnName);
             }
@@ -236,6 +258,34 @@ public class NativeProjection {
     }
 
     /**
+     * <p>
+     *     Special approach of creating projection. With this approach the column name + alias could be provided as single String.
+     *     This method removing the requirement of creation new map with column names as keys and aliases as values. On this method that
+     *     kind of map is created out-of-the-box under the hood.
+     * </p>
+     *
+     * <p>The column with alias should be provides on the following pattern: <strong>"columnName as alias"</strong></p>
+     *
+     * @param columnsWithAliases column name with alias according the pattern <strong>"columnName as alias"</strong>, for example
+     *                        <strong>"p.name as productName"</strong>
+     * @return {@link NativeProjection}
+     */
+    public NativeProjection addProjectionWithAliases(String... columnsWithAliases) {
+        Preconditions.checkNotNull(columnsWithAliases);
+
+        Map<String, String> columnsProjection = Maps.newLinkedHashMap();
+        for (String columnWithAlias : columnsWithAliases) {
+            final String[] result = columnWithAlias.split("(?i) AS ");
+            if (result.length != 2) {
+                throw new IllegalArgumentException("There is the problem with provides column and alias statement: \" " +
+                    columnWithAlias + " \". Please check the statement. It should be pattern \"columnName as alias\"");
+            }
+            columnsProjection.put(result[0], result[1]);
+        }
+        return addProjection(columnsProjection);
+    }
+
+    /**
      * Add projection as list column.
      *
      * @param columns list columns
@@ -249,6 +299,11 @@ public class NativeProjection {
         for (String col : columns) {
             projections.add(new ProjectionBean(col, VarGenerator.gen(col)));
         }
+        return this;
+    }
+
+    public NativeProjection addProjection(NativeExp customProjection) {
+        projections.add(new ProjectionBean(customProjection));
         return this;
     }
 
@@ -385,6 +440,8 @@ public class NativeProjection {
 
     /**
      * Return projection index.
+     *
+     * Method returns -1 when the column projection does not exist.
      *
      * @param columnName the column name
      * @return the projection index

@@ -12,12 +12,12 @@ public interface NativeExp {
      *
      * @return the string
      */
-    public String toSQL();
+    String toSQL();
 
     /**
      * Sets the values.
      *
      * @param query the new values
      */
-    public void setValues(NativeQuery query);
+    void setValues(NativeQuery query);
 }

@@ -8,9 +8,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * JPA implementation of native query.
- * <p/>
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * <p>JPA implementation of native query.</p>
+ *
+ * Przemek Nowak
  */
 public class JpaNativeQuery implements NativeQuery {
     private Query query;
