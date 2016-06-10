@@ -13,7 +13,7 @@ public interface NativeJunctionExp extends NativeExp {
      * @param exp the exp
      * @return the native junction exp
      */
-    public NativeJunctionExp add(NativeExp exp);
+    NativeJunctionExp add(NativeExp exp);
 
     /**
      * Adds the.
@@ -21,5 +21,5 @@ public interface NativeJunctionExp extends NativeExp {
      * @param exps the exps
      * @return the native junction exp
      */
-    public NativeJunctionExp add(List<NativeExp> exps);
+    NativeJunctionExp add(List<NativeExp> exps);
 }

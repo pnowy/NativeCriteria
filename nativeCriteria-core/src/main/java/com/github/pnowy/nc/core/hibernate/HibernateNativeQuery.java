@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- *
+ * <p>Hibernate native query provider.</p>
  */
 public class HibernateNativeQuery implements NativeQuery {
     private SQLQuery query;

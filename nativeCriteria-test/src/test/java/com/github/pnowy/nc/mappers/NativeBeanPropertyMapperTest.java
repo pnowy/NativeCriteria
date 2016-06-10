@@ -20,7 +20,7 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
 /**
  * Tests of bean property mapper.
  *
- * @author Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * @author Przemek Nowak
  */
 public class NativeBeanPropertyMapperTest extends AbstractDbTest {
 

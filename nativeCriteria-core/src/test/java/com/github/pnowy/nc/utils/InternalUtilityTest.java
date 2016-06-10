@@ -12,7 +12,7 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
 /**
  * <p>Test for some internal utilities for {@linkplain com.github.pnowy.nc.core.NativeCriteria}
  *
- * @author Przemek Nowak [przemek dot nowak dot pl at gmail.com]
+ * @author Przemek Nowak
  */
 public class InternalUtilityTest {
 

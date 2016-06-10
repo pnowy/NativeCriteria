@@ -1,5 +1,6 @@
 package com.github.pnowy.nc.core.expressions;
 
+import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.utils.Strings;
 import com.google.common.base.Preconditions;
 
@@ -10,7 +11,7 @@ import java.util.Map.Entry;
 /**
  * Native ORDER BY expression.
  */
-public class NativeOrderExp {
+public class NativeOrderExp implements NativeExp {
     private Map<String, OrderType> orders;
 
     public enum OrderType {
@@ -126,5 +127,11 @@ public class NativeOrderExp {
         } else {
             return "";
         }
+    }
+
+    // only to fulfill NativeExp contract
+    @Override
+    public void setValues(NativeQuery query) {
+
     }
 }
