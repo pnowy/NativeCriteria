@@ -8,12 +8,12 @@ import com.google.common.base.MoreObjects;
  * @author Przemek Nowak
  */
 public class Supplier extends AbstractEntity {
-    private String name;
-    private String firstName;
-    private String lastName;
-    private String vatIdentificationNumber;
-    private String phoneNumber;
-    private String email;
+    protected String name;
+    protected String firstName;
+    protected String lastName;
+    protected String vatIdentificationNumber;
+    protected String phoneNumber;
+    protected String email;
 
     public String getName() {
         return name;

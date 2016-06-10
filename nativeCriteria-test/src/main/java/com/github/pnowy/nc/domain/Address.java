@@ -6,13 +6,13 @@ import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 /**
  * <p>Test class mapping address table.</p>
  *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
+ * Przemek Nowak
  */
 public class Address extends AbstractEntity {
-    private String city;
-    private String street;
-    private String buildingNumber;
-    private String zipCode;
+    protected String city;
+    protected String street;
+    protected String buildingNumber;
+    protected String zipCode;
 
     public static NativeObjectMapper<Address> NATIVE_OBJECT_MAPPER = new NativeObjectMapper<Address>() {
         @Override
