@@ -8,14 +8,14 @@
  
 ### RELEASE NEW VERSION (by jgitflow maven plugin)
  
-    mvn jgitflow:release-start -> starting the new release
-    mvn jgitflow:release-finish -> finishing the release (and makes other stuff related with gitflow & artifacts deployment)
+    mvn jgitflow:release-start -Dgpg.skip=false     => starting the new release
+    mvn jgitflow:release-finish -Dgpg.skip=false    => finishing the release (and makes other stuff related with gitflow & artifacts deployment)
     
     Then, Go to https://oss.sonatype.org
     Login to the Nexus UI.
     Go to Staging Repositories page.
     Select a staging repository.
-    Click the Close button.
+    Click the Close button (on the top bar).
     THEN Click the Release button and it should also appear in maven central etc
  
 ### GENERATE SNAPSHOT
