@@ -8,8 +8,8 @@
  
 ### RELEASE NEW VERSION (by jgitflow maven plugin)
  
-    jgitflow:release-start -> starting the new release
-    jgitflow:release-finish -> finishing the release (and makes other stuff related with gitflow & artifacts deployment)
+    mvn jgitflow:release-start -> starting the new release
+    mvn jgitflow:release-finish -> finishing the release (and makes other stuff related with gitflow & artifacts deployment)
     
     Then, Go to https://oss.sonatype.org
     Login to the Nexus UI.
