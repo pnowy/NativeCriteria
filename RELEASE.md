@@ -22,6 +22,10 @@
 
     mvn clean javadoc:jar source:jar deploy -Darguments=-Dgpg.passphrase=PASSPHRASE
 
+### DEPLOY (use the version 2 of GPG on windows not provided gpg1.4 git-for-windows)
+
+    mvn javadoc:jar source:jar deploy -Dgpg.skip=false -Darguments=-Dgpg.passphrase=PASSPHRASE
+
 ### RELEASE NEW VERSION (by the maven release plugin) DEPRECATED
 
     mvn release:clean

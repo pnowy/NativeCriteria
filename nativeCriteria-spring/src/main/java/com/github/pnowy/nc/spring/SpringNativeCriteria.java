@@ -70,10 +70,10 @@ public class SpringNativeCriteria extends NativeCriteria {
      * <p>With this method you have to first set pageable parameter and after that you have to create {@link PageImpl} on you own. For
      * the counting result you could use {@link #fetchCount(String)} method. See example below.</p>
      *
-     * <pre>
-     *  List<ExampleDTO> result = nc.criteriaResult(nativeObjectMapper<ExampleDTO>)
+     * <pre><code>
+     *  List&lt;ExampleDTO&gt; result = nc.criteriaResult(nativeObjectMapper&lt;ExampleDTO&gt;)
      *  return new PageImpl&lt;&gt;(result, pageable, nc.fetchCount("result.id", true));
-     * </pre>
+     * </code></pre>
      *
      * @param pageable spring pageable
      * @param orderByApproach nulls ordering approach

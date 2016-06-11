@@ -231,6 +231,9 @@
                 </executions>
                 <configuration>
                     <skip>${gpg.skip}</skip>
+                    <gpgArguments>
+                        <arg>--no-tty</arg>
+                    </gpgArguments>
                 </configuration>
             </plugin>
         </plugins>
