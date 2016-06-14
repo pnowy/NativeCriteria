@@ -414,7 +414,7 @@ public class NativeCriteria implements NativeExp {
     }
 
     private boolean isLogPerformance() {
-        return PERFORMANCE_LOG.isInfoEnabled();
+        return PERFORMANCE_LOG.isDebugEnabled();
     }
 
     /**
