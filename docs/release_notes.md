@@ -1,3 +1,7 @@
+---
+currentMenu: releaseNotes
+---
+
 ##### Release 2.1 changes
  * Migrate to gradle (?)
  * Use bintray (?)

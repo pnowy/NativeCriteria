@@ -1,5 +1,6 @@
 template:
-    url: https://github.com/CouscousPHP/Template-Dark
+    url: https://github.com/pnowy/CouscousNativeTemplate
+#    directory: ./template
     index: index.md
 
 # List of directories to include in the processing (by default it's empty, so all markdown files are parsed)
@@ -24,6 +25,8 @@ github:
 
 title: NativeCriteria
 subTitle: Ultra lightweight library to generate dynamic SQL based on hibernate session
+fontAwesomeIcon: fa fa-binoculars
+footerText: Developed and designed by pnowy
 
 # The left menu bar
 menu:
@@ -31,22 +34,25 @@ menu:
         usage:
             name: Usage
             items:
+                api:
+                    text: API
+                    relativeUrl: index.html
                 releaseNotes:
                     text: Release notes
                     relativeUrl: release_notes.html
-                foo:
-                    text: Another link
+#                foo:
+ #                   text: Another link
                     # Or absolute urls
-                    absoluteUrl: https://example.com
-        development:
-            name: Development
-            items:
-                home:
-                    text: Development rules
-                    absoluteUrl: http://pnowy.github.io/
-                testProject:
-                    text: Test project
-                    absoluteUrl: http://pnowy.github.io/
+  #                  absoluteUrl: https://example.com
+   #     development:
+    #        name: Development
+     #       items:
+      #          home:
+       #             text: Development rules
+        #            absoluteUrl: http://pnowy.github.io/
+         #       testProject:
+          #          text: Test project
+           #         absoluteUrl: http://pnowy.github.io/
         other:
             name: Other
             items:
