@@ -10,10 +10,10 @@ include:
 
 # List of directories to exclude from the processing (default contains "vendor" and "website")
 # Paths are relative to the optional include paths given when generating the website, repository root by default
-#exclude:
-#    - vendor
-#    - website
-#    - some/dir
+exclude:
+    - nativeCriteria-core
+    - nativeCriteria-spring
+    - nativeCriteria-test
 
 # Base URL of the published website
 baseUrl: http://pnowy.github.io/NativeCriteria
