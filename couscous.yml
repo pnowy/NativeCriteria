@@ -34,12 +34,18 @@ menu:
         usage:
             name: Usage
             items:
-                api:
-                    text: API
+                index:
+                    text: General
                     relativeUrl: index.html
+                basic_usage:
+                    text: Basic examples
+                    relativeUrl: basic_usage.html
                 releaseNotes:
                     text: Release notes
                     relativeUrl: release_notes.html
+                logging:
+                    text: Logging
+                    relativeUrl: logging.html
 #                foo:
  #                   text: Another link
                     # Or absolute urls
