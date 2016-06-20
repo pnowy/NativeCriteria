@@ -1,6 +1,5 @@
 template:
     url: https://github.com/pnowy/CouscousNativeTemplate
-#    directory: ./template
     index: index.md
 
 # List of directories to include in the processing (by default it's empty, so all markdown files are parsed)
@@ -40,25 +39,18 @@ menu:
                 basic_usage:
                     text: Basic examples
                     relativeUrl: basic_usage.html
+                mappers:
+                    text: Mappers
+                    relativeUrl: mappers.html
+                mappers:
+                    text: Spring integration
+                    relativeUrl: spring_integration.html
                 releaseNotes:
                     text: Release notes
                     relativeUrl: release_notes.html
                 logging:
                     text: Logging
                     relativeUrl: logging.html
-#                foo:
- #                   text: Another link
-                    # Or absolute urls
-  #                  absoluteUrl: https://example.com
-   #     development:
-    #        name: Development
-     #       items:
-      #          home:
-       #             text: Development rules
-        #            absoluteUrl: http://pnowy.github.io/
-         #       testProject:
-          #          text: Test project
-           #         absoluteUrl: http://pnowy.github.io/
         other:
             name: Other
             items:
