@@ -24,3 +24,5 @@ NativeCriteria c = new NativeCriteria(new HibernateQueryProvider(hibernateSessio
       .addJoin(NativeExps.innerJoin("address", "a", "s.id", "a.supplier_id"));
       .setProjection(NativeExps.projection().addProjection("s.id as supplierId","a.city as supplierCity")));
 ```
+
+[See the mappers for convinient retrieving the data](mappers.md)
