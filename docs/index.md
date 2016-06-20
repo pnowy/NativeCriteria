@@ -34,3 +34,5 @@ currentMenu: index
 ```
 
 ### [See basic usage examples!](basic_usage.md)
+
+### [See working examples with Spring Boot on separate test module](https://github.com/pnowy/NativeCriteria/tree/develop/nativeCriteria-test)
