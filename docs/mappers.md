@@ -23,7 +23,7 @@ List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {
 
 ```
 
-You could always define the mapper as separate method:
+You could always define the mapper as separate object:
 
 ```java
 NativeCriteria nc = createNativeCriteria("ADDRESS", "a").add(NativeExps.eq("a.city", "Warsaw"));
