@@ -29,7 +29,6 @@ NativeCriteria c = new NativeCriteria(new JpaQueryProvider(entityManager), "supp
 
 ```java
 //SELECT s.id as supplierId, a.city as supplierCity FROM supplier s INNER JOIN address a ON s.id=a.supplier_id
-
 NativeCriteria nc =  new NativeCriteria(new JpaQueryProvider(entityManager), "ADDRESS", "a").add(NativeExps.eq("a.city", "Warsaw"));
 int i = nc.fetchCount("a.city");
 ```

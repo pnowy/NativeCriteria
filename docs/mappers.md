@@ -5,7 +5,7 @@ currentMenu: mappers
 ### Get result as object list by NativeObjectMapper
 
 ```java
-SELECT a.* FROM address
+//SELECT a.* FROM address
 NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a")
                         .add(NativeExps.eq("a.city", "WARSAW"));
 List<Address> res = nc.criteriaResult(new NativeObjectMapper<Address>() {

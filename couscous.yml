@@ -42,7 +42,7 @@ menu:
                 mappers:
                     text: Mappers
                     relativeUrl: mappers.html
-                mappers:
+                spring_integration:
                     text: Spring integration
                     relativeUrl: spring_integration.html
                 releaseNotes:
