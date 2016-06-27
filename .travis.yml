@@ -7,3 +7,6 @@ cache:
 sudo: false
 install: true
 script: "mvn clean dependency:list test"
+
+after_success:
+  - python <(curl -s https://raw.githubusercontent.com/TouK/sputnik-ci/master/sputnik-ci.py)
