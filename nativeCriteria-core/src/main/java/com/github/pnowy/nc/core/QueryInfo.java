@@ -11,8 +11,6 @@ import java.util.Map;
  *  <li>sql</li>
  *  <li>map with parameters</li>
  * </ul>
- *
- * @author Przemek Nowak
  */
 public class QueryInfo {
     private String sql;
