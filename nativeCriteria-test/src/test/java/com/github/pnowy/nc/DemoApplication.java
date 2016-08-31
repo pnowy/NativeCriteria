@@ -13,13 +13,14 @@ import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
 
-@SpringBootApplication
 @Configuration
+@SpringBootApplication
 public class DemoApplication implements EnvironmentAware {
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 
     static final String PROFILE_POSTGRESQL = "postgresql";
     static final String PROFILE_SQLSERVER = "sqlserver";
+    static final String PROFILE_MYSQL = "mysql";
 
     public static void main(String[] args) {
         new SpringApplicationBuilder().run(args);

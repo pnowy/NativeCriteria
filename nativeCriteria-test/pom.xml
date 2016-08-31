@@ -118,6 +118,19 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <test.groups>com.github.pnowy.nc.MySqlGroup,com.github.pnowy.nc.DefaultGroup</test.groups>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 
 </project>

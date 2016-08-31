@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="properties.xml" relativeToChangelogFile="true" />
+
+    <changeSet id="0005" author="pnowak" >
+        <createTable tableName="IMAGE">
+            <column name="ID" type="bigint" autoIncrement="${autoIncrement}" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="NAME" type="VARCHAR(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CONTENT" type="BLOB"/>
+        </createTable>
+
+        <customChange class="com.github.pnowy.nc.blob.ImportPicture" />
+
+    </changeSet>
+
+</databaseChangeLog>

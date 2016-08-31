@@ -1,0 +1,13 @@
+spring:
+    profiles:
+        active: mysql
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/nativecriteria?serverTimezone=UTC
+        databaseName: nativeCriteria
+        serverName: localhost
+        username: nativeCriteria
+        password: nativeCriteria
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLDialect
+        database: MYSQL
