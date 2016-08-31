@@ -16,8 +16,6 @@ import com.github.pnowy.nc.domain.Address;
 /**
  * Simple database test with fetch count method usage.
  * For each query is it possible to use the fetch count which returns the database count.
- *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class FetchCountTest extends AbstractDbTest {
     private static final Logger log = LoggerFactory.getLogger(FetchCountTest.class);

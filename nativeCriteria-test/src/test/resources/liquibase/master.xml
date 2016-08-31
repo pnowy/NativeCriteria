@@ -8,5 +8,6 @@
     <include file="classpath:liquibase/changelog/0002_address.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/changelog/0003_category.xml" relativeToChangelogFile="false"/>
     <include file="classpath:liquibase/changelog/0004_product.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:liquibase/changelog/0005_image.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>
