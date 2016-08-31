@@ -13,7 +13,7 @@ NativeCriteria nc = new NativeCriteria(new JpaQueryProvider(entityManager), "add
 CriteriaResult res = c.criteriaResult();
 List<String> cityNames = new ArrayList<>();
 while (res.next()) {
-	resp.add(res.String("a.city"));
+	resp.add(res.getString("a.city"));
 }
 ```
 ### Simple select with inner join:

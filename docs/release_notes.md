@@ -2,6 +2,10 @@
 currentMenu: releaseNotes
 ---
 
+##### Release 2.0.1 changes
+ * Extended CriteriaResult about blob methods (returns byte[] array)
+ * Test profile for MySQL within test module and additional tests
+
 ##### Release 2.0 changes
  * New Spring module with Pageable support and bean property mapper
  * New test module with examples on Spring Boot and H2 in memory database
