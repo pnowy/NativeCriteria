@@ -11,6 +11,10 @@ mvn clean test -Ppostgresql
 
 mvn clean test -Psqlserver
 
+### Run tests on the MySQL local db
+
+mvn clean test -Pmysql
+
 ---
 
 Each profile activate specific database test groups and run specific Spring profile (in order use correct properties, see application-{profile}.yml files).

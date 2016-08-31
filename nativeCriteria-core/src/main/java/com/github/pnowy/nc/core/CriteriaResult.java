@@ -277,6 +277,40 @@ public interface CriteriaResult {
     Date getDate(String columnName);
 
     /**
+     * Gets the blob value.
+     *
+     * @param idx           the idx
+     * @param defaultResult the default result
+     * @return the byte array
+     */
+    byte[] getBlob(int idx, byte[] defaultResult);
+
+    /**
+     * Gets the blob values, default value is null.
+     *
+     * @param idx idx
+     * @return the byte array, default value is null
+     */
+    byte[] getBlob(int idx);
+
+    /**
+     * Gets the blob.
+     *
+     * @param columnName    the column name
+     * @param defaultResult the default result
+     * @return the byte array
+     */
+    byte[] getBlob(String columnName, byte[] defaultResult);
+
+    /**
+     * Gets the blob, default value is null
+     *
+     * @param columnName the column name
+     * @return the byte array, default value is null
+     */
+    byte[] getBlob(String columnName);
+
+    /**
      * Gets the value.
      *
      * @param idx           the idx

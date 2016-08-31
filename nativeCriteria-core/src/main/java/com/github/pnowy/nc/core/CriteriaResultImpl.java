@@ -50,7 +50,9 @@ public class CriteriaResultImpl implements CriteriaResult {
         this.results = results;
         this.queryInfo = queryInfo;
         this.projection = projection;
-        this.columnCounter = (results.size() > 0) ? (results.getClass().isArray() ? results.get(0).length : 1) : -1;
+        if (results.size() > 0) {
+            this.columnCounter = results.getClass().isArray() && results.get(0).getClass().isArray() ? results.get(0).length : 1;
+        }
     }
 
     /**
@@ -316,6 +318,34 @@ public class CriteriaResultImpl implements CriteriaResult {
     @Override
     public Date getDate(String columnName) {
         return getDate(columnName, null);
+    }
+
+    @Override
+    public byte[] getBlob(int idx, byte[] defaultResult) {
+        Object value = getValue(idx);
+        if (value == null) {
+            return defaultResult;
+        }
+        return (byte[]) value;
+    }
+
+    @Override
+    public byte[] getBlob(int idx) {
+        return getBlob(idx, null);
+    }
+
+    @Override
+    public byte[] getBlob(String columnName, byte[] defaultResult) {
+        Object value = getValue(columnName);
+        if (value == null) {
+            return defaultResult;
+        }
+        return (byte[]) value;
+    }
+
+    @Override
+    public byte[] getBlob(String columnName) {
+        return getBlob(columnName, null);
     }
 
     @Override
