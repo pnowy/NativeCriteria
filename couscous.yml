@@ -26,6 +26,7 @@ title: NativeCriteria
 subTitle: Ultra lightweight library to generate dynamic SQL based on hibernate session
 fontAwesomeIcon: fa fa-binoculars
 footerText: Developed and designed by pnowy
+googleAnalyticsCode: UA-19090015-3
 
 # The left menu bar
 menu:
