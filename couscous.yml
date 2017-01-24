@@ -17,9 +17,9 @@ exclude:
 
 scripts:
     before:
-        - rm -r ./docs
+        - rm -rf ./docs/
     after:
-        - cp -av ./.couscous/generated/* ./docs
+        - mkdir docs && cp -av ./.couscous/generated/* ./docs/
 
 # Base URL of the published website
 baseUrl: http://pnowy.github.io/NativeCriteria

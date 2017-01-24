@@ -7,4 +7,13 @@
 
 ### Development && Participation
 
-For development is used the GitFlow approach. If you want to participate on the development please perform the pull request to the **develop** branch.
+If you want to participate on the development please perform the pull request to the **develop** branch.
+
+### Documentation
+
+In order to generate new version of documentation (we are using [Couscous](http://couscous.io) tool) execute inside the project directory:
+
+`couscous generate`
+
+Above command generate new version of documentation based on markdown files on `mdocs` directory and copy it to the `docs` directory 
+which is the source 
