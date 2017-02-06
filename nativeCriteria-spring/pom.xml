@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>nativeCriteria-root</artifactId>
 		<groupId>com.github.pnowy.nc</groupId>
-		<version>3.0-SNAPSHOT</version>
+		<version>2.1</version>
 	</parent>
 
 	<artifactId>nativeCriteria-spring</artifactId>
