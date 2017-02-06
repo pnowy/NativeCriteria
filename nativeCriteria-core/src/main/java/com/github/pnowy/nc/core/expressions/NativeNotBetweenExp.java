@@ -15,9 +15,9 @@ public class NativeNotBetweenExp implements NativeExp {
     private String highValueVar;
 
     /**
-     * @param columnName Nazwa kolumny
-     * @param lowValue   Wi�ksza warto��
-     * @param highValue  Mniejsza warto��
+     * @param columnName the column name
+     * @param lowValue   lower value
+     * @param highValue  higher value
      */
     public NativeNotBetweenExp(String columnName, Object lowValue, Object highValue) {
         if (Strings.isBlank(columnName))

@@ -3,8 +3,6 @@ package com.github.pnowy.nc.core.expressions;
 import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
@@ -12,7 +10,6 @@ import java.util.Collection;
  * The Class NativeInExp.
  */
 public class NativeInExp implements NativeExp {
-    private static final Logger log = LoggerFactory.getLogger(NativeInExp.class);
     private String columnName;
     @SuppressWarnings("unchecked")
     private Collection values;

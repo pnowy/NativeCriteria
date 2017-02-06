@@ -66,7 +66,7 @@ public class NativeOrderExp implements NativeExp {
     }
 
     public NativeOrderExp() {
-        orders = new LinkedHashMap<String, OrderType>();
+        orders = new LinkedHashMap<>();
     }
 
     /**

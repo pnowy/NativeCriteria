@@ -12,7 +12,7 @@ public class NativeDisjunctionExp implements NativeJunctionExp {
     private List<NativeExp> exps;
 
     public NativeDisjunctionExp() {
-        this.exps = new ArrayList<NativeExp>();
+        this.exps = new ArrayList<>();
     }
 
     public NativeDisjunctionExp(List<NativeExp> exps) {

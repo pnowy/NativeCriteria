@@ -22,7 +22,7 @@ public class NativeCustomExp implements NativeExp {
     /**
      * Values. The var name in the query is the key and the value is query value.
      */
-    private Map<String, Object> values = new LinkedHashMap<String, Object>();
+    private Map<String, Object> values = new LinkedHashMap<>();
 
     /**
      * Create custom SQL query without dynamic parameters.

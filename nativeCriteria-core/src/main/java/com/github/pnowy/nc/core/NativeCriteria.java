@@ -140,12 +140,12 @@ public class NativeCriteria implements NativeExp {
         this.distinct = false;
 
         // main table
-        this.tables = new LinkedHashMap<String, String>();
+        this.tables = new LinkedHashMap<>();
         this.tables.put(mainTable, mainAlias);
 
-        this.whereExps = new LinkedHashMap<NativeExp, Operator>();
-        this.havingExps = new LinkedHashMap<NativeExp, Operator>();
-        this.joins = new ArrayList<NativeExp>();
+        this.whereExps = new LinkedHashMap<>();
+        this.havingExps = new LinkedHashMap<>();
+        this.joins = new ArrayList<>();
     }
 
     /**

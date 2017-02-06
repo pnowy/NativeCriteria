@@ -7,8 +7,6 @@ import org.springframework.data.domain.Sort;
 /**
  * <p>Enum class which transform Spring pageable {@linkplain Sort.Order} to {@linkplain NativeOrderExp.OrderType}
  * and allows to determine the way how the NULL-s ordering should be performed.</p>
- *
- * @author Przemek Nowak
  */
 public enum OrderByApproach {
     /**

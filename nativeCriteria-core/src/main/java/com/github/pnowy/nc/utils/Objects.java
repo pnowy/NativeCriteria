@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.utils;
 
 /**
- * Objects
+ * Small utility class.
  */
 public class Objects {
 

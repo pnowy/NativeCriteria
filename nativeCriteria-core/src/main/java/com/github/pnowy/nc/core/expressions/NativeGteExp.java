@@ -3,18 +3,11 @@ package com.github.pnowy.nc.core.expressions;
 import com.github.pnowy.nc.core.NativeQuery;
 import com.github.pnowy.nc.utils.Strings;
 import com.github.pnowy.nc.utils.VarGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Greater or equal native expression.
  */
 public class NativeGteExp implements NativeExp {
-
-    /**
-     * The Constant log.
-     */
-    private static final Logger log = LoggerFactory.getLogger(NativeGteExp.class);
     /**
      * Column name.
      */

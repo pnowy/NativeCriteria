@@ -18,7 +18,7 @@ public class QueryInfo {
 
     public QueryInfo(String sql) {
         this.sql = sql;
-        this.parameters = new HashMap<String, Object>();
+        this.parameters = new HashMap<>();
     }
 
     public String getSql() {
