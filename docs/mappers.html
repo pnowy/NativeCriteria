@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>NativeCriteria</title>
+
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merriweather:400,900,700,300|Open+Sans:400,800,700|Titillium+Web:600,400' type='text/css'>
+        <link rel="stylesheet" href="http://pnowy.github.io/NativeCriteria/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://pnowy.github.io/NativeCriteria/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://pnowy.github.io/NativeCriteria/css/github.css">
+        <link rel="stylesheet" href="http://pnowy.github.io/NativeCriteria/css/main.css">
+    </head>
+    <body>
+
+        <header class="site-header">
+            <div class="site-branding">
+                <h1 class="site-name">
+                    <a href="http://pnowy.github.io/NativeCriteria" >NativeCriteria</a>&nbsp;&nbsp;<i class="fa fa-binoculars"></i>
+                </h1>
+                <h2 class="site-description">Ultra lightweight library to generate dynamic SQL based on hibernate session</h2>
+            </div>
+
+            <div class="button-line">
+                <a href="https://github.com/pnowy/NativeCriteria" target="_blank" class="btn btn-default">View on GitHub</a>
+                <a href="https://github.com/pnowy/NativeCriteria/zipball/master" class="btn btn-default hidden-xs">Download .zip</a>
+                <a href="https://github.com/pnowy/NativeCriteria/tarball/master" class="btn btn-default hidden-xs">Download .tar.gz</a>
+            </div>
+
+                            <a href="https://github.com/pnowy/NativeCriteria">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+                </a>
+            
+            <div class="text-left visible-xs-block" style="margin-left: 15px;">
+                <a href="#sidebar" data-toggle="collapse"><i class="fa fa-3x fa-bars" aria-hidden="true"></i></a>
+            </div>
+        </header>
+
+        <main class="container-fluid">
+            <div class="row">
+
+                                    <nav id="sidebar" class="col-sm-3 col-lg-2 collapse in" role="navigation">
+                                                    <p class="text-muted">
+                                Usage
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/NativeCriteria/index.html">
+                                            General
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/NativeCriteria/basic_usage.html">
+                                            Basic examples
+                                        </a>
+                                    </li>
+                                                                    <li class="active">
+                                        <a href="http://pnowy.github.io/NativeCriteria/mappers.html">
+                                            Mappers
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/NativeCriteria/spring_integration.html">
+                                            Spring integration
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/NativeCriteria/release_notes.html">
+                                            Release notes
+                                        </a>
+                                    </li>
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/NativeCriteria/logging.html">
+                                            Logging
+                                        </a>
+                                    </li>
+                                                            </ul>
+                                                    <p class="text-muted">
+                                Other
+                            </p>
+
+                            <ul class="nav nav-pills nav-stacked">
+                                                                    <li class="">
+                                        <a href="http://pnowy.github.io/">
+                                            Author page
+                                        </a>
+                                    </li>
+                                                            </ul>
+                        
+                    </nav>
+
+                
+                <section class="col-sm-9 col-lg-10 content">
+                    <h3 id="get-result-as-object-list-by-nativeobjectmapper">Get result as object list by NativeObjectMapper</h3>
+<pre><code class="language-java">//SELECT a.* FROM address
+NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a")
+                        .add(NativeExps.eq("a.city", "WARSAW"));
+List&lt;Address&gt; res = nc.criteriaResult(new NativeObjectMapper&lt;Address&gt;() {
+    @Override
+    public Address mapObject(CriteriaResult cr) {
+        Address a = new Address();
+        a.setId(cr.getLong(0));
+        a.setCity(cr.getString(1));
+        a.setStreet(cr.getString(2));
+        a.setBuildingNumber(cr.getString(3));
+        a.setZipCode(cr.getString(4));
+        return a;
+    }
+});
+</code></pre>
+<p>You could always define the mapper as separate object:</p>
+<pre><code class="language-java">NativeCriteria nc = createNativeCriteria("ADDRESS", "a").add(NativeExps.eq("a.city", "Warsaw"));
+List&lt;Address&gt; res = nc.criteriaResult(Address.NATIVE_OBJECT_MAPPER);</code></pre>
+<h3 id="get-any-result-by-criteriaresulttransformer">Get any result by CriteriaResultTransformer</h3>
+<pre><code class="language-java">NativeCriteria nc = new NativeCriteria(new HibernateQueryProvider(hibernateSession), "ADDRESS", "a");
+Multimap&lt;String, String&gt; zipCodesGroupedByCities = nc.criteriaResult(new CriteriaResultTransformer&lt;Multimap&lt;String,String&gt;&gt;() {
+    @Override
+    public Multimap&lt;String, String&gt; transform(CriteriaResult criteriaResult) {
+        Multimap&lt;String, String&gt; result = HashMultimap.create();
+        while (criteriaResult.next()) {
+            // 1 - city code, 4 - zip code
+            result.put(criteriaResult.getString(1), criteriaResult.getString(4));
+        }
+        return result;
+    }
+});</code></pre>
+<p><a href="spring_integration.html">See more mappers on Spring module</a></p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="top-bar-line"></div>
+            <div class="bottom-panel">
+                <div class="text-center">
+            <span>
+                                    Developed and designed by pnowy
+                                                </span>
+                </div><!-- text-center -->
+            </div><!-- bottom-panel -->
+        </footer>
+
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="http://pnowy.github.io/NativeCriteria/js/highlight.pack.js"></script>
+
+        <script>
+            hljs.initHighlighting();
+
+            function checkWidth($highlight) {
+                if ($(window).width() < 768) {
+                    $highlight.addClass('collapse');
+                } else {
+                    $highlight.removeClass('collapse');
+                }
+            }
+
+            $(document).ready(function () {
+                var $highlights = $('.hljs');
+                $highlights.each(function (index) {
+                    var $this = $(this).parent();
+                    var elementId = 'hljs' + index;
+                    $this.attr('id', elementId);
+                    $this.before('<a class="visible-xs-inline visible-sm-inline" href="#' + elementId + '" data-toggle="collapse"><i class="fa fa-expand"></i>&nbsp;Toggle source code ...</a>');
+
+                    checkWidth($this);
+                    $(window).resize(function () {
+                        checkWidth($this);
+                    });
+                });
+            });
+
+                            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'UA-19090015-3', 'auto');
+                ga('send', 'pageview');
+            
+        </script>
+
+    </body>
+</html>

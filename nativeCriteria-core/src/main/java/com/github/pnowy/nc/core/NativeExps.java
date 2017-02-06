@@ -182,6 +182,18 @@ public class NativeExps {
     }
 
     /**
+     * Like expression which is case insensitive. This is a different than {@link #ilike(String, String)} because under the hood
+     * use the LOWERCASE(COLUMN) expression due to the fact that ILIKE is not supported by all database (like Oracle for example).
+     *
+     * @param columnName the column name
+     * @param value value
+     * @return the native expression
+     */
+    public static NativeExp likeInsensitive(String columnName, String value) {
+        return new NativeLikeExp(columnName, value, true);
+    }
+
+    /**
      * ILIKE expression.
      *
      * @param columnName the column name

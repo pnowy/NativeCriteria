@@ -414,7 +414,7 @@ public class NativeCriteria implements NativeExp {
     }
 
     private boolean isLogPerformance() {
-        return PERFORMANCE_LOG.isInfoEnabled();
+        return PERFORMANCE_LOG.isDebugEnabled();
     }
 
     /**
@@ -439,7 +439,7 @@ public class NativeCriteria implements NativeExp {
      * @param stopwatch stopwatch with measure tim
      */
     private void checkEndExecutionTime(Stopwatch stopwatch) {
-        PERFORMANCE_LOG.info("Execution time ({}ms, - {}", stopwatch.elapsed(TimeUnit.MILLISECONDS), toSQL());
+        PERFORMANCE_LOG.debug("Execution time ({}ms, - {}", stopwatch.elapsed(TimeUnit.MILLISECONDS), toSQL());
     }
 
     /**

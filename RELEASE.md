@@ -1,30 +1,22 @@
-### RELEASE PLANS
-
-2.0
+### RELEASE NEW VERSION (by jgitflow maven plugin / don't use cmder - problems with gpg on windows)
  
- * Migrate to gradle (?)
- * Provide the integration with Spring out of the box.
- * Use bintray (?)
- 
-### RELEASE NEW VERSION (by jgitflow maven plugin)
- 
-    mvn jgitflow:release-start -> starting the new release
-    mvn jgitflow:release-finish -> finishing the release (and makes other stuff related with gitflow & artifacts deployment)
+    mvn jgitflow:release-start -Dgpg.skip=false     => starting the new release
+    mvn jgitflow:release-finish -Dgpg.skip=false    => finishing the release (and makes other stuff related with gitflow & artifacts deployment)
     
     Then, Go to https://oss.sonatype.org
     Login to the Nexus UI.
     Go to Staging Repositories page.
     Select a staging repository.
-    Click the Close button.
+    Click the Close button (on the top bar).
     THEN Click the Release button and it should also appear in maven central etc
+
+### DEPLOY (don't use cmder - problems with gpg on windows / use the version 2 of GPG on windows not provided gpg1.4 git-for-windows)
+
+    mvn javadoc:jar source:jar deploy -Dgpg.skip=false -Darguments=-Dgpg.passphrase=PASSPHRASE
  
 ### GENERATE SNAPSHOT
 
     mvn clean javadoc:jar source:jar deploy -Darguments=-Dgpg.passphrase=PASSPHRASE
-
-### DEPLOY (use the version 2 of GPG on windows not provided gpg1.4 git-for-windows)
-
-    mvn javadoc:jar source:jar deploy -Dgpg.skip=false -Darguments=-Dgpg.passphrase=PASSPHRASE
 
 ### RELEASE NEW VERSION (by the maven release plugin) DEPRECATED
 
