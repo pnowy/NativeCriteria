@@ -1,0 +1,11 @@
+require 'asciidoctor'
+
+guard 'shell' do
+  watch(/^index\.adoc$/) {|m|
+    Asciidoctor.convert_file m[0], safe: :safe, attributes: { 'linkcss' => '' }
+  }
+end
+
+guard 'livereload' do
+  watch(%r{^.+\.(css|js|html)$})
+end
