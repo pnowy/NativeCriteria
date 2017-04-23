@@ -1,0 +1,49 @@
+dependencies {
+    compile project(':nativeCriteria-spring')
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    compile 'org.springframework.boot:spring-boot-starter-test'
+
+    testCompile 'org.assertj:assertj-core'
+    testCompile 'ch.qos.logback:logback-classic'
+    testCompile 'org.liquibase:liquibase-core'
+    testCompile 'com.h2database:h2'
+}
+
+
+if (project.hasProperty("postgresql")) {
+    dependencies {
+        testCompile 'org.postgresql:postgresql'
+    }
+    test {
+        useJUnit {
+            includeCategories "com.github.pnowy.nc.DefaultGroup", "com.github.pnowy.nc.PostgresqlGroup"
+        }
+    }
+} else if (project.hasProperty("sqlserver")) {
+    dependencies {
+        testCompile 'net.sourceforge.jtds:jtds'
+    }
+    test {
+        useJUnit {
+            includeCategories "com.github.pnowy.nc.DefaultGroup", "com.github.pnowy.nc.SqlServerGroup"
+        }
+    }
+} else if (project.hasProperty("mysql")) {
+    dependencies {
+        testCompile 'mysql:mysql-connector-java'
+    }
+    test {
+        useJUnit {
+            includeCategories "com.github.pnowy.nc.DefaultGroup", "com.github.pnowy.nc.MySqlGroup"
+        }
+    }
+} else {
+    test {
+        useJUnit {
+            includeCategories "com.github.pnowy.nc.DefaultGroup"
+        }
+    }
+}
+

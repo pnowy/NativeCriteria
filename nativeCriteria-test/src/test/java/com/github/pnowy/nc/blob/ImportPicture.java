@@ -1,5 +1,6 @@
 package com.github.pnowy.nc.blob;
 
+import com.google.common.io.ByteStreams;
 import liquibase.change.custom.CustomSqlChange;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
@@ -8,6 +9,8 @@ import liquibase.exception.SetupException;
 import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 import liquibase.statement.SqlStatement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.sql.PreparedStatement;
@@ -16,6 +19,8 @@ import java.sql.PreparedStatement;
  * Import picture to database.
  */
 public class ImportPicture implements CustomSqlChange {
+    private static final Logger log = LoggerFactory.getLogger(ImportPicture.class);
+
     private InputStream png;
 
     @Override
@@ -23,18 +28,16 @@ public class ImportPicture implements CustomSqlChange {
         JdbcConnection connection = (JdbcConnection) database.getConnection();
         final String sql = "INSERT INTO IMAGE(NAME, CONTENT) VALUES (?, ?)";
 
-        PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(sql);
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "pn.png");
-            ps.setBlob(2, png);
+            ps.setBytes(2, ByteStreams.toByteArray(png));
             ps.executeUpdate();
         } catch (Exception e) {
-            throw new CustomChangeException("Cannot insert image data!");
+            log.error("", e);
+            throw new CustomChangeException("Cannot insert image data!", e);
         } finally {
             try {
                 png.close();
-                ps.close();
             } catch (Exception ignore) {}
         }
         return new SqlStatement[0];
@@ -54,7 +57,6 @@ public class ImportPicture implements CustomSqlChange {
     public void setUp() throws SetupException {
 
     }
-
 
     @Override
     public ValidationErrors validate(Database database) {

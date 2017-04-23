@@ -11,8 +11,6 @@ import static org.assertj.core.api.StrictAssertions.assertThat;
 
 /**
  * Example test which execute only for Postgresql profile.
- *
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
  */
 public class SimplePostgresTest extends AbstractPostgresqlTest {
     private static final Logger log = LoggerFactory.getLogger(SimplePostgresTest.class);
