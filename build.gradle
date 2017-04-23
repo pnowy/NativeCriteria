@@ -1,13 +1,19 @@
 plugins {
     id "io.spring.dependency-management" version "1.0.2.RELEASE"
+    id 'pl.allegro.tech.build.axion-release' version '1.6.0'
+}
+
+scmVersion {
+    localOnly = true
 }
 
 allprojects {
     apply plugin:'java'
     apply plugin: "io.spring.dependency-management"
+    apply plugin: "pl.allegro.tech.build.axion-release"
 
-    group 'com.github.pnowy.nc'
-    version '3.0-SNAPSHOT'
+    group "com.github.pnowy.nc"
+    version scmVersion.version
 
     dependencyManagement {
         dependencies {
