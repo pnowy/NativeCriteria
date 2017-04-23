@@ -1,0 +1,8 @@
+dependencies {
+    compileOnly 'org.hibernate:hibernate-core'
+    compile     'com.google.guava:guava'
+    compile     'org.slf4j:slf4j-api'
+
+    testCompile 'org.testng:testng'
+    testCompile 'org.assertj:assertj-core'
+}
