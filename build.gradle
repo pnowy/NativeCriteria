@@ -6,6 +6,10 @@ plugins {
 
 scmVersion {
     localOnly = true
+    tag {
+        prefix = 'v'
+        versionSeparator = ''
+    }
 }
 
 bintray {
