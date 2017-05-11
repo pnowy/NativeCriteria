@@ -6,3 +6,14 @@ dependencies {
     testCompile 'org.testng:testng'
     testCompile 'org.assertj:assertj-core'
 }
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'com.github.pnowy.nc'
+            artifactId 'nativeCriteria-core'
+            version scmVersion.version
+        }
+    }
+}
