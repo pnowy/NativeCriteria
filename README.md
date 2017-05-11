@@ -12,3 +12,20 @@ If you want to participate on the development please perform the pull request to
 Documentation is available on [http://pnowy.github.io/NativeCriteria/](http://pnowy.github.io/NativeCriteria/)
 
 The details about documentation generation is available on docs-source/README.md
+
+### Library available on Maven Central Repository
+```xml
+<!-- core module -->
+<dependency>
+    <groupId>com.github.pnowy.nc</groupId>
+    <artifactId>nativeCriteria-core</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- spring integration module -->
+<dependency>
+    <groupId>com.github.pnowy.nc</groupId>
+    <artifactId>nativeCriteria-spring</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
