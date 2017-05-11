@@ -1,3 +1,9 @@
+### RELEASE (GRADLE)
+
+    gradlew uploadArchives -Pcentral -> to snapshot with snapshot version, to release with release version
+    gradlew closeAndReleaseRepository -Pcentral
+    
+
 ### RELEASE NEW VERSION (by jgitflow maven plugin / don't use cmder - problems with gpg on windows)
  
     mvn jgitflow:release-start -Dgpg.skip=false     => starting the new release

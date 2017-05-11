@@ -1,3 +1,5 @@
+rootProject.name = 'nativeCriteria-root'
+
 include 'nativeCriteria-core'
 include 'nativeCriteria-spring'
 include 'nativeCriteria-test'

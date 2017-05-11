@@ -1,0 +1,48 @@
+apply plugin: 'com.bmuschko.nexus'
+// apply only for root the nexus staging plugin
+if (project == project.rootProject) {
+    apply plugin: 'io.codearte.nexus-staging'
+}
+
+modifyPom {
+    project {
+        name project.name
+        description project.description
+        url 'https://github.com/pnowy/NativeCriteria'
+        inceptionYear '2013'
+
+        scm {
+            url 'https://github.com/pnowy/NativeCriteria'
+            connection 'scm:git:git://github.com/pnowy/NativeCriteria.git'
+            developerConnection 'scm:git:git@github.com:pnowy/NativeCriteria.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+
+        developers {
+            developer {
+                id 'pnowy'
+                name 'Przemek Nowak'
+            }
+            developer {
+                id 'kjasek'
+                name 'Kamil Jasek'
+            }
+        }
+    }
+}
+
+if (project == project.rootProject) {
+
+    nexusStaging {
+        packageGroup = "com.github.pnowy.nc"
+
+        numberOfRetries = 15
+        delayBetweenRetriesInMillis = 5000
+    }
+}

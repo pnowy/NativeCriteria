@@ -1,3 +1,5 @@
+description "Native Criteria Spring Integration Module"
+
 dependencies {
     compile project(':nativeCriteria-core')
     compileOnly 'org.springframework.data:spring-data-commons'

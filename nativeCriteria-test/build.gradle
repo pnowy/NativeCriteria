@@ -1,3 +1,5 @@
+description "Native Criteria Test"
+
 dependencies {
     compile project(':nativeCriteria-spring')
     compile 'org.springframework.boot:spring-boot-starter-aop'
@@ -10,7 +12,6 @@ dependencies {
     testCompile 'org.liquibase:liquibase-core'
     testCompile 'com.h2database:h2'
 }
-
 
 if (project.hasProperty("postgresql")) {
     dependencies {
