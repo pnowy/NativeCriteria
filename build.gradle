@@ -4,6 +4,7 @@ plugins {
     id "com.bmuschko.nexus" version "2.3.1" apply false
     id "io.codearte.nexus-staging" version "0.8.0" apply false
 }
+
 apply plugin: "pl.allegro.tech.build.axion-release"
 
 scmVersion {
@@ -24,7 +25,7 @@ allprojects {
     apply plugin:'java'
     apply plugin: 'maven'
     apply plugin: "io.spring.dependency-management"
-    if (project.hasProperty('mavenCentral') || project.hasProperty('central')) {
+    if (project.hasProperty('central')) {
         apply from: project.rootDir.path + '/gradle/mavenCentral.gradle'
     }
 
