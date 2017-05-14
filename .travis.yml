@@ -1,12 +1,14 @@
 language: java
+
 jdk:
   - oraclejdk8
+
 cache:
   directories:
-    - $HOME/.m2
-sudo: false
-install: true
-script: "mvn clean dependency:list test"
+  - $HOME/.gradle
+
+script:
+    - ./gradlew clean test
 
 after_success:
   - python <(curl -s https://raw.githubusercontent.com/TouK/sputnik-ci/master/sputnik-ci.py)
