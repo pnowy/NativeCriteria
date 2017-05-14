@@ -2,12 +2,12 @@ package com.github.pnowy.nc.utils;
 
 
 import com.google.common.collect.Lists;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * <p>Test for some internal utilities for {@linkplain com.github.pnowy.nc.core.NativeCriteria}

@@ -1,7 +1,7 @@
 package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
-import org.testng.Assert;
+import org.junit.Assert;
 
 /**
  * ILIKE expression test

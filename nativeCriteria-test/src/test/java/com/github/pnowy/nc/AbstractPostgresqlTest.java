@@ -1,6 +1,7 @@
 package com.github.pnowy.nc;
 
 import org.junit.experimental.categories.Category;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
@@ -8,4 +9,5 @@ import org.springframework.test.context.ActiveProfiles;
  */
 @Category(PostgresqlGroup.class)
 @ActiveProfiles(DemoApplication.PROFILE_POSTGRESQL)
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public abstract class AbstractPostgresqlTest extends AbstractDbTest {}

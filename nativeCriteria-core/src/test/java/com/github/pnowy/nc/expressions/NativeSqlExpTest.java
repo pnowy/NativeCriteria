@@ -4,11 +4,6 @@ import static com.github.pnowy.nc.core.NativeExps.eq;
 import static com.github.pnowy.nc.core.NativeExps.sql;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-/**
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 08.08.13 21:35
- */
 public class NativeSqlExpTest extends NativeExpGenericTest {
 
     @Override

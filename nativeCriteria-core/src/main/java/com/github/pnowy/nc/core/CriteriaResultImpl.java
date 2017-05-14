@@ -1,13 +1,20 @@
 package com.github.pnowy.nc.core;
 
+import com.github.pnowy.nc.core.exceptions.UnsupportedDataTypeException;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.github.pnowy.nc.utils.Objects;
 import com.google.common.base.Joiner;
+import com.google.common.io.ByteStreams;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Implementation CriteriaResult.
@@ -326,7 +333,7 @@ public class CriteriaResultImpl implements CriteriaResult {
         if (value == null) {
             return defaultResult;
         }
-        return (byte[]) value;
+        return readByteData(value);
     }
 
     @Override
@@ -340,7 +347,25 @@ public class CriteriaResultImpl implements CriteriaResult {
         if (value == null) {
             return defaultResult;
         }
-        return (byte[]) value;
+        return readByteData(value);
+    }
+
+    private byte[] readByteData(Object value) {
+        requireNonNull(value);
+        if (value instanceof Blob) {
+            Blob blob = (Blob) value;
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            try (InputStream in = blob.getBinaryStream()) {
+                ByteStreams.copy(in, out);
+            } catch (Exception e) {
+                throw new RuntimeException("Cannot read binary data!", e);
+            }
+            return out.toByteArray();
+        }
+        if (value instanceof byte[]) {
+            return (byte[]) value;
+        }
+        throw new UnsupportedDataTypeException("Cannot read blob data!", value.getClass().getCanonicalName());
     }
 
     @Override

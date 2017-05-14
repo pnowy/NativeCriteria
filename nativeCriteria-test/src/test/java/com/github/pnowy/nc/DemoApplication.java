@@ -3,9 +3,12 @@ package com.github.pnowy.nc;
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +17,6 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@SpringBootApplication
 public class DemoApplication implements EnvironmentAware {
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
 
@@ -28,11 +30,8 @@ public class DemoApplication implements EnvironmentAware {
 
     private RelaxedPropertyResolver liquiBasePropertyResolver;
 
-    private Environment environment;
-
     @Override
     public void setEnvironment(Environment environment) {
-        this.environment = environment;
         this.liquiBasePropertyResolver = new RelaxedPropertyResolver(environment, "liquiBase.");
     }
 

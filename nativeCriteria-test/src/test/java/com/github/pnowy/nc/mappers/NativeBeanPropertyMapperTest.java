@@ -15,7 +15,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 import java.util.List;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests of bean property mapper.
@@ -59,7 +59,7 @@ public class NativeBeanPropertyMapperTest extends AbstractDbTest {
         CriteriaResult cr = nc.criteriaResult();
         if (cr.next()) {
             Supplier supplier = mapper.mapObject(cr);
-            assertThat(supplier.getId()).isNotNull().isEqualTo(1);
+            assertThat((supplier.getId())).isNotNull().isEqualTo(1);
             assertThat(supplier.getFirstName()).isEqualTo("John");
             assertThat(supplier.getLastName()).isEqualTo("Doe");
             assertThat(supplier.getVatIdentificationNumber()).isEqualTo("6640004523");

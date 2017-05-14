@@ -3,11 +3,8 @@ package com.github.pnowy.nc.expressions;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.expressions.NativeOrderExp;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
- */
 public class NativeOrderExpTest extends NativeExpGenericTest {
 
     @Override

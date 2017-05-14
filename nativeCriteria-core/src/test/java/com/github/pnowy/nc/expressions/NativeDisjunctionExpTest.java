@@ -9,10 +9,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-/**
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
- */
 public class NativeDisjunctionExpTest extends NativeExpGenericTest {
 
     @Override

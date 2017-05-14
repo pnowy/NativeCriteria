@@ -5,6 +5,7 @@ dependencies {
     compile     'com.google.guava:guava'
     compile     'org.slf4j:slf4j-api'
 
-    testCompile 'org.testng:testng'
+    testCompile 'junit:junit'
     testCompile 'org.assertj:assertj-core'
+    testCompile 'org.hibernate:hibernate-core'
 }

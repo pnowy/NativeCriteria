@@ -4,23 +4,19 @@ import com.github.pnowy.nc.NativeTestProvider;
 import com.github.pnowy.nc.core.NativeCriteria;
 import com.github.pnowy.nc.core.NativeExps;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-/**
- * Przemek Nowak <przemek.nowak.pl@gmail.com>
- * Date: 01.08.13 21:07
- */
 public class NativeProjectionTest {
     private static final Logger log = LoggerFactory.getLogger(NativeProjectionTest.class);
     private NativeCriteria nc;
 
-    @BeforeMethod
+    @Before
     public void setUp() throws Exception {
         nc = new NativeCriteria(new NativeTestProvider(), "tableOne", "t1");
     }
@@ -68,7 +64,7 @@ public class NativeProjectionTest {
         assertThat(sql).contains("t1.column as productName");
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testIncorrectAliasesProjection() {
         nc.setProjection(NativeExps.projection().addProjectionWithAliases("t1.column by productName"));
         nc.criteriaResult();

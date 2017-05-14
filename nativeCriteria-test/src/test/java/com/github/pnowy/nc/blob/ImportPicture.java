@@ -1,6 +1,5 @@
 package com.github.pnowy.nc.blob;
 
-import com.google.common.io.ByteStreams;
 import liquibase.change.custom.CustomSqlChange;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
@@ -30,7 +29,7 @@ public class ImportPicture implements CustomSqlChange {
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, "pn.png");
-            ps.setBytes(2, ByteStreams.toByteArray(png));
+            ps.setBlob(2, png);
             ps.executeUpdate();
         } catch (Exception e) {
             log.error("", e);

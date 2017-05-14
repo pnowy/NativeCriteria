@@ -1,12 +1,12 @@
 package com.github.pnowy.nc.core;
 
 import com.github.pnowy.nc.core.expressions.*;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Class to build native sql expressions. The best way to build expressions - static import methods from this class.
@@ -77,8 +77,8 @@ public class NativeExps {
      * @param values     the values
      * @return the native exp
      */
-    public static NativeExp in(String columnName,
-                               @SuppressWarnings("rawtypes") Collection values) {
+    @SuppressWarnings("rawtypes")
+    public static NativeExp in(String columnName, Collection values) {
         return new NativeInExp(columnName, values);
     }
 
@@ -107,7 +107,7 @@ public class NativeExps {
             default: {
                 if (values.contains(null)) {
                     return disjunction()
-                            .add(inSmart(columnName, Collections2.filter(values, Predicates.notNull())))
+                            .add(inSmart(columnName, Collections2.filter(values, Objects::nonNull)))
                             .add(isNull(columnName));
                 } else {
                     return in(columnName, values);
@@ -134,8 +134,8 @@ public class NativeExps {
      * @param values     the values
      * @return the native exp
      */
-    public static NativeExp notIn(String columnName,
-                                  @SuppressWarnings("rawtypes") List values) {
+    @SuppressWarnings("rawtypes")
+    public static NativeExp notIn(String columnName, List values) {
         return new NativeNotInExp(columnName, values);
     }
 

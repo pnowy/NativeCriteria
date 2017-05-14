@@ -5,7 +5,7 @@
 
 ### Run tests on the PostgreSQL local db
 
-    mvn clean test -Ppostgresql
+    gradlew clean test -Ppostgresql
 
 ### Run tests on the MS SqlServer local db
 

@@ -2,11 +2,8 @@ package com.github.pnowy.nc.expressions;
 
 import com.github.pnowy.nc.core.NativeExps;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
- */
 public class NativeGtExpTest extends NativeExpGenericTest {
     private static final String VALUE_TO_CHECK = "valueToCheck";
 

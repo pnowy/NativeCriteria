@@ -291,6 +291,7 @@ public interface CriteriaResult {
      * @param idx idx
      * @return the byte array, default value is null
      */
+    // TODO: 2017-05-14 should return the blob type not byte[]
     byte[] getBlob(int idx);
 
     /**
@@ -300,6 +301,7 @@ public interface CriteriaResult {
      * @param defaultResult the default result
      * @return the byte array
      */
+    // TODO: 2017-05-14 should return the blob type not byte[]
     byte[] getBlob(String columnName, byte[] defaultResult);
 
     /**
@@ -308,6 +310,7 @@ public interface CriteriaResult {
      * @param columnName the column name
      * @return the byte array, default value is null
      */
+    // TODO: 2017-05-14 should return the blob type not byte[]
     byte[] getBlob(String columnName);
 
     /**

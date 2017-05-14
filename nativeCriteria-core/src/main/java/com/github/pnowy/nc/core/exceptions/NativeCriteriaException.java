@@ -4,8 +4,6 @@ package com.github.pnowy.nc.core.exceptions;
  * //todo improve exception stack
  *
  * <p>Basic class for all NativeCriteria exceptions.</p>
- *
- * @author Przemek Nowak [przemek dot nowak dot pl at gmail.com]
  */
 public abstract class NativeCriteriaException extends RuntimeException {
 

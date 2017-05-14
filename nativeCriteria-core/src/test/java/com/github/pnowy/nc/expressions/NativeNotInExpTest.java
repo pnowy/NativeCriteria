@@ -3,11 +3,8 @@ package com.github.pnowy.nc.expressions;
 import com.github.pnowy.nc.core.NativeExps;
 import com.google.common.collect.Lists;
 
-import static org.assertj.core.api.StrictAssertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Przemek Nowak [przemek.nowak.pl@gmail.com]
- */
 public class NativeNotInExpTest extends NativeExpGenericTest {
 
     @Override
