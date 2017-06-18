@@ -21,7 +21,11 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
     }
+
     apply plugin:'java'
     apply plugin: 'maven'
     apply plugin: "io.spring.dependency-management"
@@ -39,7 +43,7 @@ allprojects {
             dependency group: 'com.google.guava',           name: 'guava',                  version: '21.0'
             dependency group: 'org.slf4j',                  name: 'slf4j-api',              version: '1.7.25'
             // SPRING MODULE
-            dependency group: 'org.springframework.data',   name: 'spring-data-commons',    version: '1.13.3.RELEASE'
+            dependency group: 'org.springframework.data',   name: 'spring-data-commons',    version: '2.0.0.BUILD-SNAPSHOT'
             dependency group: 'org.springframework',        name: 'spring-jdbc',            version: '4.3.8.RELEASE'
             // CORE TEST DEPENDENCIES
             dependency group: 'junit',                      name: 'junit',                  version: '4.12'

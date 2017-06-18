@@ -85,8 +85,11 @@ public class SpringNativeCriteria extends NativeCriteria {
         if (orderByApproach == null) {
             throw new NullPointerException("Order by approach cannot be null!");
         }
-
-        this.setOffset(pageable.getOffset());
+        // the hibernate SQLQuery takes the int anyway so we cannot do more
+        if (pageable.getOffset() > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("The offset value must be in Integer range! We do not accept long range yet!");
+        }
+        this.setOffset((int) pageable.getOffset());
         this.setLimit(pageable.getPageSize());
 
         if (pageable.getSort() != null) {
