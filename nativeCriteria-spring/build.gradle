@@ -5,6 +5,5 @@ dependencies {
     compileOnly 'org.springframework.data:spring-data-commons'
     compileOnly 'org.springframework:spring-jdbc'
 
-    testCompile 'org.testng:testng'
     testCompile 'org.assertj:assertj-core'
 }
