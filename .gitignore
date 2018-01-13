@@ -4,3 +4,4 @@ target/
 .couscous/
 .gradle/
 build/
+out/
