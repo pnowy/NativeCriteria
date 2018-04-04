@@ -1,8 +1,8 @@
 package com.github.pnowy.nc.spring;
 
-import java.beans.PropertyDescriptor;
-import java.util.*;
-
+import com.github.pnowy.nc.core.CriteriaResult;
+import com.github.pnowy.nc.core.exceptions.InvalidDataAccessException;
+import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.*;
@@ -11,9 +11,8 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import com.github.pnowy.nc.core.CriteriaResult;
-import com.github.pnowy.nc.core.exceptions.InvalidDataAccessException;
-import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
+import java.beans.PropertyDescriptor;
+import java.util.*;
 
 /**
  * <p>Bean mapper is inspired by Spring {@link org.springframework.jdbc.core.BeanPropertyRowMapper}.
@@ -159,7 +158,7 @@ public class NativeBeanPropertyMapper<T> implements NativeObjectMapper<T> {
      */
     protected void initialize(Class<T> mappedClass) {
         this.mappedClass = mappedClass;
-        this.mappedFields = new HashMap<String, PropertyDescriptor>();
+        this.mappedFields = new HashMap<>();
         PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(mappedClass);
         for (PropertyDescriptor pd : pds) {
             if (pd.getWriteMethod() != null) {
@@ -210,13 +209,14 @@ public class NativeBeanPropertyMapper<T> implements NativeObjectMapper<T> {
      * Extract the values from {@link CriteriaResult}
      */
     @Override
+    @SuppressWarnings("deprecation")
     public T mapObject(CriteriaResult cr) {
         Assert.state(this.mappedClass != null, "Mapped class was not specified");
         T mappedObject = BeanUtils.instantiate(this.mappedClass);
         BeanWrapper bw = PropertyAccessorFactory.forBeanPropertyAccess(mappedObject);
         initBeanWrapper(bw);
 
-        Set<String> populatedProperties = (isCheckFullyPopulated() ? new HashSet<String>() : null);
+        Set<String> populatedProperties = (isCheckFullyPopulated() ? new HashSet<>() : null);
 
         for (String beanProperty : mappedFields.keySet()) {
             PropertyDescriptor pd = this.mappedFields.get(beanProperty);

@@ -8,6 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
  * Base class for MySQL tests.
  */
 @Category(MySqlGroup.class)
-@ActiveProfiles(DemoApplication.PROFILE_MYSQL)
+@ActiveProfiles(AbstractDbTest.PROFILE_MYSQL)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public abstract class AbstractMySqlTest extends AbstractDbTest {}

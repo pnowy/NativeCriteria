@@ -8,6 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
  * Base class for SQL Server tests.
  */
 @Category(SqlServerGroup.class)
-@ActiveProfiles(DemoApplication.PROFILE_SQLSERVER)
+@ActiveProfiles(AbstractSqlServerTest.PROFILE_SQLSERVER)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public abstract class AbstractSqlServerTest extends AbstractDbTest {}

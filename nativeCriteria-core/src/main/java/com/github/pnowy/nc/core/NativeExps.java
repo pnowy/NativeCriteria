@@ -91,6 +91,7 @@ public class NativeExps {
      * @param values     the values
      * @return the native exp
      */
+    @SuppressWarnings("unchecked")
     public static NativeExp inSmart(String columnName, Collection values) {
         switch (values.size()) {
             case 0: {

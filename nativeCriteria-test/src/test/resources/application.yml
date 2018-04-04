@@ -18,6 +18,12 @@ spring:
         properties:
             hibernate.generate_statistics: false
             hibernate.cache.use_second_level_cache: false
+    liquibase:
+      change-log: liquibase/master.xml
+    data:
+        jpa:
+            repositories:
+              enabled: false
 
     #main:
      #   show_banner: false

@@ -12,12 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+@DataJpaTest
 @Category(DefaultGroup.class)
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@DataJpaTest
 @Transactional(readOnly = true)
+@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public abstract class AbstractDbTest {
+
+    static final String PROFILE_POSTGRESQL = "postgresql";
+    static final String PROFILE_SQLSERVER = "sqlserver";
+    static final String PROFILE_MYSQL = "mysql";
 
     @Autowired
     protected TestEntityManager entityManager;

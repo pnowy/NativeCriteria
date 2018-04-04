@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SpringPageableTest extends AbstractDbTest {
 
     @Test
-    public void shouldReturnPageImplementationForSimpleEntity() throws Exception {
+    public void shouldReturnPageImplementationForSimpleEntity() {
         SpringNativeCriteria nc = createSpringNativeCriteria("ADDRESS", "a");
-        PageImpl<Address> addressPage = nc.criteriaResult("a.id", Address.NATIVE_OBJECT_MAPPER, new PageRequest(0, 2, new Sort(new Sort
+        PageImpl<Address> addressPage = nc.criteriaResult("a.id", Address.NATIVE_OBJECT_MAPPER, PageRequest.of(0, 2, Sort.by(new Sort
             .Order(Sort.Direction.ASC, "a.id"))));
         assertThat(addressPage.getTotalPages()).isEqualTo(3);
         assertThat(addressPage.getTotalElements()).isEqualTo(6);
@@ -32,7 +32,7 @@ public class SpringPageableTest extends AbstractDbTest {
     }
 
     @Test
-    public void shouldReturnPageImplementationForJoin() throws Exception {
+    public void shouldReturnPageImplementationForJoin() {
         SpringNativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s");
         nc.setProjection(NativeExps.projection().addProjectionWithAliases(
             "s.id as id",
@@ -41,7 +41,7 @@ public class SpringPageableTest extends AbstractDbTest {
         ));
         nc.addJoin(NativeExps.innerJoin("ADDRESS", "a", "a.supplier_id", "s.id"));
         PageImpl<SupplierWithAddress> suppliers = nc.criteriaResult("a.id", NativeBeanPropertyMapper.newInstance(SupplierWithAddress.class),
-                                                          new PageRequest(0, 2, new Sort(new Sort.Order(Sort.Direction.ASC, "s.id"))));
+            PageRequest.of(0, 2, Sort.by(new Sort.Order(Sort.Direction.ASC, "s.id"))));
         assertThat(suppliers.getTotalPages()).isEqualTo(2);
         assertThat(suppliers.getTotalElements()).isEqualTo(4L);
         List<SupplierWithAddress> pageContent = suppliers.getContent();

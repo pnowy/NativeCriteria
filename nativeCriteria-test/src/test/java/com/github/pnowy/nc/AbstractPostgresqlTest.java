@@ -8,6 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
  * Base class for Postgresql tests.
  */
 @Category(PostgresqlGroup.class)
-@ActiveProfiles(DemoApplication.PROFILE_POSTGRESQL)
+@ActiveProfiles(AbstractDbTest.PROFILE_POSTGRESQL)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public abstract class AbstractPostgresqlTest extends AbstractDbTest {}
