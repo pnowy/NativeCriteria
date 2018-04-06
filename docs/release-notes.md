@@ -4,7 +4,9 @@
 
 * Migrate to Java 8
 * Migrate from Maven to Gradle
-* Fixes
+* Upgrade dependencies \(supported Hibernate version 5.2 and Spring Data 2.X\)
+* Migrate documentation to GitBook
+* Some small fixes
 
 #### Release 2.1 changes
 
@@ -36,7 +38,7 @@
 #### Release 1.3 changes:
 
 * Removed apache commons dependencies
-* Added OracleUnicodeDialect and SQLServerUnicodeDialect classes which supporting NVARCHAR types in older Hibernate version and newer databases \(see problem descriptions at \[here\]\(http://www.tomecode.com/2012/01/08/how-to-fix-mapping-errors-in-hibernateno-dialect-mapping-for-jdbc-type-9-found-nclob-expected-nvarchar2/\) and \[here\]\(http://www.componentix.com/blog/5/improved-hibernate-dialect-for-microsoft-sql-server\)\)
+* Added OracleUnicodeDialect and SQLServerUnicodeDialect classes which supporting NVARCHAR types in older Hibernate version and newer databases \(see problem descriptions at \[here\]\([http://www.tomecode.com/2012/01/08/how-to-fix-mapping-errors-in-hibernateno-dialect-mapping-for-jdbc-type-9-found-nclob-expected-nvarchar2/\](http://www.tomecode.com/2012/01/08/how-to-fix-mapping-errors-in-hibernateno-dialect-mapping-for-jdbc-type-9-found-nclob-expected-nvarchar2/\)\) and \[here\]\([http://www.componentix.com/blog/5/improved-hibernate-dialect-for-microsoft-sql-server\)\](http://www.componentix.com/blog/5/improved-hibernate-dialect-for-microsoft-sql-server%29\)\)
 * Upgraded Google Guava dependency to 17.0
 * Upgraded Hibernate dependency to version 4.3.5.Final
 

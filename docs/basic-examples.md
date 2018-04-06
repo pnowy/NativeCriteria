@@ -67,7 +67,7 @@ NativeCriteria nc = createSpringNativeCriteria("SUPPLIER", "s")
 }
 ```
 
-###### [TIP: See the mappers for convenient retrieving the data](/mappers.md)
+#### [See the mappers for convenient retrieving the data](/mappers.md)
 
 
 

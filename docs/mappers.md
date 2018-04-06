@@ -41,7 +41,7 @@ Multimap<String, String> zipCodesGroupedByCities = nc.criteriaResult(new Criteri
 });
 ```
 
-###### [TIP: See more mappers on Spring module](/spring-data-integration.md)
+#### [See more mappers on Spring module](/spring-data-integration.md)
 
 
 
