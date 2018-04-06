@@ -1,4 +1,0 @@
----
-currentMenu: releaseNotes
----
-
