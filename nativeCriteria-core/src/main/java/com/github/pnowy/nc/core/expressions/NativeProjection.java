@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -222,8 +223,8 @@ public class NativeProjection {
     /**
      */
     public NativeProjection() {
-        projections = new ArrayList<ProjectionBean>();
-        groupProjections = new ArrayList<String>();
+        projections = new ArrayList<>();
+        groupProjections = new ArrayList<>();
     }
 
     /**
@@ -238,22 +239,6 @@ public class NativeProjection {
         }
 
         projections.add(new ProjectionBean(columnName, VarGenerator.gen(columnName)));
-        return this;
-    }
-
-    /**
-     * Add projection with alias.
-     *
-     * @param columnName the column name
-     * @param alias      the alias
-     * @return the native projection
-     */
-    public NativeProjection addProjection(String columnName, String alias) {
-        if (Strings.isBlank(columnName)) {
-            throw new IllegalStateException("columnName is null!");
-        }
-
-        projections.add(new ProjectionBean(columnName, alias));
         return this;
     }
 
@@ -304,6 +289,24 @@ public class NativeProjection {
 
     public NativeProjection addProjection(NativeExp customProjection) {
         projections.add(new ProjectionBean(customProjection));
+        return this;
+    }
+
+    /**
+     * Add list of projections with aliases
+     *
+     * @param columns list of projections
+     *
+     * @return projection
+     *
+     * @see ProjectionColumn
+     */
+    public NativeProjection addProjection(ProjectionColumn ... columns) {
+        if (columns == null) {
+            throw new NullPointerException("The columns cannot be null!");
+        }
+
+        Arrays.stream(columns).forEach(c -> projections.add(new ProjectionBean(c.getColumnName(), c.getAlias())));
         return this;
     }
 
@@ -550,7 +553,7 @@ public class NativeProjection {
      * @return the subqueries
      */
     public List<NativeCriteria> getSubqueries() {
-        List<NativeCriteria> crs = new ArrayList<NativeCriteria>();
+        List<NativeCriteria> crs = new ArrayList<>();
         for (ProjectionBean bean : projections) {
             if (bean.isSubquery()) {
                 crs.add(bean.criteria);
