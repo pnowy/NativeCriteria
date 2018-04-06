@@ -8,4 +8,5 @@ dependencies {
     testCompile 'junit:junit'
     testCompile 'org.assertj:assertj-core'
     testCompile 'org.hibernate:hibernate-core'
+    testCompile 'ch.qos.logback:logback-classic'
 }

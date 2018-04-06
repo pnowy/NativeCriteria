@@ -55,7 +55,7 @@ allprojects {
             dependency group: 'mysql',                      name: 'mysql-connector-java',   version: '6.0.6'
         }
         imports {
-            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.0.RELEASE'
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.1.RELEASE'
         }
     }
 }

@@ -16,12 +16,12 @@ public class NativeJoinTest {
     private NativeCriteria nc;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         nc = new NativeCriteria(new NativeTestProvider(), "tableOne", "t1");
     }
 
     @Test
-    public void testInnerJoin() throws Exception {
+    public void testInnerJoin() {
         nc.addJoin(innerJoin("tableTwo", "t2", "t1.documentId", "t2.id"));
         nc.addJoin(innerJoin("tableThree", "t3", conjunction().add(eq("t3.status", "OPEN")).add(sql("t2.statusId = t3.id"))));
         nc.criteriaResult();
@@ -31,7 +31,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testCustomJoinTable() throws Exception {
+    public void testCustomJoinTable() {
         NativeCriteria subNativeCriteria = new NativeCriteria(new NativeTestProvider(), "subTableOne", "st1");
         subNativeCriteria.setProjection(NativeExps.projection().addProjection("st1.request_id", "requestId"));
         subNativeCriteria.addJoin(NativeExps.innerJoin("subTableTwo", "st2", "st1.id", "st1.sb1_id"));
@@ -45,7 +45,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testLeftJoin() throws Exception {
+    public void testLeftJoin() {
         nc.addJoin(leftJoin("tableTwo", "t2", "t1.documentId", "t2.id"));
         nc.criteriaResult();
         String sql = nc.getQueryInfo().getSql();
@@ -54,7 +54,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testRightJoin() throws Exception {
+    public void testRightJoin() {
         nc.addJoin(rightJoin("tableTwo", "t2", "t1.documentId", "t2.id"));
         nc.criteriaResult();
         String sql = nc.getQueryInfo().getSql();
@@ -63,7 +63,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testFullOuterJoin() throws Exception {
+    public void testFullOuterJoin() {
         nc.addJoin(fullJoin("tableTwo", "t2", "t1.documentId", "t2.id"));
         nc.criteriaResult();
         String sql = nc.getQueryInfo().getSql();
@@ -72,7 +72,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testCrossJoin() throws Exception {
+    public void testCrossJoin() {
         nc.addJoin(crossJoin("tableTwo", "t2"));
         nc.criteriaResult();
         String sql = nc.getQueryInfo().getSql();
@@ -81,7 +81,7 @@ public class NativeJoinTest {
     }
 
     @Test
-    public void testNaturalJoin() throws Exception {
+    public void testNaturalJoin() {
         nc.addJoin(naturalJoin("tableTwo", "t2"));
         nc.criteriaResult();
         String sql = nc.getQueryInfo().getSql();
