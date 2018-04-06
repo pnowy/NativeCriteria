@@ -35,4 +35,8 @@ signing.secretKeyRingFile=pathToTheKey
 
 You can retrieve `signing` elements by running: `gpg -K`
 
-The key ring file is contained in the first line of the output; the short ID is following the / on the sec line. The passphrase is known only by you.
+- The key ring file is contained in the first line of the output
+- The short ID is following the / on the sec line (the last 8 characters is a short key part) 
+- The passphrase is known only by you
+
+In case of problems with keys see: https://stackoverflow.com/questions/27936119/gradle-uploadarchives-task-unable-to-read-secret-key
