@@ -3,6 +3,7 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.9.0'
     id "com.bmuschko.nexus" version "2.3.1" apply false
     id "io.codearte.nexus-staging" version "0.11.0" apply false
+    id 'com.adarshr.test-logger' version '1.2.0'
 }
 
 apply plugin: "pl.allegro.tech.build.axion-release"
@@ -29,6 +30,7 @@ allprojects {
     apply plugin:'java'
     apply plugin: 'maven'
     apply plugin: "io.spring.dependency-management"
+    apply plugin: 'com.adarshr.test-logger'
     if (project.hasProperty('central')) {
         apply from: project.rootDir.path + '/gradle/mavenCentral.gradle'
     }
@@ -57,6 +59,10 @@ allprojects {
         imports {
             mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.1.RELEASE'
         }
+    }
+
+    testlogger {
+        theme 'mocha'
     }
 }
 
