@@ -1,6 +1,6 @@
 # Native Criteria
 
-###### Ultra lightweight library to generate dynamic SQL based on hibernate session
+#### Ultra lightweight library to generate dynamic SQL based on hibernate session
 
 ---
 

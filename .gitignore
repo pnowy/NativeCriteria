@@ -5,3 +5,6 @@ target/
 .gradle/
 build/
 out/
+
+/node_modules/
+/docs/.vuepress/dist/

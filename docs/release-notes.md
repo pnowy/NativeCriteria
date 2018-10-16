@@ -5,7 +5,7 @@
 * Migrate to Java 8
 * Migrate from Maven to Gradle
 * Upgrade dependencies \(supported Hibernate version 5.2 and Spring Data 2.X\)
-* Migrate documentation to GitBook
+* Migrate documentation to VuePress
 * Some small fixes
 
 #### Release 2.1 changes
