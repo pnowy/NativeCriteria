@@ -27,3 +27,24 @@ Documentation is available on [https://pnowy.gitbooks.io/nativecriteria/content/
     <version>3.0.0</version>
 </dependency>
 ```
+
+### Simple example:
+```java
+// SELECT a.city FROM address a WHERE a.zip_code IS NULL AND city := ? ORDER BY a.city ASC
+NativeCriteria nc = new NativeCriteria(new JpaQueryProvider(entityManager), "address", "a")
+      .setProjection(NativeExps.projection().addProjection("a.city"))                       
+      .add(NativeExps.isNull("a.zip_code"));                                                
+      .setOrder(NativeExps.order().add("a.city", OrderType.ASC));
+
+// dynamic where part
+if (StringUtils.isNotEmpty(city)) {
+    nc.add(NativeExps.eq("a.city", city))
+}            
+      
+// get the results
+CriteriaResult res = c.criteriaResult();                                                    
+List<String> cityNames = new ArrayList<>();
+while (res.next()) {                                                                        
+   resp.add(res.getString("a.city"));                                                       
+}
+```
