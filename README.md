@@ -9,7 +9,7 @@ If you want to participate on the development please perform the pull request to
 
 ### Documentation
 
-Documentation is available on [https://pnowy.gitbooks.io/nativecriteria/content/](https://pnowy.gitbooks.io/nativecriteria/content/)
+Documentation is available on [http://pnowy.github.io/NativeCriteria/](http://pnowy.github.io/NativeCriteria/)
 
 ### Library available on Maven Central Repository
 ```xml
