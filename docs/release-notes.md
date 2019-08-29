@@ -1,5 +1,9 @@
 # Release notes
 
+#### Release 3.0.1 changes
+
+* Fixed `NativeNotLikeExp` and `NativeNotILikeExp` expressions
+
 #### Release 3.0 changes
 
 * Migrate to Java 8

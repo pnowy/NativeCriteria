@@ -23,14 +23,14 @@
 <dependency>
     <groupId>com.github.pnowy.nc</groupId>
     <artifactId>nativeCriteria-core</artifactId>
-    <version>3.0</version>
+    <version>3.0.1</version>
 </dependency>
 
 <!-- spring integration module -->
 <dependency>
     <groupId>com.github.pnowy.nc</groupId>
     <artifactId>nativeCriteria-spring</artifactId>
-    <version>3.0</version>
+    <version>3.0.1</version>
 </dependency>
 ```
 
