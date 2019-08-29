@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Product DTO with categoryName and supplierName entities.
  *
- * @author Przemek Nowak [przemek dot nowak dot pl at gmail.com]
+ * @author Przemek Nowak
  */
 public class ProductDTO {
 

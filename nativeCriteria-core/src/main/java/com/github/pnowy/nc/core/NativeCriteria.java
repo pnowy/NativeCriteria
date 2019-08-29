@@ -630,7 +630,7 @@ public class NativeCriteria implements NativeExp {
         appendOrderBySQL(sqlBuilder);
 
         String sql = sqlBuilder.toString();
-        LOG.debug("NativeCriteria SQL: " + sql);
+        LOG.debug("NcSQL: {}", sql);
         return sql;
     }
 

@@ -17,4 +17,6 @@
     <root level="INFO">
         <appender-ref ref="stdout"/>
     </root>
+    <logger name="com.github.pnowy.nc" level="DEBUG"/>
+
 </configuration>

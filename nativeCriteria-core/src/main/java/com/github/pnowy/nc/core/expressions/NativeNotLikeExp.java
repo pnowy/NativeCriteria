@@ -29,12 +29,12 @@ public class NativeNotLikeExp implements NativeExp {
     @Override
     public String toSQL() {
         varName = VarGenerator.gen(columnName);
-        return columnName + " NOT LIKE ?";
+        return columnName + " NOT LIKE :" + varName;
     }
 
     @Override
     public void setValues(NativeQuery query) {
-        query.setString(varName, value);
+        query.setParameter(varName, value);
     }
 
 }
