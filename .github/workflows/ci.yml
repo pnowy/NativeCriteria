@@ -15,6 +15,7 @@ jobs:
         run: ./gradlew clean build
   test:
     runs-on: ubuntu-latest
+    if: contains(github.ref, "release")
     steps:
-      - name: Echo ref
-        run: echo ${{ github.ref }}
+      - name: Publish
+        run: echo 'Publish version to maven central'

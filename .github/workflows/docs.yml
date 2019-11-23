@@ -1,0 +1,14 @@
+name: documentation
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build and deploy docs
+        run: echo 'Building documentation here'
