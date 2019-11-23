@@ -15,8 +15,8 @@ jobs:
           npm install
           npm run docs:build
           cd docs/.vuepress/dist
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git init
           git add -A
           git commit -m "New docs `date +'%Y-%m-%d %H:%M:%S`"
