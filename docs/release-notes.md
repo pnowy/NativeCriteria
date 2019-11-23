@@ -1,6 +1,6 @@
 # Release notes
 
-#### Release 3.0.8 changes
+#### Release 3.0.9 changes
 
 #### Release 3.0.1 changes
 
