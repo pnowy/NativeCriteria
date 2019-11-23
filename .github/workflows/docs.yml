@@ -10,5 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build and deploy docs
-        run: echo 'Building documentation here'
+      - name: Build docs
+        run: |
+          npm run docs:build
+      - name: GitHub Pages Deploy
+        uses: maxheld83/ghpages@v0.2.1
+        env:
+          BUILD_DIR: "docs/.vuepress/dist"
