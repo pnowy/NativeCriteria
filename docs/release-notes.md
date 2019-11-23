@@ -1,5 +1,7 @@
 # Release notes
 
+#### Release 3.0.2 changes
+
 #### Release 3.0.1 changes
 
 * Fixed `NativeNotLikeExp` and `NativeNotILikeExp` expressions
