@@ -19,7 +19,7 @@ jobs:
           git config --global user.name "GitHub Action"
           git init
           git add -A
-          git commit -m "New docs `date +'%Y-%m-%d %H:%M:%S`"
+          git commit -m "Documentation update"
       - name: Push docs
         uses: ad-m/github-push-action@master
         with:
