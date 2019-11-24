@@ -14,24 +14,9 @@ jobs:
         run: |
           npm install
           npm run docs:build
-      #          cd docs/.vuepress/dist
-      #          git config --global user.email "action@github.com"
-      #          git config --global user.name "GitHub Action"
-      #          git init
-      #          git add -A
-      #          git commit -m "Documentation update"
       - name: Deploy docs
         uses: peaceiris/actions-gh-pages@v2.5.0
         env:
-          #          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-            #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./docs/.vuepress/dist
-#      - name: Push docs
-#        uses: ad-m/github-push-action@master
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          branch: gh-pages
-#          force: true
-#          directory: "docs/.vuepress/dist"
