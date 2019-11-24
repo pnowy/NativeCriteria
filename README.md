@@ -1,7 +1,7 @@
 
-[![Build Status](https://travis-ci.org/pnowy/NativeCriteria.svg?branch=develop)](https://travis-ci.org/pnowy/NativeCriteria)
+![](https://github.com/pnowy/NativeCriteria/workflows/ci/badge.svg)
+![](https://github.com/pnowy/NativeCriteria/workflows/documentation/badge.svg)
 [![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.pnowy.nc%22)
-[![Sputnik](https://sputnik.ci/conf/badge)](https://sputnik.ci/app#/builds/pnowy/NativeCriteria)
 
 ### Development && Participation
 
@@ -9,7 +9,7 @@ If you want to participate on the development please perform the pull request to
 
 ### Documentation
 
-Documentation is available on [http://pnowy.github.io/NativeCriteria/](http://pnowy.github.io/NativeCriteria/)
+Documentation is available on [https://blog.przemeknowak.com/NativeCriteria](https://blog.przemeknowak.com/NativeCriteria)
 
 ### Library available on Maven Central Repository
 ```xml
