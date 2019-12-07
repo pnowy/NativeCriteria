@@ -1,5 +1,5 @@
 module.exports = {
-    base: '/NativeCriteria/',
+    base: '',
     title: 'NativeCriteria',
     description: 'Ultra lightweight library to generate dynamic SQL based on hibernate session',
     ga: 'UA-19090015-3',
