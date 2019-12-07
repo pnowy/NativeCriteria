@@ -9,7 +9,7 @@ If you want to participate on the development please perform the pull request to
 
 ### Documentation
 
-Documentation is available on [https://blog.przemeknowak.com/NativeCriteria](https://blog.przemeknowak.com/NativeCriteria)
+Documentation is available on [http://nativecriteria.przemeknowak.com/](http://nativecriteria.przemeknowak.com/)
 
 ### Library available on Maven Central Repository
 ```xml
