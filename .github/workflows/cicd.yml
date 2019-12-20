@@ -15,7 +15,12 @@ jobs:
         run: ./gradlew clean build
   publish:
     runs-on: ubuntu-latest
-    if: contains(github.ref, 'test-release')
+    if: contains(github.ref, 'release') || contains(github.ref, 'snapshot')
     steps:
-      - name: Publish
-        run: echo 'Publish version to maven central'
+      - uses: actions/checkout@v1
+      - name: Set up JDK 1.8
+          uses: actions/setup-java@v1
+          with:
+            java-version: 1.8
+      - name: Publish to central repo
+        run: ./gradlew uploadArchives -Pcentral
