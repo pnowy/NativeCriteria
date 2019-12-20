@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class SelectTopRowsQueryTest extends AbstractDbTest {
 
     @Test
-    public void shouldSelectTopRowsForQueryWithOffset() throws Exception {
+    public void shouldSelectTopRowsForQueryWithOffset() {
         NativeCriteria nc = createNativeCriteria("ADDRESS", "a");
         nc.setOrder(NativeExps.ascOrder("a.id"));
         nc.setLimit(2);
