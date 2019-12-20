@@ -13,7 +13,7 @@ jobs:
           java-version: 1.8
       - name: Build with Gradle
         run: ./gradlew clean build
-  test:
+  publish:
     runs-on: ubuntu-latest
     if: contains(github.ref, 'test-release')
     steps:
