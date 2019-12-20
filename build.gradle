@@ -3,18 +3,10 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.9.0'
     id "com.bmuschko.nexus" version "2.3.1" apply false
     id "io.codearte.nexus-staging" version "0.11.0" apply false
-    id 'com.adarshr.test-logger' version '1.2.0'
+    id 'com.adarshr.test-logger' version '2.0.0'
 }
 
 apply plugin: "pl.allegro.tech.build.axion-release"
-
-scmVersion {
-    localOnly = true
-    hooks {
-        pre 'fileUpdate', [files: ['README.md'], pattern: { v, p -> /'$v'/ }, replacement: { v, p -> "'$v'" }]
-        pre 'commit'
-    }
-}
 
 description "Native Criteria Root"
 
@@ -40,7 +32,7 @@ allprojects {
 
     dependencyManagement {
         dependencies {
-            // CORE DEPENDENCIES
+            // CORE MODULE
             dependency group: 'org.hibernate',              name: 'hibernate-core',         version: '5.2.16.Final'
             dependency group: 'com.google.guava',           name: 'guava',                  version: '24.1-jre'
             dependency group: 'org.slf4j',                  name: 'slf4j-api',              version: '1.7.25'
