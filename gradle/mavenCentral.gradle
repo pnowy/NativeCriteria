@@ -39,6 +39,16 @@ modifyPom {
 
 if (project == project.rootProject) {
 
+    extraArchive {
+        sources = false
+        tests = true
+        javadoc = false
+    }
+
+    nexus {
+        sign = true
+    }
+
     nexusStaging {
         packageGroup = "com.github.pnowy.nc"
 
