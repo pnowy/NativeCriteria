@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: !contains(github.ref, 'refs/tags')
+    if: ${{ !contains(github.ref, 'refs/tags') }}
     steps:
       - uses: actions/checkout@v1
       - name: Show GitHub ref
