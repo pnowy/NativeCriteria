@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish to central repo
+        env:
+          ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.NEXUS_USER }}
         run: ./gradlew uploadArchives -Pcentral
   publish-release:
     runs-on: ubuntu-latest
@@ -29,4 +32,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Publish to central repo
+        env:
+          ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.NEXUS_PASSWORD }}
+          ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.NEXUS_USER }}
         run: ./gradlew uploadArchives -Pcentral
