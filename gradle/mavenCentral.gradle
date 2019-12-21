@@ -2,6 +2,7 @@ apply plugin: 'com.bmuschko.nexus'
 // apply only for root the nexus staging plugin
 if (project == project.rootProject) {
     apply plugin: 'io.codearte.nexus-staging'
+    apply plugin: 'signing'
 }
 
 modifyPom {
@@ -45,13 +46,6 @@ if (project == project.rootProject) {
         javadoc = false
     }
 
-    signing {
-        def signingKey = findProperty("signingKey")
-        def signingPassword = findProperty("signingPassword")
-        useInMemoryPgpKeys(signingKey, signingPassword)
-        sign stuffZip
-    }
-
     nexus {
         sign = true
     }
@@ -62,4 +56,11 @@ if (project == project.rootProject) {
         numberOfRetries = 15
         delayBetweenRetriesInMillis = 5000
     }
+}
+
+signing {
+    def signingKeyId = System.getProperty("ORG_GRADLE_PROJECT_signingKeyId")
+    def signingKey = System.getProperty("ORG_GRADLE_PROJECT_signingKey")
+    def signingPassword = System.getProperty("ORG_GRADLE_PROJECT_signingPassword")
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
 }
