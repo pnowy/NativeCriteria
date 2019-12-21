@@ -1,5 +1,9 @@
 # Release notes
 
+#### Release 3.1.0 changes
+
+* Upgrade dependencies (Hibernate 5.4 and Spring Data 2.2)
+
 #### Release 3.0.1 changes
 
 * Fixed `NativeNotLikeExp` and `NativeNotILikeExp` expressions
