@@ -21,22 +21,4 @@ jobs:
         env:
           ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.NEXUS_USER }}
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
-        run: ./gradlew uploadArchives -Pcentral
-  publish-release:
-    runs-on: ubuntu-latest
-    if: contains(github.ref, 'refs/tags/release')
-    steps:
-      - uses: actions/checkout@v1
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Publish to central repo
-        env:
-          ORG_GRADLE_PROJECT_nexusPassword: ${{ secrets.NEXUS_PASSWORD }}
-          ORG_GRADLE_PROJECT_nexusUsername: ${{ secrets.NEXUS_USER }}
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
         run: ./gradlew uploadArchives -Pcentral
