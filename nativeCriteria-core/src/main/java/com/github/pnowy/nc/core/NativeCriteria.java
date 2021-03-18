@@ -204,7 +204,7 @@ public class NativeCriteria implements NativeExp {
      * @param alias alias for sub query
      * @return the native criteria
      */
-    public NativeCriteria addTable(NativeCriteria query, String alias) {
+    public NativeCriteria addSubquery(NativeCriteria query, String alias) {
         this.subQueries.put(query, alias);
         return this;
     }
