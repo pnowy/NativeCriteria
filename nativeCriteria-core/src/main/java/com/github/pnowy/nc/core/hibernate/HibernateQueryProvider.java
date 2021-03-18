@@ -10,7 +10,8 @@ import javax.persistence.EntityManager;
  * Default hibernate provider.
  */
 public class HibernateQueryProvider implements NativeQueryProvider {
-    private Session session;
+
+    private final Session session;
 
     public HibernateQueryProvider(Session session) {
         this.session = session;
@@ -23,5 +24,9 @@ public class HibernateQueryProvider implements NativeQueryProvider {
     @Override
     public NativeQuery getNativeQuery(String sql) {
         return new HibernateNativeQuery(sql, session.createSQLQuery(sql));
+    }
+
+    public Session getSession() {
+        return session;
     }
 }

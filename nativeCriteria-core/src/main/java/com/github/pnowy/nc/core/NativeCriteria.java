@@ -3,11 +3,18 @@ package com.github.pnowy.nc.core;
 import com.github.pnowy.nc.core.expressions.NativeExp;
 import com.github.pnowy.nc.core.expressions.NativeJoin;
 import com.github.pnowy.nc.core.expressions.NativeProjection;
+import com.github.pnowy.nc.core.hibernate.HibernateQueryProvider;
 import com.github.pnowy.nc.core.mappers.CriteriaResultTransformer;
 import com.github.pnowy.nc.core.mappers.NativeObjectMapper;
 import com.github.pnowy.nc.utils.Strings;
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
+import org.hibernate.Session;
+import org.hibernate.dialect.pagination.AbstractLimitHandler;
+import org.hibernate.dialect.pagination.LimitHandler;
+import org.hibernate.engine.jdbc.spi.JdbcServices;
+import org.hibernate.engine.spi.RowSelection;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +36,7 @@ public class NativeCriteria implements NativeExp {
     /**
      * Hibernate session.
      */
-    private NativeQueryProvider nativeProvider;
+    private final NativeQueryProvider nativeProvider;
     /**
      * Native query.
      */
@@ -39,6 +46,11 @@ public class NativeCriteria implements NativeExp {
      * Tables with aliases to FROM clause.
      */
     private Map<String, String> tables;
+
+    /**
+     * Subqueries with aliases to FROM clause.
+     */
+    private Map<NativeCriteria, String> subQueries;
 
     /**
      * Joins.
@@ -97,7 +109,7 @@ public class NativeCriteria implements NativeExp {
         /**
          * The value.
          */
-        private String value;
+        private final String value;
 
         /**
          * Instantiates a new operator.
@@ -136,13 +148,38 @@ public class NativeCriteria implements NativeExp {
             throw new IllegalStateException("mainAlias is null");
         }
 
+        initCollections();
+
         this.nativeProvider = nativeProvider;
         this.distinct = false;
 
         // main table
-        this.tables = new LinkedHashMap<>();
         this.tables.put(mainTable, mainAlias);
+    }
 
+    public NativeCriteria(NativeQueryProvider nativeProvider, NativeCriteria subQuery, String mainAlias) {
+        if (nativeProvider == null) {
+            throw new IllegalStateException("NativeProvider is null!");
+        }
+        if (subQuery == null) {
+            throw new IllegalStateException("subQuery is null");
+        }
+        if (Strings.isBlank(mainAlias)) {
+            throw new IllegalStateException("mainAlias is null");
+        }
+
+        initCollections();
+
+        this.nativeProvider = nativeProvider;
+        this.distinct = false;
+
+        // main subQuery
+        this.subQueries.put(subQuery, mainAlias);
+    }
+
+    private void initCollections() {
+        this.tables = new LinkedHashMap<>();
+        this.subQueries = new LinkedHashMap<>();
         this.whereExps = new LinkedHashMap<>();
         this.havingExps = new LinkedHashMap<>();
         this.joins = new ArrayList<>();
@@ -157,6 +194,18 @@ public class NativeCriteria implements NativeExp {
      */
     public NativeCriteria addTable(String tableName, String tableAlias) {
         this.tables.put(tableName, tableAlias);
+        return this;
+    }
+
+    /**
+     * Add sub query to FROM clause.
+     *
+     * @param query sub query
+     * @param alias alias for sub query
+     * @return the native criteria
+     */
+    public NativeCriteria addSubquery(NativeCriteria query, String alias) {
+        this.subQueries.put(query, alias);
         return this;
     }
 
@@ -470,9 +519,9 @@ public class NativeCriteria implements NativeExp {
                     first = false;
                 } else {
                     sqlBuilder.append(exp.getValue().getValue())
-                            .append(SPACE)
-                            .append(exp.getKey().toSQL())
-                            .append(SPACE);
+                        .append(SPACE)
+                        .append(exp.getKey().toSQL())
+                        .append(SPACE);
                 }
             }
         }
@@ -556,6 +605,17 @@ public class NativeCriteria implements NativeExp {
             }
         }
 
+        first = true;
+        for (Entry<NativeCriteria, String> from : subQueries.entrySet()) {
+            String sql = from.getKey().toSQL();
+            if (first) {
+                sqlBuilder.append("(").append(sql).append(")").append(SPACE).append(from.getValue());
+                first = false;
+            } else {
+                sqlBuilder.append(", ").append("(").append(sql).append(")").append(SPACE).append(from.getValue());
+            }
+        }
+
         sqlBuilder.append(SPACE);
     }
 
@@ -630,6 +690,23 @@ public class NativeCriteria implements NativeExp {
         appendOrderBySQL(sqlBuilder);
 
         String sql = sqlBuilder.toString();
+
+        if (getLimitHandler() != null && limit != null && offset != null) {
+            final AbstractLimitHandler limitHandler = getLimitHandler();
+
+            RowSelection rowSelection = new RowSelection();
+            rowSelection.setFirstRow(offset);
+            rowSelection.setMaxRows(limit);
+
+            sql = limitHandler.processSql(sqlBuilder.toString(), rowSelection)
+                .replaceFirst("[?]", limitHandler.bindLimitParametersInReverseOrder()
+                    ? String.valueOf(limitHandler.useMaxForLimit() ? limit + offset : limit)
+                    : String.valueOf(offset))
+                .replaceFirst("[?]", limitHandler.bindLimitParametersInReverseOrder()
+                    ? String.valueOf(offset)
+                    : String.valueOf(limitHandler.useMaxForLimit() ? limit + offset : limit));
+        }
+
         LOG.debug("NcSQL: {}", sql);
         return sql;
     }
@@ -643,6 +720,9 @@ public class NativeCriteria implements NativeExp {
             }
         }
 
+        for (NativeExp exp : subQueries.keySet()) {
+            exp.setValues(sqlQuery);
+        }
         // parameters where clause
         for (NativeExp exp : whereExps.keySet()) {
             exp.setValues(sqlQuery);
@@ -653,11 +733,39 @@ public class NativeCriteria implements NativeExp {
         for (NativeExp join : joins) {
             join.setValues(sqlQuery);
         }
-        if (limit != null) {
-            sqlQuery.setMaxResults(limit);
+
+        if (getLimitHandler() == null) {
+            if (limit != null) {
+                sqlQuery.setMaxResults(limit);
+            }
+            if (offset != null) {
+                sqlQuery.setFirstResult(offset);
+            }
         }
-        if (offset != null) {
-            sqlQuery.setFirstResult(offset);
+    }
+
+    private AbstractLimitHandler getLimitHandler() {
+        if (!(nativeProvider instanceof HibernateQueryProvider)) {
+            return null;
         }
+
+        Session session = ((HibernateQueryProvider) nativeProvider).getSession();
+        if (!(session instanceof SessionImplementor)) {
+            return null;
+        }
+
+        JdbcServices jdbcServices = ((SessionImplementor) session).getSessionFactory().getJdbcServices();
+        if (jdbcServices == null
+            || jdbcServices.getDialect() == null
+            || jdbcServices.getDialect().getLimitHandler() == null) {
+            return null;
+        }
+
+        LimitHandler limitHandler = jdbcServices.getDialect().getLimitHandler();
+        if (!(limitHandler instanceof AbstractLimitHandler)) {
+            return null;
+        }
+
+        return (AbstractLimitHandler) limitHandler;
     }
 }
