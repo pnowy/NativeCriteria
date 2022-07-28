@@ -1,5 +1,9 @@
 # Release notes
 
+#### Release 3.2.0 changes
+
+* Upgrade dependencies (`Hibernate 5.6.10.Final` and `Spring Data 2.3.9` and related)
+
 #### Release 3.1.0 changes
 
 * Upgrade dependencies (Hibernate 5.4 and Spring Data 2.2)
