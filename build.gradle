@@ -34,23 +34,23 @@ allprojects {
     dependencyManagement {
         dependencies {
             // CORE MODULE
-            dependency group: 'org.hibernate',              name: 'hibernate-core',         version: '5.4.10.Final'
-            dependency group: 'com.google.guava',           name: 'guava',                  version: '28.1-jre'
-            dependency group: 'org.slf4j',                  name: 'slf4j-api',              version: '1.7.29'
+            dependency group: 'org.hibernate',              name: 'hibernate-core',         version: '5.6.10.Final'
+            dependency group: 'com.google.guava',           name: 'guava',                  version: '31.1-jre'
+            dependency group: 'org.slf4j',                  name: 'slf4j-api',              version: '1.7.36'
             // SPRING MODULE
-            dependency group: 'org.springframework.data',   name: 'spring-data-commons',    version: '2.2.3.RELEASE'
-            dependency group: 'org.springframework',        name: 'spring-jdbc',            version: '5.2.2.RELEASE'
+            dependency group: 'org.springframework.data',   name: 'spring-data-commons',    version: '2.3.9.RELEASE'
+            dependency group: 'org.springframework',        name: 'spring-jdbc',            version: '5.2.22.RELEASE'
             // CORE TEST DEPENDENCIES
-            dependency group: 'junit',                      name: 'junit',                  version: '4.12'
-            dependency group: 'ch.qos.logback',             name: 'logback-classic',        version: '1.2.3'
-            dependency group: 'org.assertj',                name: 'assertj-core',           version: '3.14.0'
+            dependency group: 'junit',                      name: 'junit',                  version: '4.13.2'
+            dependency group: 'ch.qos.logback',             name: 'logback-classic',        version: '1.2.11'
+            dependency group: 'org.assertj',                name: 'assertj-core',           version: '3.23.1'
             // DATABASES DRIVERS FOR TESTING
-            dependency group: 'org.postgresql',             name: 'postgresql',             version: '42.2.9'
+            dependency group: 'org.postgresql',             name: 'postgresql',             version: '42.4.0'
             dependency group: 'net.sourceforge.jtds',       name: 'jtds',                   version: '1.3.1'
-            dependency group: 'mysql',                      name: 'mysql-connector-java',   version: '8.0.18'
+            dependency group: 'mysql',                      name: 'mysql-connector-java',   version: '8.0.30'
         }
         imports {
-            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE'
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:2.3.12.RELEASE'
         }
     }
 
