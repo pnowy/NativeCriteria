@@ -3,6 +3,8 @@
 ![](https://github.com/pnowy/NativeCriteria/workflows/documentation/badge.svg)
 [![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.pnowy.nc%22)
 
+> **⚠️ This repository is archived.** It is no longer actively developed, but it remains fully functional and can still be used in your projects. Feel free to **fork** the repository if you'd like to continue its development or adapt it to your needs.
+
 ### Development && Participation
 
 If you want to participate on the development please perform the pull request to the **develop** branch.
